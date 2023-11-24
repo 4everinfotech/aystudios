@@ -1,0 +1,614 @@
+<div id="fullpage1">
+  <section data-section-id="{{ section.id }}" data-section-type="product" class="vertical-scrolling">
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+    <div class="big-break"></div>
+    <div class="container-fluid product-container px-0">
+      <div class="row mx-0">
+        <div class="col-lg-6 px-0 product-order">
+          <div class="product-image product_slider">
+            <span class="arrow-shop"><img src="{{ 'shop_arrow.png' | asset_url }}" class="img-fluid"></span>
+            {% assign featured_alt = current_variant.option1 %}
+            {% for image in product.images %}
+              {% assign image_alt = image.alt | split: " - " %}
+
+              {% capture wrapper_class %}
+                {%- unless featured_image == image -%}
+                hide1
+                {%- endunless -%}
+                {% if image_alt[1] == featured_alt %}
+                  slide-visible
+                {% else %}
+                  hide
+                {% endif %}
+              {% endcapture %}
+
+              {% capture data_fancybox %}
+                {% if image_alt[1] == featured_alt %}
+                  data-fancybox1="gallery"
+                {% else %}
+                  data-fancybox1=""
+                {% endif %}
+              {% endcapture %}
+              
+              {% include 'responsive-image' with
+              image: image,
+              max_width: 1500,
+              max_height: 1500,
+              image_attributes: "data-product-featured-image",
+              wrapper_class: wrapper_class,
+              wrapper_attributes: "data-product-image-wrapper",
+              data_fancybox: data_fancybox,
+              %}
+            {% endfor %}
+            {% if product.images.size > 1 %}
+              <div class="prodcut_gallery row justify-content-center">
+                <ul class="list-inline">
+                  {% assign featured_alt = product.selected_or_first_available_variant.option1 %}
+                  {% for image in product.images %}
+                      <li class="list-inline-item" {% if image.alt == featured_alt or image == featured_image %} style="display: inline-block;" {% else %} style="display: none;" {% endif %}>
+                        <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail{% if featured_image == image %} aria-current="true"{% endif %}>
+                          <img class="product-single__thumbnail-image" src="{{ image.src
+                          | img_url: '55x55' }}" alt="{{ image.alt | escape }}" data-featured-image-id="{{ image.id }}">
+                        </a>
+                      </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+            <!-- {% if section.settings.show_share_buttons %}
+              {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+            {% endif %} -->
+          </div><!-- container -->
+        </div><!-- col -->
+        <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative">
+          {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+          <div class="col-lg-8 offset-lg-2">
+            <h1 class="fs60 mb-5">{{ product.title }}</h1>
+            {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
+              <p class="afterpay-paragraph_desktop" data-product-id="6818314485946"><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><br><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
+            {% endif %}
+            <div class="row border-bottom pb-4 border-dark no-gutters">
+              <div class="col-6 fs19">{{current_variant.metafields.product_variant_info.style_number}}</div>
+              <div class="col-6 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
+                <span data-product-price>
+                  {{ current_variant.price | times:1.25 | money }}
+  
+                </span>
+              </div></div>
+            </div>
+            <span data-product-price class="price_non_eu">
+             Price for Non-EU Destinations {{ current_variant.price | money }}
+            </span>
+            {% assign short_description_old = product.metafields.cf_product.short_description %}
+            {% if product.metafields.product_info.short_description != blank %}
+              {% assign short_description = product.metafields.product_info.short_description %}
+            {% else %}
+              {% assign short_description = "The sunglasses are made from 100% biodegradable acetate from Mazzucchelli in Italy. 90% of the material is converted into natural gasses after only 115 days. The remaining share is converted into water and biomass." %}
+            {% endif %}
+             
+            <p>{{ short_description }}</p>
+            {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
+                <p class="afterpay-paragraph_mobile" data-product-id="6818314485946"><span class="afterpay-text1">Make 4 interest-free payments of </span><strong class="afterpay-instalments">$70.00&nbsp;AUD</strong><span class="afterpay-text2"> fortnightly with </span><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
+            {% endif %}
+            <div class="pb-2 pt-4">
+              <div class="form-group">
+                {% if product.has_only_default_variant %}
+                  <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                {% else %}
+                  {% for option in product.options_with_values %}
+                    <div class="js">
+  
+                      {% if forloop.index0 > 0 %}
+  
+                        {% for value in option.values %}
+                          <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                          <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                        {% endfor %}
+  
+                      {% else %}
+                        <div class="swatch_area" style="display:none;">
+                          <div class="selected_color">{{ 'general.label.COLOURS' | t }} / <span>{{option.selected_value}}</span></div>
+                        </div>
+                        <select
+                          class="custom-select single-option-selector"
+                          id="Option{{ option.position }}"
+                          name="options[{{ option.name | escape }}]" >
+                          {% for value in option.values %}
+                            <option
+                              value="{{ value | escape }}"
+                              {% if option.selected_value == value %}selected="selected"{% endif %}>{{ 'general.label.COLOURS' | t }} : &nbsp;&nbsp;&nbsp;&nbsp;
+                            {{ value }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                        <div class="swatch_area" style="display:none;">
+                            {% include 'swatch' with 'Color' %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+  
+                <noscript>
+                  <select name="id" class="single-option-selector">
+                    {% for variant in product.variants %}
+                      <option
+                        {% if variant == current_variant %}selected="selected"{% endif %}
+                        {% unless variant.available %}disabled="disabled"{% endunless %}
+                        value="{{ variant.id }}">
+                      {{ variant.title }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </noscript>
+                {% if request.host != "wholesale.jamesay.com" %}
+                  <input class="form-control" type="hidden" id="quantity" name="quantity" value="1" min="1">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 offset-lg-2 buy-now-btn text-lg-left pt-0 mb-5 pb-5">
+            {% if request.host == "wholesale.jamesay.com" %}
+              <div class="qtydiv mb-5">
+                <div class="qtybox">
+                  <span class="btnqty qtyminus icon icon-minus">-</span>
+                  <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector quantity-input" readonly="">
+                  <span class="btnqty qtyplus icon icon-plus">+</span>
+                </div>
+              </div>
+            {% endif %}
+            <button
+            type="submit"
+            name="add"
+            class="btn-signup ajax_add_to_Cart_Btn"
+            data-submit-button
+            {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <span data-submit-button-text>
+                {% if current_variant.available %}
+                  {{ 'products.product.add_to_cart' | t }}
+                {% else %}
+                  {{ 'products.product.sold_out' | t }}
+                {% endif %}
+              </span>
+            </button>
+            <div class="viabill-pricetag"
+    data-view="product"
+    data-price="{{ product.price | money }}"
+    data-language="da"
+    data-currency="dkk">
+</div>
+          </div>
+          <div class="col-lg-8 offset-lg-2 product-tabs-wrapper">
+            <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title">{{ 'products.label.product_detail_txt' | t }}<span><i></i><i></i></span></p>
+            {% if product.metafields.product_info.product_details != blank %}
+              {% assign tab_product_details = product.metafields.product_info.product_details %}
+            {% else %}
+              {% assign tab_product_details = "Detail not available." %}
+            {% endif %}
+            <div id="tab_product_details" class="tab_content collapse"><div>{{ tab_product_details }}</div></div>
+
+            <p data-toggle="collapse" aria-expanded="false" data-target="#size_and_fit" class="mb-0 tab_title">{{ 'products.label.sizefit_txt' | t }}<span><i></i><i></i></span></p>
+            {% if product.metafields.product_info.size_and_fit != blank %}
+              {% assign size_and_fit = product.metafields.product_info.size_and_fit %}
+            {% else %}
+              {% assign size_and_fit = "Detail not available." %}
+            {% endif %}
+            <div id="size_and_fit" class="tab_content collapse"><div>{{size_and_fit}}</div></div>
+
+            <p data-toggle="collapse" aria-expanded="false" data-target="#shiping_and_returns" class="mb-0 tab_title">{{ 'products.label.shipping_returns_txt' | t }}<span><i></i><i></i></span></p>
+            {% if product.metafields.product_info.shiping_and_returns != blank %}
+              {% assign shiping_and_returns = product.metafields.product_info.shiping_and_returns %}
+            {% else %}
+              {% assign shiping_and_returns = "Detail not available." %}
+            {% endif %}
+            <div id="shiping_and_returns" class="tab_content collapse"><div>{{ shiping_and_returns }}</div></div>
+
+            <p data-toggle="collapse" aria-expanded="false" data-target="#reviews" class="mb-0 tab_title last">{{ 'products.label.reviews_txt' | t }}<span><i></i><i></i></span></p>
+            {% if product.metafields.product_info.reviews != blank %}
+              {% assign reviews = product.metafields.product_info.reviews %}
+            {% else %}
+              {% assign reviews = "Detail not available." %}
+            {% endif %}
+            <div id="reviews" class="tab_content collapse"><div>{{ reviews }}</div></div>
+
+          </div>
+        {% endform %}
+        </div><!-- col -->
+      </div><!-- row -->
+    </div><!-- container -->
+
+  </section>
+
+  {% schema %}
+    {
+      "name": "Product pages",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_share_buttons",
+          "label": "Show social sharing buttons",
+          "default": false
+        }
+      ]
+    }
+  {% endschema %}
+  {% if product.metafields.product_info.product_intro_text != blank %}
+    {% assign product_intro_text = product.metafields.product_info.product_intro_text %}
+  {% else %}
+    {% assign product_intro_text = "Glance represents a feeling of quality in all layers of life.<br><br>
+      It is about not wanting to compromise with anything but embracing all the great things in life." %}
+  {% endif %}
+  <section class="vertical-scrolling mx-auto h-100">
+    <div class="container-fluid h-100 px-0">
+      <div class="row pl-50 pr-50 no-gutters align-items-center min-vh-100">
+        <div class="col-lg-10">
+          <h1 class="fs80">{{product_intro_text}}</h1>
+        </div>
+    </div>
+  </section>
+  {% unless product.tags contains 'Lifestyle' or product.tags contains 'Livsstil'%}
+    {% if product.metafields.product_info.premium_eco_materials != blank %}
+      {% assign premium_eco_materials = product.metafields.product_info.premium_eco_materials %}
+    {% else %}
+      {% assign premium_eco_materials = "Premium eco<br>materials" %}
+    {% endif %}
+    {% if product.metafields.product_info.premium_eco_materials_image != blank %}
+      {% assign desktop_img = product.metafields.product_info.premium_eco_materials_image %}
+    {% else %}
+      {% assign desktop_img = settings.cdn_file_url | append: "plant-based-material.jpg" %}
+    {% endif %}
+    {% assign mobile_img = desktop_img %}
+    <section class="vertical-scrolling mx-auto h-100 lazyload" data-bg="{{desktop_img}}" style="background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+      <div class="container-fluid h-100 px-0">
+        <div class="row pl-50 pr-50 no-gutters min-vh-100">
+          <div class="col-lg-10 mt-5">
+            <h1 class="fs80 text-white">{{premium_eco_materials}}</h1>
+          </div>
+      </div>
+    </section>
+    <section class="vertical-scrolling mx-auto h-100">
+      <div class="container-fluid h-100 px-0">
+        <div class="row pl-50 pr-50 mt-5 mb-10 no-gutters product_info">
+          <div class="col-lg-6">
+            <div class="row no-gutters">
+              <div class="col-lg-4">
+                <p>{{ product.title }} / {{current_variant.metafields.product_variant_info.style_number}}<br>
+                  {{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}} / {{current_variant.metafields.product_variant_info.color_code}}<br>
+                  {{product.metafields.product_frame_sizing.material}}<br><br>
+                  {{shop.metafields.string_translation.EN_ISO_AS_NZS}}</p>
+              </div>
+              <div class="col-lg-6">
+                <p>{{shop.metafields.string_translation.polyamide_sun_lenses}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-1">
+            {{shop.metafields.string_translation.the_fully_plant_based_acetate}}
+          </div>
+      </div>
+    </section>  
+    <section class="vertical-scrolling mx-auto h-100" style="background-color: #000;">
+      <div class="container-fluid h-100 px-0">
+        <div class="row pl-50 pr-50 no-gutters min-vh-100 text-white">
+          <div class="col-12 mt-5">
+            <h1 class="fs80">{{ 'products.label.frame_sizing_txt' | t }}</h1>
+          </div>
+          <div class="col-12">
+            <div class="row mt-5 align-items-center">
+              <div class="col-lg-3 mb-5 mt-5 text-center">
+                {% if product.metafields.product_frame_sizing.frame_width_image != blank %}
+                  {% assign frame_width_image = product.metafields.product_frame_sizing.frame_width_image %}
+                {% else %}
+                  {% assign frame_width_image = settings.cdn_file_url | append: "cannes_frame_width.png?v=1617622313" %}
+                {% endif %}
+                <img src="{{frame_width_image}}" class="img-fluid mb-5" alt="">
+                <p>{{ 'products.label.width_txt' | t }}: {{product.metafields.product_frame_sizing.frame_width}}mm</p>
+              </div>
+              <div class="col-lg-3 mb-5 mt-5 text-center">
+                {% if product.metafields.product_frame_sizing.lens_length_image != blank %}
+                  {% assign lens_length_image = product.metafields.product_frame_sizing.lens_length_image %}
+                {% else %}
+                  {% assign lens_length_image = settings.cdn_file_url | append: "cannes_frame_lens_length.png?v=1617624722" %}
+                {% endif %}
+                <img src="{{lens_length_image}}" class="img-fluid mb-5" alt="">
+                <p>{{ 'products.label.lens_length_txt' | t }}: {{product.metafields.product_frame_sizing.lens_length}}mm</p>
+              </div>
+              <div class="col-lg-3 mb-5 mt-5 text-center">
+                {% if product.metafields.product_frame_sizing.nose_bridge_size_image != blank %}
+                  {% assign nose_bridge_size_image = product.metafields.product_frame_sizing.nose_bridge_size_image %}
+                {% else %}
+                  {% assign nose_bridge_size_image = settings.cdn_file_url | append: "cannes_frame_nose_bridge.png?v=1617622313" %}
+                {% endif %}
+                <img src="{{nose_bridge_size_image}}" class="img-fluid mb-5" alt="">
+                <p>{{ 'products.label.nose_bridge_txt' | t }}: {{product.metafields.product_frame_sizing.nose_bridge_size}}mm</p>
+              </div>
+              <div class="col-lg-3 mb-5 mt-5 text-center">
+                {% if product.metafields.product_frame_sizing.temple_size_image != blank %}
+                  {% assign temple_size_image = product.metafields.product_frame_sizing.temple_size_image %}
+                {% else %}
+                  {% assign temple_size_image = settings.cdn_file_url | append: "cannes_frame_temple1.png?v=1617629431" %}
+                {% endif %}
+                <img src="{{temple_size_image}}" class="img-fluid mb-5" alt="">
+                <p>{{ 'products.label.temple_txt' | t }}: {{product.metafields.product_frame_sizing.temple_size}}mm</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 d-none d-lg-block">
+            <p class="slide_title_bottom">{{ 'products.label.dimensions_txt' | t }}: {{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}}</p>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <p class="slide_description_bottom_right mt-5">{{ 'products.label.frame_sizing_desc_txt' | t }}</p>
+          </div>
+      </div>
+    </section>
+    {% if product.metafields.product_info.packaging_image != blank %}
+      {% assign packaging_image = product.metafields.product_info.packaging_image %}
+    {% else %}
+      {% assign packaging_image = settings.cdn_file_url | append: "packaging-sustainable-james-ay.jpg" %}
+    {% endif %}
+      {% if product.metafields.product_info.packaging_title != blank %}
+      {% assign packaging_title = product.metafields.product_info.packaging_title %}
+    {% else %}
+      {% assign packaging_title = "Premium recycled packaging" %}
+    {% endif %}
+    {% if product.metafields.product_info.packaging_text != blank %}
+      {% assign packaging_text = product.metafields.product_info.packaging_text %}
+    {% else %}
+      {% assign packaging_text = '<p>When you take pride in your product, you need to wrap it right and tight. With our packaging, aesthetics meets form and function.</p><p>The sunglasses comes in a white hard box with uncoated papir with a white and hot stamp logo on top. Inside the box the sunglasses will be put into a clear pvc case with logo and a brand statement printed outside. There will also be a white cloth with logo in the box.</p>' %}
+    {% endif %}
+    {% if product.metafields.product_info.tree_planted_image != blank %}
+      {% assign tree_planted_image = product.metafields.product_info.tree_planted_image %}
+    {% else %}
+      {% assign tree_planted_image = settings.cdn_file_url | append: "climaider-james-ay-trees.jpg" %}
+    {% endif %}
+    {% if product.metafields.product_info.tree_planted_title != blank %}
+      {% assign tree_planted_title = product.metafields.product_info.tree_planted_title %}
+    {% else %}
+      {% assign tree_planted_title = "One order = One tree planted" %}
+    {% endif %}
+    {% if product.metafields.product_info.tree_planted_text != blank %}
+      {% assign tree_planted_text = product.metafields.product_info.tree_planted_text %}
+    {% else %}
+      {% assign tree_planted_text = '<p>As an environmental charity, One tree planted is on a mission to make it simple for anyone to help the environment by planting trees! One dollar. One tree.</p><p>One tree planted plant trees in North America, South America, Asia, and Africa. Most of our projects help with restoration from forest fires and floods, as well as creating jobs, building communities, and protecting habitat for biodiversity.</p><p><br></p><p><a href="/pages/about">READ MORE</a></p>' %}
+    {% endif %}
+    <section class="vertical-scrolling mx-auto h-100 mt-10 mb-10 pb-5 premium_packing">
+      <div class="container-fluid h-100 px-0">
+        <div class="row pl-50 pr-50 no-gutters">
+          <div class="col-lg-6 dpr mt-5 pt-5">
+            <img src="{{packaging_image}}" class="img-fluid w-100">
+            <h4 class="shop_sml_title mt-4">{{packaging_title}}</h4>
+            <div class="shop_title_desc">{{packaging_text}}</div>
+          </div>
+          <div class="col-lg-6 dpl mt-5 pt-5 ">
+            <img src="{{tree_planted_image}}" class="img-fluid w-100">
+            <h4 class="shop_sml_title mt-4">{{tree_planted_title}}</h4>
+            <div class="shop_title_desc">{{tree_planted_text}}</div>
+          </div>
+      </div>
+    </section>
+  {% endunless %}
+  {% if request.host != "wholesale.jamesay.com" %}
+  {% include 'one_column_find_store', section_number:"one_column_find_store" %}
+  {% endif %}
+  {% if product.metafields.story_in_productpage.story_url != blank %}
+  {% assign story_url = product.metafields.story_in_productpage.story_url %}
+  {% else %}
+  {% assign story_url = "stories/following-dreams" %}
+  {% endif %}
+  {% include 'one_column_story_in_product_page', section_number:"one_column_story_in_product_page", story_url:story_url %}  
+  {% include 'collection_2021' %}
+  <!-- {% include 'followthesun_video', section_number:"followthesun_video position-relative" %} -->
+  {% include 'followthesun', section_number:"followthesun" %}
+</div>
+<style>
+{% assign width = '14px' %}
+{% assign height = '14px' %}
+.swatch { 
+  margin:1em 0; 
+}
+/* Label */
+.swatch .header {
+  margin: 0.5em 0;
+}
+/* Hide radio buttons.*/
+.swatch input { 
+  display:none;
+}
+.swatch label {
+  /* Rounded corners */
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  border-radius:50%;
+  /* To give width and height */
+  float:left;
+  /* Color swatches contain no text so they need to have a width. */
+  width:{{ width }} !important;
+  min-width:{{ width }} !important; 
+  height:{{ height }} !important;
+  /* No extra spacing between them */
+  margin:0;
+  /* The border when the button is not selected */
+  /* border:#ccc 1px solid; */
+  /* Background color */
+  background-color:#ddd;
+  /* Styling text */
+  font-size:13px;
+  text-align:center;
+  line-height:{{ height }};
+  white-space:nowrap;
+  text-transform:uppercase;
+}
+.swatch-element label { padding:0 10px; }
+.color.swatch-element label { padding:0; }
+/* Styling selected swatch */
+/* Slightly raised */
+.swatch input:checked + label {
+  /* -webkit-box-shadow:0px 1px 2px rgba(0,0,0,0.8); */
+  /* -moz-box-shadow:0px 1px 2px rgba(0,0,0,0.8); */
+  /* box-shadow:0px 1px 2px rgba(0,0,0,0.8); */
+  border-color:transparent;
+  margin-top: -1px;
+}
+.swatch input:checked + label:after {
+  content: "";
+  border: 2px solid #ccc;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 100px;
+  display: inline-block;
+  margin: -4px 0 0 -4px;
+}
+.swatch .swatch-element {
+  float:left;
+  -webkit-transform:translateZ(0); /* webkit flicker fix */
+  -webkit-font-smoothing:antialiased; /* webkit text rendering fix */
+  /* Spacing between buttons */
+  margin:0px 10px 0px 0;
+  /* To position the sold out graphic and tooltip */
+  position:relative;
+}
+/* Image with the cross in it */
+.crossed-out { position:absolute; width:100%; height:100%; left:0; top:0; }
+.swatch .swatch-element .crossed-out { display:none; }
+.swatch .swatch-element.soldout .crossed-out { display:block; }
+.swatch .swatch-element.soldout label {
+  filter: alpha(opacity=100); /* internet explorer */
+  -khtml-opacity: 1;      /* khtml, old safari */
+  -moz-opacity: 1;       /* mozilla, netscape */
+  opacity: 1;           /* fx, safari, opera */
+}
+/* Tooltips */
+.swatch .tooltip {
+  text-align:center;
+  background:gray;
+  color:#fff;
+  bottom:100%;
+  padding: 10px;
+  display:block;
+  position:absolute;
+  width:100px;
+  left:{{ width | remove: 'px' | to_number | divided_by: 2 | minus: 50 | plus: 2 }}px;
+  margin-bottom:15px;
+  /* Make it invisible by default */
+  filter:alpha(opacity=0);
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  opacity:0;
+  visibility:hidden;
+  /* Animations */
+  -webkit-transform: translateY(10px);
+     -moz-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+       -o-transform: translateY(10px);
+          transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+      -ms-transition: all .25s ease-out;
+       -o-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+     -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+      -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+       -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+          box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  z-index: 10000;
+  -moz-box-sizing:border-box; 
+  -webkit-box-sizing:border-box; 
+  box-sizing:border-box;
+}
+.swatch .tooltip:before {
+  bottom:-20px;
+  content:" ";
+  display:block;
+  height:20px;
+  left:0;
+  position:absolute;
+  width:100%;
+}
+/* CSS triangle */
+.swatch .tooltip:after {
+  border-left:solid transparent 10px;
+  border-right:solid transparent 10px;
+  border-top:solid gray 10px;
+  bottom:-10px;
+  content:" ";
+  height:0;
+  left:50%;
+  margin-left:-13px;
+  position:absolute;
+  width:0;
+}
+.swatch .swatch-element:hover .tooltip {
+  filter:alpha(opacity=100);
+  -khtml-opacity:1;
+  -moz-opacity:1;
+  opacity:1;
+  visibility:visible;
+  -webkit-transform:translateY(0px);
+     -moz-transform:translateY(0px);
+      -ms-transform:translateY(0px);
+       -o-transform:translateY(0px);
+          transform:translateY(0px);
+}
+.swatch.error {
+  background-color:#E8D2D2!important;
+  color:#333!important;
+  padding:1em;
+  border-radius:5px;
+}
+.swatch.error p {
+  margin:0.7em 0;
+}
+.swatch.error p:first-child {
+  margin-top:0;
+}
+.swatch.error p:last-child {
+  margin-bottom:0;
+}
+.swatch.error code {
+  font-family:monospace;
+}
+.selected_color {
+  font-size: 14px;
+  letter-spacing: 1.35px;
+  text-transform: uppercase;
+}
+.swatch_area {
+  padding: 20px 0 15px 0;
+}   
+</style>
+  {% assign article = articles[story_url] %}
+  {% if article.metafields.cf_story.display_video == 1 %}
+    {% if article.metafields.cf_story.vimeo_video_id != blank %}
+    {% assign story_vimeo_video_id = article.metafields.cf_story.vimeo_video_id %}
+    {% else %}
+    {% assign story_vimeo_video_id = 253989945 %}
+    {% endif %}
+    <script type="text/javascript">
+      if ($('#story_vimeo_video_id').length > 0) {
+        var options_story = {
+            id: {{story_vimeo_video_id}},
+            autoplay: true,
+            loop: true,
+            responsive: true,
+            background: true,
+        };
+        var chasing_story = new Vimeo.Player('story_vimeo_video_id', options_story);
+      }  
+    </script>
+  {% endif %}
+{% assign followthesun_video_id = 618752735 %}
+<script type="text/javascript">
+  if ($('#followthesun_video_id').length > 0) {
+    var options_story = {
+        id: {{followthesun_video_id}},
+        autoplay: true,
+        loop: true,
+        responsive: true,
+        background: true,
+    };
+    var chasing_story = new Vimeo.Player('followthesun_video_id', options_story);
+  }  
+</script>
+      <script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script>

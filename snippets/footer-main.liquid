@@ -1,0 +1,86 @@
+{% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
+  {% assign mailtolink = "mailto:info@jamesay.com.au" %}
+  {% assign instagram_link = "https://www.instagram.com/jamesay_aus" %}
+  {% assign trustpilot_link = "https://www.trustpilot.com/review/jamesay.com" %}
+{% elsif request.host == "jamesay.myshopify.com" or request.host == "aystudios.com" %}
+  {% assign mailtolink = "mailto:hi@jamesay.com" %}
+  {% assign instagram_link = "https://www.instagram.com/jamesay_com" %}
+  {% assign trustpilot_link = "https://www.trustpilot.com/review/jamesay.com?utm_medium=trustbox&utm_source=MicroReviewCount" %}
+{% else %}
+  {% assign mailtolink = "mailto:hi@jamesay.com" %}
+  {% assign instagram_link = "https://www.instagram.com/jamesay_com" %}
+  {% assign trustpilot_link = "https://dk.trustpilot.com/review/jamesay.com?utm_medium=trustbox&utm_source=MicroReviewCount" %}
+{% endif %}
+<div class="container-fluid footer mt-5">
+  <div class="row">
+    <div class="col-6  col-lg-3 mb-5 mb-lg-0 pb-4 pb-lg-0">
+      <p class="footer_title">{{ 'general.footer.customer_service_txt' | t }}</p>
+      <ul class="mb-0">
+        <li>
+          <a href="/pages/store-locator">{{ 'general.footer.resellers_txt' | t }}</a>
+        </li>
+        <li>
+          <a href="/pages/contact">{{ 'general.footer.contact_us_txt' | t }}</a>
+        </li>
+        <li>
+          <a href="/pages/shipping-return">{{ 'general.footer.shipping_returns_txt' | t }}</a>
+        </li>
+        <li>
+          <a href="{{trustpilot_link}}">Trustpilot</a>
+        </li>
+        <li>
+          <a href="/pages/terms-conditions">{{ 'general.footer.terms_conditions_txt' | t }}</a>
+        </li>
+        <li>
+          <a href="/pages/cookies-privacy-policy">{{ 'general.footer.cookies_txt' | t }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-6  col-lg-3 mb-5 mb-lg-0 pb-4 pb-lg-0">
+      <p class="footer_title">{{ 'general.footer.the_company_txt' | t }}</p>
+      <ul class="mb-0">
+        <li>
+          <a href="/pages/about">{{ 'general.footer.about_txt' | t }}</a>
+        </li>
+        <li>
+          <a href="https://www.dropbox.com/sh/co8sz00z384irb4/AAD5PJfKbLMi4MR0BhwTIOQya?dl=0" target="_blank">{{ 'general.header.press' | t }}</a>
+        </li>
+        <li>
+          <a href="/blogs/stories/jamesayxnorthside">James Ay x Northside</a>
+        </li>
+        <li>
+          <a href="/pages/sitemap">Sitemap</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-6  col-lg-3 mb-5 mb-lg-0 pb-4 pb-lg-0">
+      <p class="footer_title">{{ 'general.footer.ethos_txt' | t }}</p>
+      <ul class="mb-0">
+        <li>
+          <a href="/pages/follow-the-sun">{{ 'general.header.followthesun' | t }}</a>
+        </li>
+        <li>
+          <a href="/pages/sustainability">{{ 'general.header.sustainability' | t }}</a>
+        </li>
+        <li>
+          <a href="/blogs/stories">{{ 'general.footer.stories_txt' | t }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-6  col-lg-3 mb-5 mb-lg-0 pb-4 pb-lg-0 social-media">
+      <p class="footer_title">{{ 'general.footer.follow_us_txt' | t }}</p>
+      <ul class="mb-0">
+        <li>
+          <a href="{{instagram_link}}" target="_blank">Instagram</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/james-ay" target="_blank">Linkedin</a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/jamesayofficial/" target="_blank">Facebook</a>
+        </li>
+        {% comment %} <li><a href="https://www.youtube.com/channel/UCGzO6K0bWZlRD1trP3N64Tg" target="_blank">Youtube</a></li> {% endcomment %}
+      </ul>
+    </div>
+  </div>
+</div>

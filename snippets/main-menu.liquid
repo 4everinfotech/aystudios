@@ -1,0 +1,65 @@
+<nav class="main_menu">
+  <div class="row h-100 align-items-stretch no-gutters">
+
+    <div class="col-lg-6 d-lg-flex flex-column justify-content-between">
+      <div class="row no-gutters">
+        <div class="col content-vcenter1">
+          <ul id="menu">
+            {% for link in linklists.main-menu.links %}
+              {% assign child_list_handle = link.title | handleize %}
+              {% if linklists[child_list_handle].links != blank %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                <ul id="sub_menu">
+                [{% for childlink in linklists[child_list_handle].links %}
+                  <li><a class="fs120" href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+                {% endfor %}]
+                </ul>
+              {% else %}
+                <li><a class="fs120 menu_{{link.handle}}" href="{{ link.url }}" rel="p{{ forloop.index }}">{{ link.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="row fix-bottom">
+        <div class="col-lg-4 contact-track-ord">
+          <ul>
+            <li><a href="/blogs/stories/jamesayxnorthside">James Ay x Northside</a></li>
+            {% if request.host == "jamesay.myshopify.com" or request.host == "aystudios.com" or 
+            request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
+              <li class="hide"><a href="https://wholesale.jamesay.com/account/login">Wholesale login</a></li>
+            {% endif %}
+            <li><a href="/pages/sustainability">{{ 'general.header.sustainability' | t }}</a></li>
+            <li><a href="/pages/follow-the-sun">{{ 'general.header.followthesun' | t }}</a></li>
+            {% if request.host != "wholesale.jamesay.com" %}
+              <!-- <li><a href="/pages/become-a-retailer">{{ 'general.header.become_a_retailer' | t }}</a></li> -->
+              <li><a href="https://www.dropbox.com/sh/my4y9hfkvcmrk86/AACPYfCYsM7W1vpZfkX90jn_a?dl=0" target="_blank">{{ 'general.header.press' | t }}</a></li>
+            {% endif %}
+            <li><a href="/pages/terms-conditions">{{ 'general.header.terms_and_conditions' | t }}</a></li>
+            <li class="d-none"><a href="/pages/contact">{{ 'general.header.customer_service' | t }}</a></li>
+            <li class="join_newsletter">{{ 'general.header.join_newsletter' | t }}</li>
+            <li><a href="/pages/contact"  class="menu_contact1" >{{ 'general.header.contact' | t }}</a></li>
+          </ul>
+        </div>
+      {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
+        {% assign mailtolink = "mailto:info@jamesay.com.au" %}
+        {% assign instagram_link = "https://www.instagram.com/jamesay_aus" %}
+      {% else %}
+        {% assign mailtolink = "mailto:hi@jamesay.com" %}
+        {% assign instagram_link = "https://www.instagram.com/jamesay_com" %}
+      {% endif %}
+        <div class="col-lg-6">
+          <div class="social-media_header contact-track-ord mb-0 pt-5 pt-lg-0">
+            <div><a href="{{instagram_link}}" target="_blank">Instagram</a></div>
+            <div><a href="https://www.facebook.com/jamesayofficial/" target="_blank">Facebook</a></div>
+            <div><a href="{{mailtolink}}" target="_blank">Email</a></div>
+            <div class="d-none"><a href="https://www.youtube.com/channel/UCGzO6K0bWZlRD1trP3N64Tg" target="_blank">Youtube</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 d-none d-lg-block justify-content-center align-self-center text-right">
+      <div id="pic" class="p1"></div>
+    </div>
+  </div>
+</nav>

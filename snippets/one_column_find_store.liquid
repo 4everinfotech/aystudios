@@ -1,0 +1,22 @@
+{% assign desktop_img = 'general.label.find_store_image' | t %}
+{% assign mobile_img = desktop_img %}
+<section class="vertical-scrolling {{section_number}} lazyload" data-bg="{{desktop_img}}" style="background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+  <div class="container-fluid h-100">
+    <div class="row min-vh-100">
+      <div class="col-lg-12 pl-50" style="z-index: 997;">
+        <a href="/pages/store-locator" class="testbg">
+          <table class="find_store_info text-white mt-8 d-none d-lg-block1">
+            <tr>
+              <td>Father Rabbit Limited<br>Orakei Bay, Auckland</td>
+              <td>Orakei Bay Village<br>
+                228 Orakei Rd<br>
+                +64 9-283 0158</td>
+            </tr>
+          </table>
+          <p class="slide_title_bottom story_title fs120 text-white mb-lg-0">{{ 'general.label.Find_stores' | t }}</p>
+          <p class="slide_description_bottom_right text-white mb-0"><u>{{ 'general.label.GO_TO_STORE_LOCATOR' | t }}</u></p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

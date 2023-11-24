@@ -1,0 +1,145 @@
+<div id="fullpage" class="homepage">
+  {% if shop.metafields.two_column_slide.display_slide == 1  %}
+    {% include 'two_column_slide', section_number:"two_column_slide" %}
+  {% endif %}
+  {% if shop.metafields.one_column_general.display_slide == 1  %}
+  {% include 'one_column_general_slide', section_number:"one_column_general_slide" %}
+  {% endif %}
+  {% if shop.metafields.2_column_1_product.display_slide == 1  %} 
+    {% include 'two_column_one_product', section_number:"two_column_one_product" %}
+  {% endif %}
+  {% if shop.metafields.we_make_handmade.display_slide == 1  %}
+    {% include 'homemade_glasses', section_number:"homemade_glasses" %}
+  {% endif %}
+  {% if shop.metafields.2_column_2_product.display_slide == 1  %}
+    {% include 'two_column_two_product', section_number:"two_column_two_product" %}
+  {% endif %}
+  {% if shop.metafields.one_column_story.display_slide == 1  %}
+  {% include 'one_column_story', section_number:"one_column_story" %}
+  {% endif %}
+  {% include 'followthesun', section_number:"followthesun" %}
+</div>
+
+{% if shop.metafields.fp_fullslide_video.disable_video_slide != 1 %}
+  {% if shop.metafields.fp_fullslide_video.vimeo_video_id != blank %}
+  {% assign vimeo_video = shop.metafields.fp_fullslide_video.vimeo_video_id %}
+  {% else %}
+  {% assign vimeo_video = 693990646 %}
+  {% endif %}
+  <script type="text/javascript">
+    if ($('#vimeo-video').length > 0) { 
+      var options = {
+          id: {{vimeo_video}},
+          autoplay: true,
+          loop: true,
+          responsive: true,
+          background: true,
+      };
+      var chasing = new Vimeo.Player('vimeo-video', options);
+    }
+  </script>
+{% endif %}
+
+{% if shop.metafields.fp_2_column.new_two_column_template.disable != 1 and  shop.metafields.fp_2_column.new_two_column_template.display_video == 1%}
+  {% if shop.metafields.fp_2_column.new_two_column_template.vimeo_video_id != blank %}
+  {% assign vimeo_video_id = shop.metafields.fp_2_column.new_two_column_template.vimeo_video_id %}
+  {% else %}
+  {% assign vimeo_video_id = 253989945 %}
+  {% endif %}
+  <script type="text/javascript">
+    if ($('#vimeo_video_id').length > 0) {
+      var options_fifth = {
+          id: {{vimeo_video_id}},
+          autoplay: true,
+          loop: true,
+          responsive: true,
+          background: true,
+      };
+      var chasing_fifth = new Vimeo.Player('vimeo_video_id', options_fifth);
+    }  
+  </script>
+{% endif %}
+
+{% if shop.metafields.fp_2_column.new_two_column_6th_template.disable != 1 and  shop.metafields.fp_2_column.new_two_column_6th_template.display_video == 1%}
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.vimeo_video_id != blank %}
+  {% assign vimeo_video_id_sixth = shop.metafields.fp_2_column.new_two_column_6th_template.vimeo_video_id %}
+  {% else %}
+  {% assign vimeo_video_id_sixth = 253989945 %}
+  {% endif %}
+  <script type="text/javascript">
+    if ($('#vimeo_video_id_sixth').length > 0) {
+      var options_sixth = {
+          id: {{vimeo_video_id_sixth}},
+          autoplay: true,
+          loop: true,
+          responsive: true,
+          background: true,
+      };
+      var chasing_sixth = new Vimeo.Player('vimeo_video_id_sixth', options_sixth);
+    }  
+  </script>
+{% endif %}
+
+{% if shop.metafields.fp_fullslide_story.disable_story_slide != 1 %}
+  {% if shop.metafields.fp_fullslide_story.story_url != blank %}
+  {% assign story_url = shop.metafields.fp_fullslide_story.story_url %}
+  {% else %}
+  {% assign story_url = "stories/following-dreams" %}
+  {% endif %}
+
+  {% assign article = articles[story_url] %}
+
+  {% if article.metafields.cf_story.display_video == 1 %}
+    {% if article.metafields.cf_story.vimeo_video_id != blank %}
+    {% assign story_vimeo_video_id = article.metafields.cf_story.vimeo_video_id %}
+    {% else %}
+    {% assign story_vimeo_video_id = 253989945 %}
+    {% endif %}
+    <script type="text/javascript">
+      if ($('#story_vimeo_video_id').length > 0) {
+        var options_story = {
+            id: {{story_vimeo_video_id}},
+            autoplay: true,
+            loop: true,
+            responsive: true,
+            background: true,
+        };
+        var chasing_story = new Vimeo.Player('story_vimeo_video_id', options_story);
+      }  
+    </script>
+  {% endif %}
+{% endif %}
+
+{% assign followthesun_video_id = 618752735 %}
+<script type="text/javascript">
+  if ($('#followthesun_video_id').length > 0) {
+    var options_story = {
+        id: {{followthesun_video_id}},
+        autoplay: true,
+        loop: true,
+        responsive: true,
+        background: true,
+    };
+    var chasing_story = new Vimeo.Player('followthesun_video_id', options_story);
+  }  
+</script>
+
+{% if shop.metafields.one_column_general.display_video == 1 %}
+  {% if shop.metafields.one_column_general.video_id != blank %}
+  {% assign vimeo_video = shop.metafields.one_column_general.video_id %}
+  {% else %}
+  {% assign vimeo_video = 693990646 %}
+  {% endif %}
+  <script type="text/javascript">
+    if ($('#one_column_general_vimeo-video').length > 0) { 
+      var options = {
+          id: {{vimeo_video}},
+          autoplay: true,
+          loop: true,
+          responsive: true,
+          background: true,
+      };
+      var chasing = new Vimeo.Player('one_column_general_vimeo-video', options);
+    }
+  </script>
+{% endif %}

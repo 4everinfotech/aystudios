@@ -1,0 +1,15 @@
+<div id="signUpModal" class="container-fluid">
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <p class="footer_title">{{ 'general.newsletter_form.newsletter_txt' | t }}</p>
+        <p class="my-5 newsletter_text">{{ 'general.newsletter_form.newsletter_desc' | t }}</p>
+      </div>
+      <div class="col-lg-4">
+        {% if request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
+          <div class="klaviyo-form-TcEcVW"></div> 
+        {% else %}
+          <div class="klaviyo-form-VqHTtm"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,63 @@
+{% if request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
+{% assign lang = "da-DK" %}
+{% assign trustpilot_width = "275px" %}
+{% else %}
+{% assign lang = "en-US" %}
+{% assign trustpilot_width = "240px" %}
+{% endif %}
+<div class="container-fluid footer mt-5">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="row no-gutters">
+      <div class="col-6  col-lg-5 links">
+        <p class="footer_title">{{ 'general.footer.about_us_txt' | t }}</p>
+        <ul class="mb-0">
+          <li><a href="/pages/about">{{ 'general.footer.about_txt' | t }}</a></li>
+          <li><a href="/blogs/stories">{{ 'general.footer.stories_txt' | t }}</a></li>
+          <li><a href="/pages/contact">{{ 'general.footer.contact_us_txt' | t }}</a></li>
+          <li><a href="/pages/shipping-return">{{ 'general.footer.shipping_returns_txt' | t }}</a></li>
+          <li><a href="/pages/sitemap">Sitemap</a></li>
+        </ul>
+      </div>
+      {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
+        {% assign mailtolink = "mailto:info@jamesay.com.au" %}
+        {% assign instagram_link = "https://www.instagram.com/jamesay_aus" %}
+      {% else %}
+        {% assign mailtolink = "mailto:hi@jamesay.com" %}
+        {% assign instagram_link = "https://www.instagram.com/jamesay_com" %}
+      {% endif %}
+      <div class="col-6  col-lg-7  social-media">
+        <p class="footer_title">{{ 'general.footer.connect_txt' | t }}</p>
+        <ul class="mb-0">
+          <li><a href="{{instagram_link}}" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/jamesayofficial/" target="_blank">Facebook</a></li>
+          <li><a href="https://www.youtube.com/channel/UCGzO6K0bWZlRD1trP3N64Tg" target="_blank">Youtube</a></li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    <div class="col-lg-5 offset-lg-1 trustpilot_area pt-4 pt-lg-0 mt-5 mt-lg-0">
+      <p class="footer_title">{{ 'general.footer.reviews_txt' | t }}</p>
+      <!-- TrustBox widget - Micro Review Count -->
+      <div class="trustpilot-widget" data-locale="{{lang}}" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e20c5bba5ef500001737b06" data-style-height="20px" data-style-width="{{trustpilot_width}}" data-theme="light" style="text-align:left;">
+        <a href="https://dk.trustpilot.com/review/jamesay.com" target="_blank" rel="noopener">Trustpilot</a>
+      </div>
+      <!-- End TrustBox widget -->
+    </div>   
+  </div>
+  <div class="row terms-privacy pt-4 mb-5 mt-5">
+    <div class="col-lg-6">
+      <div class="row no-gutters">
+        <div class="col-5">
+          <p class="mb-0"><a href="/pages/terms-conditions">{{ 'general.footer.terms_conditions_txt' | t }}</a></p>
+        </div>
+        <div class="col-7 text-right text-sm-left">
+          <p class="mb-0"><a href="/pages/cookies-privacy-policy">{{ 'general.footer.cookies_txt' | t }}</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
+      <p class="mb-0"><a href="https://dk.trustpilot.com/review/jamesay.com">{{ 'general.footer.see_all_review_txt' | t }}</a></p>
+    </div>      
+  </div>
+</div>

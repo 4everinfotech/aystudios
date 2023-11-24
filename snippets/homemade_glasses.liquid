@@ -1,0 +1,33 @@
+{% if shop.metafields.we_make_handmade.title != blank %}
+{% assign title = shop.metafields.we_make_handmade.title %}
+{% else %}
+{% assign title = "Title" %}
+{% endif %}
+{% if shop.metafields.we_make_handmade.description != blank %}
+{% assign description = shop.metafields.we_make_handmade.description %}
+{% else %}
+{% assign description = "Description" %}
+{% endif %}
+
+{% if shop.metafields.we_make_handmade.link != blank %}
+{% assign link_url = shop.metafields.we_make_handmade.link %}
+{% else %}
+{% assign link_url = "#" %}
+{% endif %}
+
+{% if shop.metafields.we_make_handmade.sec_order != blank %}
+{% assign sec_order = shop.metafields.we_make_handmade.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %}
+
+<section class="vertical-scrolling homemade_glasses {{section_number}}" style="background-color: #000000; order: {{sec_order}};">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="col-lg-12 pl-50 pt-5">
+          <h2 class="title text-white mt-10 pt-5">{{ title }}</h2>
+            <a href="{{ link_url }}"><p class="view_all_style text-white"><u>{{description}}</u></p></a>
+      </div>
+    </div>
+  </div>
+</section>

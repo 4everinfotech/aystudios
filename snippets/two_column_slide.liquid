@@ -1,0 +1,114 @@
+{% if shop.metafields.two_column_slide.left_title != blank %}
+{% assign left_title = shop.metafields.two_column_slide.left_title %}
+{% else %}
+{% assign left_title = "" %}
+{% endif %}
+
+{% if shop.metafields.two_column_slide.left_description != blank %}
+{% assign left_description = shop.metafields.two_column_slide.left_description %}
+{% else %}
+{% assign left_description = "" %}
+{% endif %}
+
+{% if shop.metafields.two_column_slide.left_link != blank %}
+{% assign left_link = shop.metafields.two_column_slide.left_link %}
+{% else %}
+{% assign left_link = "#" %}
+{% endif %}
+
+{% if shop.metafields.two_column_slide.left_bg_image != blank %}
+  {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
+    {% assign left_bg_image_desktop = settings.cdn_file_url | append: shop.metafields.two_column_slide.left_bg_image %}
+  {% else %}
+    {% assign left_bg_image_desktop = shop.metafields.two_column_slide.left_bg_image | file_url %}
+  {% endif %}
+{% else %}
+  {% assign left_bg_image_desktop = "default.png" | file_url %}
+{% endif %}
+{% if shop.metafields.two_column_slide.left_bg_image_mobile != blank %}
+  {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
+  {% assign left_bg_image_mobile = settings.cdn_file_url | append: shop.metafields.two_column_slide.left_bg_image_mobile %}
+  {% else %}
+  {% assign left_bg_image_mobile = shop.metafields.two_column_slide.left_bg_image_mobile | file_img_url: '800x' %}
+  {% endif %}
+{% else %}
+{% assign left_bg_image_mobile = left_bg_image_desktop %}
+{% endif %} 
+
+
+{% if shop.metafields.two_column_slide.right_title != blank %}
+{% assign right_title = shop.metafields.two_column_slide.right_title %}
+{% else %}
+{% assign right_title = "" %}
+{% endif %}
+
+{% if shop.metafields.two_column_slide.right_description != blank %}
+{% assign right_description = shop.metafields.two_column_slide.right_description %}
+{% else %}
+{% assign right_description = "" %}
+{% endif %}
+
+{% if shop.metafields.two_column_slide.right_link != blank %}
+{% assign right_link = shop.metafields.two_column_slide.right_link %}
+{% else %}
+{% assign right_link = "#" %}
+{% endif %}
+
+{% if shop.metafields.two_column_slide.right_bg_image != blank %}
+  {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
+    {% assign right_bg_image_desktop = settings.cdn_file_url | append: shop.metafields.two_column_slide.right_bg_image %}
+  {% else %}
+    {% assign right_bg_image_desktop = shop.metafields.two_column_slide.right_bg_image | file_url %}
+  {% endif %}
+{% else %}
+  {% assign right_bg_image_desktop = "default.png" | file_url %}
+{% endif %}
+{% if shop.metafields.two_column_slide.right_bg_image_mobile != blank %}
+  {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
+  {% assign right_bg_image_mobile = settings.cdn_file_url | append: shop.metafields.two_column_slide.right_bg_image_mobile %}
+  {% else %}
+  {% assign right_bg_image_mobile = shop.metafields.two_column_slide.right_bg_image_mobile | file_img_url: '800x' %}
+  {% endif %}
+{% else %}
+{% assign right_bg_image_mobile = right_bg_image_desktop %}
+{% endif %}
+
+{% if shop.metafields.two_column_slide.sec_order != blank %}
+{% assign sec_order = shop.metafields.two_column_slide.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %}
+
+<section class="fp-auto-height-responsive vertical-scrolling {{section_number}}" data-section="two-image" style="background-color: #f0f0f0; order: {{sec_order}};">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="col-lg-6 pl-50 my-auto section1_imgl  custom_overlay lazyload left_column" data-bg="{{left_bg_image_desktop}}" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}">
+        {% if shop.metafields.two_column_slide.display_video == 1 and shop.metafields.two_column_slide.display_video_right == 0 %}
+        <div class="vimeo-wrapper">
+          <div id="vimeo_video_id_sixth"></div>
+        </div>
+        {% endif %}
+        <a href="{{left_link}}">
+          <div class="overlay">
+          </div>
+          <h2 class="slide_title_bottom fs80 text-white mb-lg-0">{{left_title}}</h2>
+          <h5 class="slide_description_bottom_right text-white mb-0 hide"><u>{{left_description}}</u></h5>
+        </a>
+      </div>
+      <div class="d-none1 d-lg-flex col-lg-6 right_column bg-white">
+        <div class="section1_imgl my-auto mx-auto custom_overlay lazyload" data-bg="{{right_bg_image_desktop}}" data-desktop-url="{{right_bg_image_desktop}}" data-mobile-url="{{right_bg_image_mobile}}">
+          {% if shop.metafields.two_column_slide.display_video == 1 and shop.metafields.two_column_slide.display_video_right == 1 %}
+          <div class="vimeo-wrapper">
+            <div id="vimeo_video_id_sixth"></div>
+          </div>
+          {% endif %}
+          <a href="{{right_link}}">
+            <div class="overlay"></div>
+            <h2 class="slide_title_bottom fs80 text-white mb-lg-0">{{right_title}}</h2>
+            <h5 class="slide_description_bottom_right text-white mb-0"><u>{{right_description}}</u></h5>
+          </a>
+        </div>          
+      </div>
+    </div>
+  </div>
+</section>

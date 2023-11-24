@@ -1,0 +1,24 @@
+{% if shop.metafields.n_scrolling_text.scrolling_text != blank %}
+{% assign scrolling_text = shop.metafields.n_scrolling_text.scrolling_text %}
+{% else %}
+{% assign scrolling_text = "Please Enter Text" %}
+{% endif %}
+
+{% if shop.metafields.n_scrolling_text.sec_order != blank %}
+{% assign sec_order = shop.metafields.n_scrolling_text.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %}
+<section class="vertical-scrolling h-100 marquee" style="order: {{sec_order}};">
+  <div class="container-fluid h-100 px-0">
+    <div class="row pl-50 pr-50 no-gutters align-items-center mobile_min-vh-40 min-vh-100">
+      {% if request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
+        {% assign all_collection_link = "/collections/alle" %}
+      {% else %}
+        {% assign all_collection_link = "/collections/all" %}
+      {% endif %}
+      <div class="col-12">
+        <a href="{{all_collection_link}}"><p class="fs60">{{scrolling_text}}</p></a>
+      </div>
+  </div>
+</section>

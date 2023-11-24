@@ -1,0 +1,85 @@
+{% assign color_code = "#000000" %}
+{% assign color_class = "blk" %}
+  <header>
+  <div class="header-top clearfix">
+    <a class="toggle-menu nav-hmenu menu_middle {{color_class}} fadein href="javaScript:void(0);">
+      <i></i>
+      <i></i>
+      <i></i>
+    </a>
+    {% if request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
+      {% assign all_collection_link = "/collections/alle" %}
+      {% assign lang_code = "EN" %}
+      {% assign site_link = "https://aystudios.com" %}
+    {% else %}
+      {% assign all_collection_link = "/collections/all" %}
+      {% assign lang_code = "DK" %}
+      {% assign site_link = "https://jamesay.dk" %}
+    {% endif %}
+    <span class="shop_link" style="color : {{color_code}}">
+      <a href="{{all_collection_link}}" class="fadein">SHOP</a>
+    </span>
+    <span class="l-left fadein">
+      <a href="/">{% include 'logo-svg' %}</a>
+    </span>
+    {% if cart.total_price > 0 %}
+      <!-- <div class="total_price_wrapper sticky_btn"> -->
+      <a
+        href="/cart"
+        class="total_price_wrapper sticky_btn"
+        style="display: none;">
+        <div class="vcenter">
+          <div id="cart-price" class="site-header__cart-count">
+            <span>{{ cart.total_price | times: 1.25 | money }}</span>
+          </div>
+          | {{ 'cart.general.buy_now' | t }}
+        </div>
+      </a>
+      <!-- </div> -->
+    {% endif %}
+    <span class="l-right count{{ cart.item_count }} fadein">
+      <ul>
+        {% if request.host == "wholesale-jamesay.myshopify.com" or request.host == "wholesale.jamesay.com" %}
+          <li class="d-none d-md-inline-block">
+            <span class="span_myaccount">
+              <span class="myaccount_style" style="color : {{color_code}}">
+                <a href="/account">MY ACCOUNT</a>
+              </span>
+            </span>
+          </li>
+        {% endif %}
+        <li class="d-none d-md-inline-block">
+          <span class="site_link pr-3" style="color : {{color_code}}">
+            <a href="{{site_link}}">{{ lang_code }}</a>
+          </span>
+        </li>
+        <li class="d-none d-md-inline-block hide">
+          <span class="search" OnClick="document.searchform.q.focus();">
+            <span id="search_icon" style="color : {{color_code}}">{{ 'general.header.search_txt' | t }}</span>
+          </span>
+        </li>
+        {% comment %} {% include 'currency_switcher', color_code: color_code %} {% endcomment %}
+        <li>
+          {% if cart.item_count > -1 %}
+            <span class="show_open">
+              <span
+                id="CartCount"
+                class="site-header__cart-count"
+                style="color : {{color_code}}">
+                {{ 'general.header.bag_txt' | t }} (<span>{{ cart.item_count }}</span>)
+              </span>
+            </span>
+          {% endif %}
+        </li>
+      </ul>
+    </span>
+    <div class="progress-container" style="display: none;">
+      <div class="progress-bar" id="myBar"></div>
+    </div>
+  </div>
+  {% comment %} {% include 'main-menu' %} {% endcomment %}
+  {% comment %} {% include 'search-bar' %} {% endcomment %}
+  <nav class="shop_menu">
+    {% include 'cart-drawer' %}
+  </nav>
+</header>

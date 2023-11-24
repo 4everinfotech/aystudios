@@ -1,0 +1,206 @@
+<div id="fullpage1" class="content_area cart_page">
+  <section class="vertical-scrolling mx-auto contentWidth">
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <div class="col-12">
+        {% if cart.item_count > 0 %}
+          <!-- <h1>{{ 'cart.general.title' | t }}</h1> -->
+
+          <form action="/cart" method="post" novalidate>
+            <table class="table table-borderless">
+              <thead>
+                <tr class="d-none d-md-table-row">
+                  <th colspan="2" scope="col" class="">{{ 'cart.label.product' | t }}</th>
+                  <th scope="col" class="">{{ 'cart.label.price' | t }}</th>
+                  <th scope="col" class="">{{ 'cart.label.quantity' | t }}</th>
+                  <th scope="col" class="text-right">{{ 'cart.label.total' | t }}</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {% for item in cart.items %}
+
+                  {% comment %}
+
+                  Cart Item Template
+                  =====================
+                  The data-label attributes on <td> elements are mobile-friendly
+                    helpers used for responsive-table labels
+                    {% endcomment %}
+
+                    <tr class="d-table-row flex-column">
+
+                      <td scope="col" class="d-table-cell justify-content-center" data-label="{{ 'customer.order.product' | t }}">
+
+                        {% if item.image != blank %}
+                          <a href="{{ item.url | within: collections.all }}">
+                            {{ item | img_url: '110x110' | img_tag: item.title }}
+                          </a>
+                        {% endif %}
+
+                      </td>
+                      <td scope="col" class="text-center1 text-md-left">
+                        <a href="{{ item.url }}">{{ item.product.title }}</a>
+
+                        {% unless item.product.has_only_default_variant %}
+                          <p>{{ item.variant.title }}</p>
+                        {% endunless %}
+
+                        <!-- <p class="vendor_detail">{{ item.vendor }}</p> -->
+
+                        {%- assign property_size = item.properties | size -%}
+
+                        {% if property_size > 0 %}
+                          {% for p in item.properties %}
+                            {% unless p.last == blank %}
+                              {{ p.first }}:
+
+                              {% if p.last contains '/uploads/' %}
+                                <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                              {% else %}
+                                {{ p.last }}
+                              {% endif %}
+
+                            {% endunless %}
+                          {% endfor %}
+                        {% endif %}
+
+                        <a class="product_remove_link" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                          {{ 'cart.general.remove' | t }}
+                        </a>
+                      </td>
+                      <td scope="col" class="text-center text-md-left cart-money desktop_only" data-label="{{ 'cart.label.price' | t }}">
+                        {% if item.original_line_price != item.line_price %}
+                          <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                          {{ item.price | times: 1.25 | money }}
+                          <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                          <s>{{ item.original_price| times: 1.25 | money }}</s>
+                        {% else %}
+                          {{ item.price | times: 1.25 | money }}
+                        {% endif %}
+                      </td>
+                      <td scope="col" class="text-center text-md-left" data-label="{{ 'cart.label.quantity' | t }}">
+                        <input type="number"
+                              name="updates[]"
+                              id="updates_{{ item.key }}"
+                              value="{{ item.quantity }}"
+                              min="0"
+                              {% unless item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %}
+                                max="{{ item.variant.inventory_quantity }}"
+                              {% endunless %}
+                              aria-label="{{ 'cart.general.item_quantity' | t }}">
+                      </td>
+                      <td scope="col" class="text-right cart-money" data-label="{{ 'cart.label.total' | t }}">
+                        {{ item.line_price | times: 1.25 | money }}
+                      </td>
+                    </tr>
+                  {% endfor %}                   
+              </tbody>
+            </table>
+            <div class="form-row1 row no-gutters">
+              {% if settings.cart_notes_enable %}
+                <div class="col-md-8 mb-3">
+                  <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+                  <textarea rows="7" class="form-control" placeholder="Add a note" name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+                </div>
+              {% endif %}
+            </div>           
+            <div class="row no-gutters">
+              <div class="col-12 d-none d-md-block mb-4 text-right euro no-gutter" style="border-bottom: 1px solid #dee2e6;">
+                <p id="subtotal" class="cart-money mb-0">{{ 'cart.general.total_incl_vat' | t }} {{ cart.total_price | times: 1.25 | money }}</p>
+                <p class="usp_text d-none">{{ 'cart.general.purchase_plants_tree_remove_waste' | t }}</p>
+                {% if cart.total_discounts > 0 %}
+                  <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
+                <div class="viabill-pricetag"
+    data-view="basket"
+    data-price="{{ cart.total_price | times: 1.25 | money }}"
+    data-language="da"
+    data-currency="dkk">
+</div>
+                {% endif %}
+              </div>             
+              <div class="col-12 d-block d-md-none mb-4 no-gutter" style="border-bottom: 1px solid #dee2e6;">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="mt-3">{{ 'cart.general.total_incl_vat' | t }}</p>
+                  </div>                 
+                  <div class="col-6 text-right euro">
+                    <p id="subtotal" class="cart-money">{{ cart.total_price | times: 1.25 | money }}</p>
+                    {% if cart.total_discounts > 0 %}
+                      <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | times: 1.25 | money }}</p>
+                    {% endif %}
+ 
+                  </div>                  
+                  <div class="col d-none"><p style="font-size: 1rem;">{{ 'cart.general.purchase_plants_tree_remove_waste' | t }}</p></div>                   
+                </div>                  
+              </div>              
+            </div>            
+            <div class="row pt-2 no-gutters">
+              <div class="col-md-6 text-center text-md-left invisible">
+                <p>{{ 'cart.general.shipping_at_checkout' | t }} ({{ 'cart.general.free_shipping_worldwide' | t }})</p>
+              </div>              
+              <div class="col-md-6 text-center text-md-right">
+                <p>
+                  <label class="agree-check">
+                      <input type="checkbox" class="option-input" id="agree">{{ 'cart.general.I_agree_with_the' | t }} <a href="/pages/terms-conditions" target="_blank">{{ 'cart.general.terms_and_conditions' | t }}</a>.
+                  </label>
+                </p>
+              </div>              
+            </div>            
+            <div class="row pt-2 no-gutters">
+              <div class="col-md-6 mt-5 mt-md-2 text-center text-md-left swaporder1">
+                <ul class="payment-icons list-inline">
+                  {% comment %} {% for type in shop.enabled_payment_types %} {% endfor %}{% endcomment %}
+                  {% if request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
+                  {% assign enabled_payment_types = 'visa,master,american_express,dankort,diners_club,ideal,mobilepay,klarna,apple_pay' | remove: ' ' | split: ',' %}
+                  {% else %}
+                  {% assign enabled_payment_types = 'visa,master,american_express,dankort,diners_club,ideal,klarna,apple_pay' | remove: ' ' | split: ',' %}
+                  {% endif %}
+                  
+                  {% for type in enabled_payment_types %}
+                  <li class="list-inline-item mr-1 pb-1">
+                    {{ type | payment_type_svg_tag: class: 'payment-cc-icon' }}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>              
+              <div class="col-md-6 text-center text-md-right swaporder2">
+                <button class="continue-shopping mb-3" type="submit" name="update" value="">{{ 'cart.general.update' | t }}</button>
+                <button class="continue-shopping black_btn" type="submit" name="checkout" class="button" value="">{{ 'cart.general.checkout' | t }}</button>
+              </div>
+            </div>
+          </form>
+        {% else %}
+          <div class="supports-cookies text-center m-5">
+              <h4 class="mb-5">{{ 'cart.general.empty' | t }}</h4>
+              <a href="/collections/all" class="continue-shopping" title="{{ 'cart.general.continue_shopping' | t }}">{{ 'cart.general.continue_shopping' | t }}</a>
+          </div>
+      
+          {% comment %}
+          Cart no cookies state
+          ---------------------
+          Browser cookies are required to use the cart. If cookies aren't enabled in the
+          browser a message is displayed prompting the user to enable them.
+          {% endcomment %}
+          <div class="supports-no-cookies text-center m-5">
+              <h4>{{ 'cart.general.cookies_required' | t }}</h4>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  $('body').on('click', '[name="checkout"], [name="goto_pp"], [name="goto_gc"]', function() {
+
+    if ($('#agree').is(':checked')) {
+      $(this).submit();
+    }
+    else {
+      alert("{{ 'general.label.accept_term_and_condition_alert' | t }}");
+      return false;
+    }
+  });
+</script>
+<script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script>

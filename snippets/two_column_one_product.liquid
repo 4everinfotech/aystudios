@@ -1,0 +1,112 @@
+{% if shop.metafields.2_column_1_product.left_title != blank %}
+{% assign left_title = shop.metafields.2_column_1_product.left_title %}
+{% else %}
+{% assign left_title = "" %}
+{% endif %}
+
+{% if shop.metafields.2_column_1_product.left_description != blank %}
+{% assign left_description = shop.metafields.2_column_1_product.left_description %}
+{% else %}
+{% assign left_description = "" %}
+{% endif %}
+
+{% if shop.metafields.2_column_1_product.left_link != blank %}
+{% assign left_link = shop.metafields.2_column_1_product.left_link %}
+{% else %}
+{% assign left_link = "#" %}
+{% endif %}
+
+{% if shop.metafields.2_column_1_product.left_bg_image != blank %}
+  {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
+    {% assign left_bg_image_desktop = settings.cdn_file_url | append: shop.metafields.2_column_1_product.left_bg_image %}
+  {% else %}
+    {% assign left_bg_image_desktop = shop.metafields.2_column_1_product.left_bg_image | file_url %}
+  {% endif %}
+{% else %}
+{% assign left_bg_image_desktop = "default.png" | file_url %}
+{% endif %}
+{% if shop.metafields.2_column_1_product.left_bg_image_mobile != blank %}
+  {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
+  {% assign left_bg_image_mobile = settings.cdn_file_url | append: shop.metafields.2_column_1_product.left_bg_image_mobile %}
+  {% else %}
+  {% assign left_bg_image_mobile = shop.metafields.2_column_1_product.left_bg_image_mobile | file_img_url: '800x' %}
+  {% endif %}
+{% else %}
+{% assign left_bg_image_mobile = left_bg_image_desktop %}
+{% endif %} 
+
+{% if shop.metafields.2_column_1_product.product_variant_id != blank %}
+{% assign productname_variantid = shop.metafields.2_column_1_product.product_variant_id %}
+{% else %}
+{% assign productname_variantid = "glance=39462324633653" %}
+{% endif %}
+
+{% assign result1 = productname_variantid | split: "=" %}
+{% assign product_name1 = result1[0] | strip %}
+{% assign product_id1 = result1[1] | strip | plus: 0 %}
+{% assign product = all_products[product_name1] %}
+
+{% for variant in product.variants %}
+  {% if variant != blank %}
+    {% if variant.id == product_id1 %} 
+      {% assign json_product1 = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign right_bg_image_desktop = json_product1.image.src | img_url : '1600x' %}
+{% assign right_bg_image_mobile = right_bg_image_desktop %}
+
+{% if shop.metafields.2_column_1_product.sec_order != blank %}
+{% assign sec_order = shop.metafields.2_column_1_product.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %}
+
+{% if shop.metafields.2_column_1_product.display_product_left_side == 1 %}
+  {% assign order_display_product_left_side = 0 %}
+{% else %}
+  {% assign order_display_product_left_side = 2 %}
+{% endif %}
+
+<section class="fp-auto-height-responsive vertical-scrolling {{section_number}}" data-section="two-image" style="background-color: #f5f5f5; order: {{sec_order}};">
+  <div class="container-fluid h-lg-100">
+    <div class="row h-lg-100 align-items-center1">
+      <div class="d-lg-flex1 col-12 col-lg-6 pl-50 my-auto section1_imgl  custom_overlay lazyload left_column" data-bg="{{left_bg_image_desktop}}" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}" style="order: 1;">
+        <a href="{{left_link}}">  
+          <div class="overlay">
+          </div>
+        </a>
+        <h2 class="slide_title_bottom fs80 text-white mb-lg-0 hide1">{{left_title}}</h2>
+        <h5 class="slide_description_bottom_right text-white mb-0 hide"><u>{{left_description}}</u></h5>
+      </div>
+      <div class="d-lg-flex col-12 col-lg-6 right_column bg-white" style="order: {{order_display_product_left_side}};">
+        <div class="section1_imgl my-auto mx-auto custom_overlay lazyload pl-20" data-bg="{{right_bg_image_desktop}}" data-desktop-url="{{right_bg_image_desktop}}" data-mobile-url="{{right_bg_image_mobile}}">
+          <a href="{{json_product1.url}}">
+            <div class="overlay">
+            </div>
+          </a>          
+          <table class="product_info slide_title_bottom">
+            <tr>
+              <td>{{product.title}} / {{json_product1.metafields.product_variant_info.style_number}}</td>
+            </tr>
+            <tr>
+              <td>{{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}} / {{json_product1.metafields.product_variant_info.color_code}}</td>
+            </tr>
+            <tr>
+              <td>{{product.metafields.product_frame_sizing.material}}</td>
+            </tr>
+            <tr>
+              <td>{{json_product1.price | times: 1.25 | money}}</td>
+            </tr>
+          </table>
+          <table class="product_info slide_description_bottom_right price_txt text-uppercase hide">
+            <tr>
+              <td><u>{{ 'cart.general.buy_now' | t }}</u></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

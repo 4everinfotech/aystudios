@@ -1,0 +1,30 @@
+{% if shop.metafields.followthesun.image_url != blank %}
+{% assign desktop_img = shop.metafields.followthesun.image_url %}
+{% else %}
+{% assign desktop_img = "default.png" | file_url %}
+{% endif %}
+{% if shop.metafields.followthesun.mobile_url != blank %}
+{% assign mobile_img = shop.metafields.followthesun.mobile_url %}
+{% else %}
+{% assign mobile_img = desktop_img %}
+{% endif %} 
+
+{% if shop.metafields.followthesun.bgcolor != blank %}
+{% assign bgcolor = shop.metafields.followthesun.bgcolor %}
+{% else %}
+{% assign bgcolor = "#FFDF30" %}
+{% endif %} 
+
+{% if shop.metafields.followthesun.sec_order != blank %}
+{% assign sec_order = shop.metafields.followthesun.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %} 
+
+<section class="vertical-scrolling {{section_number}} lazyload section1_imgl" data-bg1="{{desktop_img}}" style="background-image: url({{desktop_img}}); background-color: {{bgcolor}}; background-size: contain; background-repeat: no-repeat; background-position: center center; order: {{sec_order}};" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+  <div class="container-fluid h-100">
+    <div class="row custom_overlay">
+      <a href="/pages/follow-the-sun"><div class="overlay"></div></a>
+    </div>
+  </div>
+</section>

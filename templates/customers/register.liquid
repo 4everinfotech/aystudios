@@ -1,0 +1,139 @@
+<div class="container-fluid">
+
+  <div class="row hide">
+    {% include 'breadcrumbs' %}
+  </div>
+
+  <div class="row mt100 align-items-center account_pages_vcenter">
+    <div class="col-md-6 mx-auto mb-3  left_area1" style="max-width: 320px; margin: 0px auto; ">
+      
+
+      {% form 'create_customer' %}
+
+      {{ form.errors | default_errors }}
+	<h1 class="mb-3">{{ 'customer.register.title' | t }}</h1>
+      <div class="form-group">
+        <input type="text"
+              name="customer[note][company_name]"
+              class="form-control mb-3"
+              id="CompanyName"
+              placeholder="{{ 'customer.register.company_name' | t }}"
+              autofocus
+              {% if form.company_name %}value="{{ form.company_name }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <input type="text"
+              name="customer[note][phone_number]"
+              class="form-control mb-3"
+              id="PhoneNumber"
+              placeholder="{{ 'customer.register.phone_number' | t }}"
+              autofocus
+              {% if form.phone_number %}value="{{ form.phone_number }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <label for="FirstName">
+          {{ 'customer.register.first_name' | t }}
+        </label>
+        <input type="text"
+               name="customer[first_name]"
+               class="form-control mb-3"
+               id="FirstName"
+               placeholder="{{ 'customer.register.first_name' | t }}"
+               autofocus
+               {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+      </div>
+
+      <div class="form-group">
+        <label for="LastName">
+          {{ 'customer.register.last_name' | t }}
+        </label>
+        <input type="text"
+               name="customer[last_name]"
+               class="form-control mb-3"
+               id="LastName"
+               placeholder="{{ 'customer.register.last_name' | t }}"
+               {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <input type="text"
+              name="customer[note][street_address]"
+              class="form-control mb-3"
+              id="StreetAddress"
+              placeholder="{{ 'customer.register.street_address' | t }}"
+              autofocus
+              {% if form.street_address %}value="{{ form.street_address }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <input type="text"
+              name="customer[note][zip_code]"
+              class="form-control mb-3"
+              id="ZipCode"
+              placeholder="{{ 'customer.register.zip_code' | t }}"
+              autofocus
+              {% if form.zip_code %}value="{{ form.zip_code }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <input type="text"
+              name="customer[note][city]"
+              class="form-control mb-3"
+              id="City"
+              placeholder="{{ 'customer.register.city' | t }}"
+              autofocus
+              {% if form.city %}value="{{ form.city }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <input type="text"
+              name="customer[note][country]"
+              class="form-control mb-3"
+              id="Country"
+              placeholder="{{ 'customer.register.country' | t }}"
+              autofocus
+              {% if form.country %}value="{{ form.country }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <input type="text"
+              name="customer[note][vat_number]"
+              class="form-control mb-3"
+              id="VatNumber"
+              placeholder="{{ 'customer.register.vat_number' | t }}"
+              autofocus
+              {% if form.vat_number %}value="{{ form.vat_number }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <label for="Email">
+          {{ 'customer.register.email' | t }}
+        </label>
+        <input type="email"
+               name="customer[email]"
+               class="form-control mb-3"
+               id="Email"
+               class="{% if form.errors contains 'email' %}input-error{% endif %}"
+               placeholder="{{ 'customer.register.email' | t }}"
+               value="{% if form.email %}{{ form.email }}{% endif %}"
+               spellcheck="false"
+               autocomplete="off"
+               autocapitalize="off">
+      </div>
+
+      <div class="form-group">
+        <label for="CreatePassword">
+          {{ 'customer.register.password' | t }}
+        </label>
+        <input type="password"
+               name="customer[password]"
+               class="form-control mb-3"
+               id="CreatePassword"
+               class="{% if form.errors contains 'password' %}input-error{% endif %}"
+               placeholder="{{ 'customer.register.password' | t }}">
+      </div>
+
+      <input type="submit" value="{{ 'customer.register.submit' | t }}"
+      class="btn btn-primary mt-3">
+
+    </div>
+    <div class="col-md-6 mx-auto mb-3 right_area d-none">
+      <img class="max380 mx-auto d-block" src="{{settings.cdn_file_url}}james-ay-diego-sunglasses.jpg?v=1612847784" alt="">
+    </div>
+    {% endform %}
+  </div>
+</div>

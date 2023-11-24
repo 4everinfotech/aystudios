@@ -1,0 +1,20 @@
+<div id="fullpage1">
+  <section class="vertical-scrolling mx-auto mw-100">
+    <div class="container-fluid h-100 pl-50 pr-50 pt-5">
+      {{ page.content }}
+    </div>
+  </section>
+  {% if page.handle == "about" or page.handle == "om-os" %}
+    {% include 'collection_2021' %}
+  {% elsif page.handle == "sustainability" or page.handle == "baeredygtighed" %}
+    {% include 'collection_2021' %}
+  {% elsif page.handle == "james-ay-x-lovens-hule" or page.handle == "james-ay-x-lovens-hule" %}
+    {% include 'collection_2021' %}
+  {% elsif page.handle == "jamesay-x-roedekors" or page.handle == "jamesay-x-roedekors" %}
+    {% include 'collection_2021' %}
+  {% elsif page.handle == "contact" or page.handle == "kontakt" %}
+    {% include 'collection_2021' %}
+  {% elsif page.handle == "follow-the-sun" %}
+    {% include 'all_stroies' %}
+  {% endif %}
+</div>

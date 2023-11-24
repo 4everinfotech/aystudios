@@ -1,0 +1,88 @@
+{% if shop.metafields.2_column_2_product.product_variant_id != blank %}
+{% assign productname_variantid = shop.metafields.2_column_2_product.product_variant_id %}
+{% else %}
+{% assign productname_variantid = "modish=39462672957493" %}
+{% endif %}
+
+{% assign result1 = productname_variantid | split: "=" %}
+{% assign product_name1 = result1[0] | strip %}
+{% assign product_id1 = result1[1] | strip | plus: 0 %}
+{% assign product = all_products[product_name1] %}
+
+{% for variant in product.variants %}
+  {% if variant != blank %}
+    {% if variant.id == product_id1 %} 
+      {% assign json_product1 = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% if shop.metafields.2_column_2_product.right_product_variant_id != blank %}
+{% assign right_productname_variantid = shop.metafields.2_column_2_product.right_product_variant_id %}
+{% else %}
+{% assign right_productname_variantid = "unbound=39467412258869" %}
+{% endif %}
+
+{% assign right_result1 = right_productname_variantid | split: "=" %}
+{% assign right_product_name1 = right_result1[0] | strip %}
+{% assign right_product_id1 = right_result1[1] | strip | plus: 0 %}
+{% assign right_product = all_products[right_product_name1] %}
+
+{% for variant in right_product.variants %}
+  {% if variant != blank %}
+    {% if variant.id == right_product_id1 %} 
+      {% assign right_json_product1 = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign left_bg_image_desktop = json_product1.image.src | img_url : '1600x' %}
+{% assign left_bg_image_mobile = right_bg_image_desktop %}
+
+{% assign right_bg_image_desktop = right_json_product1.image.src | img_url : '1600x' %}
+{% assign right_bg_image_mobile = right_bg_image_desktop %}
+
+{% if shop.metafields.2_column_2_product.sec_order != blank %}
+{% assign sec_order = shop.metafields.2_column_2_product.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %}
+
+<section class="fp-auto-height-responsive vertical-scrolling {{section_number}}" data-section="two-image" style="background-color: #f2f2f2; order: {{sec_order}};">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="d-none d-lg-flex col-lg-6 pl-50 my-auto section1_imgl  custom_overlay lazyload left_column" data-bg="{{left_bg_image_desktop}}" style="border-right: 3px solid #ffffff;" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}">
+        <a href="{{json_product1.url}}">
+          <div class="overlay">
+          </div>
+        </a>
+        <table class="product_info slide_title_bottom">
+          <tr>
+            <td>{{product.title}} / {{json_product1.metafields.product_variant_info.style_number}}<br />{{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}} / {{json_product1.metafields.product_variant_info.color_code}}<br />{{product.metafields.product_frame_sizing.material}}<br /><br />{{product.price | times: 1.25 | money}}</td>
+          </tr>
+        </table>
+        <table class="product_info slide_description_bottom_right price_txt text-uppercase">
+          <tr>
+            <td><u>{{ 'cart.general.buy_now' | t }}</u></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-lg-6 pl-50 my-auto section1_imgl custom_overlay lazyload right_column" data-bg="{{right_bg_image_desktop}}" style="border-left: 3px solid #ffffff;" data-desktop-url="{{right_bg_image_desktop}}" data-mobile-url="{{right_bg_image_mobile}}">
+        <a href="{{right_json_product1.url}}">
+          <div class="overlay">
+          </div>
+        </a>
+        <table class="product_info slide_title_bottom">
+          <tr>
+            <td>{{right_product.title}} / {{right_json_product1.metafields.product_variant_info.style_number}}<br />
+{{right_product.metafields.product_frame_sizing.lens_length}}-{{right_product.metafields.product_frame_sizing.nose_bridge_size}}-{{right_product.metafields.product_frame_sizing.temple_size}} / {{right_json_product1.metafields.product_variant_info.color_code}}<br />{{right_product.metafields.product_frame_sizing.material}}<br /><br />{{right_json_product1.price | times: 1.25 | money}}</td>
+</tr>
+</table>
+        <table class="product_info slide_description_bottom_right price_txt text-uppercase">
+          <tr>
+            <td><u>{{ 'cart.general.buy_now' | t }}</u></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,136 @@
+<div class="row row_1 h-100" data-aos="fade-up">
+    <div class="col-md-12 h-100 mt-5" data-aos="fade-up">
+        <h1 class="text-left mt-5 mb-5 mt-lg-0 mb-lg-0 pt-5 pt-lg-3 pb-0 pb-lg-3 fs60">{{article.metafields.story_information.heading_1}}</h1>
+    </div>
+    <div class="col-md-12 h-100 mt-5 pt-5">
+        <div class="row">
+            <div class="col-md-6 pb-5 mb-5">
+                <p class="mt-3">{{article.metafields.story_information.left_text_1}}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="mt-3">{{article.metafields.story_information.right_text_1}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row_2 h-100 mt-10" data-aos="fade-up">
+    <div class="col-lg-12 mt-10" style="text-align: left;">
+
+        {% if article.metafields.story_information.big_image_1 contains "vimeo.com" %}
+            <div class="vimeo-wrapper lazyload" style="background-position: center center;">
+                <div id="vimeo-video2"></div>
+            </div>
+        {% else %}
+            <img src="{{article.metafields.story_information.big_image_1}}" alt="" class="img-fluid"/>
+        {% endif %}
+    </div>
+</div>
+<div class="row row_3 h-100 d-flex align-items-center  mt-5" data-aos="fade-up">
+    <div class="col col-md-6 offset-md-6 community_txt">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_2}}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_2}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row_4 h-100 mt-20 pt-5 mb-5" data-aos="fade-up">
+    <div class="col-lg-12 mb-20 about">
+        <h3 class="fs60">{{article.metafields.story_information.heading_3}}</h3>
+    </div>
+</div>
+<div class="row row_5 h-100 mt-20" data-aos="fade-up">
+    <div class="col-lg-5 offset-lg-7 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.right_image_3}}" alt="" class="img-fluid"/></div>
+</div>
+<div class="row row_6 h-100 mt-10 it_fuels" data-aos="fade-up">
+    <div class="col-lg-5 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.left_image_3}}" alt="" class="img-fluid mt-5"/></div>
+</div>
+<div class="row row_7 h-100 mt-20 mb-20" data-aos="fade-up">
+    <div class="col-md-6 community_txt">
+        <h3 class="fs60">{{article.metafields.story_information.heading_4}}</h3>
+    </div>
+    <div class="col-md-6 community_txt">
+        <div class="row pt-3">
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_4}}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_4}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% if article.title == "Jamesayxnorthside" %}
+    {% assign col_class = "col-md-8 offset-md-2" %}
+{% else %}
+    {% assign col_class = "col-lg-12" %}
+{% endif %}
+<div class="row row_8 h-100 mt-10" data-aos="fade-up">
+    <div class="{{col_class}}" style="text-align: left;"><img src="{{article.metafields.story_information.big_image_5}}" alt="" class="img-fluid"/></div>
+</div>
+<div class="row row_9 h-100 mt-3" data-aos="fade-up">
+    <div class="col-md-6 community_txt">
+        <h3 class="fs60">{{article.metafields.story_information.heading_5}}</h3>
+    </div>
+    <div class="col-md-6 community_txt">
+        <div class="row pt-3">
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_5}}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_5}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row_10 h-100 mt-20" data-aos="fade-up">
+    <div class="col-lg-5 offset-lg-7 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.left_image_6}}" alt="" class="img-fluid"/></div>
+</div>
+<div class="row row_11 h-100 mt-10 it_fuels" data-aos="fade-up">
+    <div class="col-lg-5 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.right_image_6}}" alt="" class="img-fluid"/></div>
+</div>
+<div class="row row_12 h-100 mt-10 pt-5 mb-20" data-aos="fade-up">
+    <div class="col-lg-12 about">
+        <h3 class="fs60" style="letter-spacing: -0.5px;">{{article.metafields.story_information.heading_7}}</h3>
+    </div>
+</div>
+<div class="row row_13 h-100 mt-10" data-aos="fade-up">
+    <div class="col-lg-5 offset-lg-7 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.right_image_7}}" alt="" class="img-fluid"/></div>
+</div>
+<div class="row row_14 h-100  mt-10 pt-5 mb-20" data-aos="fade-up">
+    <div class="col-md-6 community_txt">
+        <h3 class="fs60">{{article.metafields.story_information.heading_8}}</h3>
+    </div>
+    <div class="col-md-6 community_txt">
+        <div class="row pt-3">
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_8}}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_8}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row_15 h-100 mt-10" data-aos="fade-up">
+    <div class="col-lg-12" style="text-align: left;"><img src="{{article.metafields.story_information.big_image_9}}" alt="" class="img-fluid"/></div>
+</div>
+<div class="row row_16 h-100  mt-3 mb-20" data-aos="fade-up">
+    <div class="col-md-6 community_txt">
+        <h3 class="fs60">{{article.metafields.story_information.heading_10}}</h3>
+    </div>
+    <div class="col-md-6 community_txt">
+        <div class="row pt-3 ">
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_10}}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_10}}</p>
+            </div>
+        </div>
+    </div>
+</div>

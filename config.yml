@@ -1,0 +1,8 @@
+development:
+  password: 879ff4471263ed20720170052ce79bbf
+  theme_id: "127564906549"
+  store: jamesay.myshopify.com
+  ignore_files:
+  - '*.gif'
+  - '*.jpg'
+  - config/settings_data.json

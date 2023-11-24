@@ -1,0 +1,63 @@
+{% if template != 'article' and  template != 'article.dynamic' %}
+  {% if shop.metafields.one_column_story.select_story != blank %}
+  {% assign story_url = shop.metafields.one_column_story.select_story %}
+  {% else %}
+  {% assign story_url = "stories/following-dreams" %}
+  {% endif %}
+
+  {% assign article = articles[story_url] %}
+{% endif %}
+
+{% assign desktop_img = article.image | img_url: "master" %}
+{% if article.metafields.other_information.mobile_image %}
+{% assign mobile_img = article.metafields.other_information.mobile_image %}
+{% else %}
+{% assign mobile_img = desktop_img %}
+{% endif %}
+
+{% if article.metafields.other_information.display_video == 1 %}
+{% assign slide_type = "video" %}
+{% else %}
+{% assign slide_type = "one-image" %}
+{% endif %}
+
+{% if shop.metafields.one_column_story.sec_order != blank %}
+{% assign sec_order = shop.metafields.one_column_story.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %}
+
+<section class="vertical-scrolling {{section_number}} lazyload" data-bg="{{desktop_img}}" data-section="{{slide_type}}" style="background-size: cover; background-repeat: no-repeat; background-position: center center;background-color: #686868; order: {{sec_order}};" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+  {% if article.metafields.other_information.display_video == 1 %}
+    <div class="vimeo-wrapper lazyload" data-bg="{{desktop_img}}"  style="background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+      {% if template != 'article' and  template != 'article.dynamic' %}
+      	<div id="story_vimeo_video_id"></div>
+      {% else %}
+      	<div id="vimeo-video"></div>
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="container-fluid h-100">
+    <div class="row min-vh-100">
+      <div class="col-lg-12 pl-50 pt-5" style="z-index: 997;">
+        <a href="{{ article.url }}" class="testbg">
+          {% if template != 'article' and  template != 'article.dynamic' %}
+            <table class="story_model_info text-yellow mt-8 pt-5 d-none d-lg-block">
+              <td>{{ article.metafields.story_model_info.model_name}}<br>
+                {{ article.metafields.story_model_info.age}}<br>
+                {{ article.metafields.story_model_info.city}}</td>
+              <td>{{ article.metafields.story_model_info.style_name_and_number}}<br>
+                {{ article.metafields.story_model_info.size_and_color_code}}<br>
+                {{ article.metafields.story_model_info.Material}}</td>
+            </tr>
+            </table>
+          {% endif %}
+          <p class="slide_title_bottom story_title fs120 text-yellow mb-lg-0">{{ article.title }}</p>
+          {% if template != 'article' and  template != 'article.dynamic' %}
+            <p class="slide_description_bottom_right text-yellow mb-0"><u>{{shop.metafields.one_column_story.right_text}}</u></p>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+{% assign article1 = articles[story_url] %}
+{% assign desktop_img = article1.image | img_url: "master" %}
+{% if article1.metafields.cf_story.mobile_img %}
+  {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
+    {% assign mobile_img = settings.cdn_file_url | append: article1.metafields.cf_story.mobile_img %}
+  {% else %}
+    {% assign mobile_img = article1.metafields.cf_story.mobile_img | file_img_url: '800x' %}
+  {% endif %}
+{% else %}
+  {% assign mobile_img = desktop_img %}
+{% endif %}
+
+{% if article1.metafields.other_information.display_video == 1 %}
+  {% assign slide_type = "video" %}
+{% else %}
+  {% assign slide_type = "one-image" %}
+{% endif %}
+
+
+<section
+  class="vertical-scrolling {{section_number}} {{slide_type}}-slide lazyload"
+  data-section="{{slide_type}}"
+  data-bg="{{desktop_img}}"
+  style="background-size: cover; background-repeat: no-repeat; background-position: center center;"
+  data-desktop-url="{{desktop_img}}"
+  data-mobile-url="{{mobile_img}}">
+  {% if article1.metafields.other_information.display_video == 1 %}
+    <div
+      class="vimeo-wrapper lazyload"
+      data-bg="{{desktop_img}}"
+      style="background-position: center center;"
+      data-desktop-url="{{desktop_img}}"
+      data-mobile-url="{{mobile_img}}">
+      <div id="story_vimeo_video_id"></div>
+    </div>
+  {% endif %}
+  <div class="container-fluid h-100">
+    <div class="row min-vh-100">
+      <div class="col-lg-12 pl-50" style="z-index: 997;">
+        <a href="{{ article1.url }}" class="testbg">
+          <table class="story_model_info text-yellow mt-8 d-none d-lg-block">
+            <tr>
+              <td>{{ article1.metafields.story_model_info.model_name }}<br>
+                {{ article1.metafields.story_model_info.age }}<br>
+                {{ article1.metafields.story_model_info.city }}</td>
+              <td>{{ article1.metafields.story_model_info.style_name_and_number }}<br>
+                {{ article1.metafields.story_model_info.size_and_color_code }}<br>
+                {{ article1.metafields.story_model_info.Material }}</td>
+            </tr>
+          </table>
+          <p class="slide_title_bottom story_title fs120 text-yellow mb-lg-0">{{ article1.title }}</p>
+          <p class="slide_description_bottom_right text-yellow mb-0">
+            <u>{{ 'general.label.READ_STORY' | t }}</u>
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
