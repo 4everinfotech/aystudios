@@ -1,0 +1,16 @@
+<section class="vertical-scrolling mx-auto h-100 collection_2021">
+  <div class="container-fluid h-100 px-0">
+    <div class="row pl-50 pr-50 no-gutters align-items-center mobile_min-vh-40 min-vh-100">
+      {% if request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
+        {% assign all_collection_link = "/collections/alle" %}
+      {% else %}
+        {% assign all_collection_link = "/collections/all" %}
+      {% endif %}
+      <div class="col-lg-10">
+        <a href="{{all_collection_link}}"><h1 class="fs120">{{ 'general.label.Travel_bags' | t }}</h1></a>
+      </div>
+      <div class="col-lg-2 text-right">
+        <a href="{{all_collection_link}}"><p class="mt-lg-5 pt-lg-5"><u>{{ 'general.label.SEE_THE_COLLECTION' | t }}</u></p></a>
+      </div>
+  </div>
+</section>
