@@ -742,6 +742,9 @@
 	.desktop_only {
 		display: block;
 	}
+	span.desktop_only {
+		display: inline;
+	}
 	.mobile_only {
 		display: none;
 	}

@@ -10,20 +10,22 @@
     {% if request.host == "jamesay-dk.myshopify.com" or request.host == "jamesay.dk" %}
       {% assign all_collection_link = "/collections/alle" %}
       {% assign travelbags_collection_link = "/collections/travel-bags" %}
-      {% assign sunglasses_collection_link = "/collections/travel-bags" %}
+      {% assign sunglasses_collection_link = "/collections/sunglasses" %}
       {% assign lang_code = "EN" %}
       {% assign site_link = "https://aystudios.com" %}
     {% else %}
       {% assign all_collection_link = "/collections/all" %}
       {% assign travelbags_collection_link = "/collections/travel-bags" %}
-      {% assign sunglasses_collection_link = "/collections/travel-bags" %}
+      {% assign sunglasses_collection_link = "/collections/sunglasses" %}
       {% assign lang_code = "DK" %}
       {% assign site_link = "https://jamesay.dk" %}
     {% endif %}
     <span class="shop_link" style="color : {{color_code}}">
       <a href="{{all_collection_link}}" class="fadein">SHOP</a>
+      <span class="desktop_only">
       <a href="{{sunglasses_collection_link}}" class="fadein">SUNGLASSES</a>
       <a href="{{travelbags_collection_link}}" class="fadein">TRAVEL BAGS</a>
+      </span>
     </span>
     <span class="l-left fadein">
       <a href="/">{% include 'aystudios-svg' %}</a>
