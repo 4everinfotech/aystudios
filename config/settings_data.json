@@ -1,0 +1,20 @@
+{
+  "current": {
+    "favicon": "shopify:\/\/shop_images\/favicon_f1de2236-22da-45bd-a33c-938d150a47f5.png",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  }
+}
