@@ -1,6 +1,10 @@
 {
   "current": {
     "favicon": "shopify:\/\/shop_images\/favicon_f1de2236-22da-45bd-a33c-938d150a47f5.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Tegnebraet_1-100.jpg",
+    "checkout_input_background_color_mode": "white",
+    "checkout_accent_color": "#000000",
+    "checkout_button_color": "#000000",
     "sections": {
       "header": {
         "type": "header",
