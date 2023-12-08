@@ -34,7 +34,7 @@
               </div>
               {% endif %}
             {% endfor %} -->
-            {% assign default_collection = "All,Female,Gender Neutral,Lifestyle,Male,Alle,Kønsneutral,Kvinde,Livsstil,Mand" | split:"," %}
+            {% assign default_collection = "All,Sunglasses,Travel bags,Female,Male,Alle,Solbriller,Rejsetasker,Kvinde,Mand" | split:"," %}
             {% for collection1 in collections  %}
             <!-- {{ collection1.url }} -->
               {% if default_collection contains collection1.title %}
