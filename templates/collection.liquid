@@ -4,7 +4,14 @@
     <div class="container-fluid h-100 px-0">
       <div class="row pl-50 no-gutters">
         <div class="col">
-          <p class="fs80 mb-5 1mlm-5">{{ 'general.label.Shop' | t }} {{ collection.title }}</p>
+          <p class="fs80 mb-5 1mlm-5">
+            {{ collection.title }}
+            {% if request.host == "jamesay-dk.myshopify.com" or request.host == "aystudios.dk" %}
+              {% if collection.title == "Alle" %} Produkte {% endif %}
+            {% else %}
+              {% if collection.title == "All" %} products {% endif %}
+            {% endif %}
+          </p>
         </div>
       </div>
       <div class="row pl-50 no-gutters pr-50">
