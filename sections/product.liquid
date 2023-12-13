@@ -86,7 +86,11 @@
             {% else %}
               {% assign short_description = "The sunglasses are made from 100% biodegradable acetate from Mazzucchelli in Italy. 90% of the material is converted into natural gasses after only 115 days. The remaining share is converted into water and biomass." %}
             {% endif %}
-             
+            {% if product.metafields.custom.product_template == true %}
+              True...................................
+            {% else %}
+              false...................................
+            {% endif %}
             <p>{{ short_description }}</p>
             {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
                 <p class="afterpay-paragraph_mobile" data-product-id="6818314485946"><span class="afterpay-text1">Make 4 interest-free payments of </span><strong class="afterpay-instalments">$70.00&nbsp;AUD</strong><span class="afterpay-text2"> fortnightly with </span><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
@@ -180,12 +184,6 @@
 </div>
           </div>
           <div class="col-lg-8 offset-lg-2 product-tabs-wrapper">
-            
-            {% if product.metafields.custom.product_template == true %}
-              True...................................
-            {% else %}
-              false...................................
-            {% endif %}
             <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title">{{ 'products.label.product_detail_txt' | t }}<span><i></i><i></i></span></p>
             {% if product.metafields.product_info.product_details != blank %}
               {% assign tab_product_details = product.metafields.product_info.product_details %}
