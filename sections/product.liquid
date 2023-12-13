@@ -180,6 +180,12 @@
 </div>
           </div>
           <div class="col-lg-8 offset-lg-2 product-tabs-wrapper">
+            
+            {% if product.metafields.custom.product_template == true %}
+              True...................................
+            {% else %}
+              false...................................
+            {% endif %}
             <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title">{{ 'products.label.product_detail_txt' | t }}<span><i></i><i></i></span></p>
             {% if product.metafields.product_info.product_details != blank %}
               {% assign tab_product_details = product.metafields.product_info.product_details %}
