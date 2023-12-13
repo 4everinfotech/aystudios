@@ -117,8 +117,8 @@
                           {% for value in option.values %}
                             <option
                               value="{{ value | escape }}"
-                              {% if option.selected_value == value %}selected="selected"{% endif %}>{{ 'general.label.COLOURS' | t }} : &nbsp;
-                            {{ value }}
+                              {% if option.selected_value == value %}selected="selected"{% endif %}>
+                                {{ 'general.label.COLOURS' | t }} : &nbsp;{{ value }}
                             </option>
                           {% endfor %}
                         </select>
