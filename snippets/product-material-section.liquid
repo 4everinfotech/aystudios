@@ -1,0 +1,21 @@
+<section class="vertical-scrolling mx-auto h-100">
+    <div class="container-fluid h-100 px-0">
+        <div class="row pl-50 pr-50 mt-5 mb-10 no-gutters product_info MonumentSemiMono">
+        <div class="col-lg-6">
+            <div class="row no-gutters">
+            <div class="col-lg-4">
+                <p>{{ product.title }} / {{current_variant.metafields.product_variant_info.style_number}}<br>
+                {{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}} / {{current_variant.metafields.product_variant_info.color_code}}<br>
+                {{product.metafields.product_frame_sizing.material}}<br><br>
+                {{shop.metafields.string_translation.EN_ISO_AS_NZS}}</p>
+            </div>
+            <div class="col-lg-6">
+                <p>{{shop.metafields.string_translation.polyamide_sun_lenses}}</p>
+            </div>
+            </div>
+        </div>
+        <div class="col-lg-4 offset-lg-1">
+            {{shop.metafields.string_translation.the_fully_plant_based_acetate}}
+        </div>
+    </div>
+</section>  
