@@ -140,7 +140,7 @@
 				getProductJson: t => fetch(`/products/${t}.js`).then(t => t.json()),
 				onFormOptionChange(t) {
 					const e = t.dataset.variant;
-         // alert(e.title.split(" / ")[0]);
+         alert(e.title.split(" / ")[0]);
 					this.renderSwatches(e), this.renderSelectedColor(e), this.renderImages(e), this.renderScrollToImages(e), this.renderFancybox(e), this.renderPrice(e), this.renderComparePrice(e), this.renderSubmitButton(e), this.updateBrowserHistory(e)
 				},
 				onThumbnailClick(t) {

@@ -7,7 +7,7 @@
           <p class="fs80 mb-5 1mlm-5">
             {{ collection.title }}
             {% if request.host == "jamesay-dk.myshopify.com" or request.host == "aystudios.dk" %}
-              {% if collection.title == "Alle" %} Produkte {% endif %}
+              {% if collection.title == "Alle" %} produkter {% endif %}
             {% else %}
               {% if collection.title == "All" %} products {% endif %}
             {% endif %}
