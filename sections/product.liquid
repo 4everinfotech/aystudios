@@ -267,12 +267,12 @@
           </div>
       </div>
     </section>
-    {% if product.metafields.custom.product_template.value == true %}
+    {% if product.metafields.custom.other_product_template.value == true %}
       {% include 'product-other-material-section' %}
     {% else %}
       {% include 'product-material-section' %}
     {% endif %}
-    {% if product.metafields.custom.product_template.value != true %}
+    {% if product.metafields.custom.other_product_template.value != true %}
       {% include 'sunglass_frame' %}
     {% endif %}
     {% if product.metafields.product_info.packaging_image != blank %}
@@ -330,7 +330,7 @@
   {% assign story_url = "stories/following-dreams" %}
   {% endif %}
   {% include 'one_column_story_in_product_page', section_number:"one_column_story_in_product_page", story_url:story_url %}  
-  {% if product.metafields.custom.product_template.value == true %}
+  {% if product.metafields.custom.other_product_template.value == true %}
     {% include 'collection_bags' %}
   {% else %}
     {% include 'collection_2021' %}
