@@ -2,7 +2,8 @@
   "current": {
     "favicon": "shopify:\/\/shop_images\/favicon24.png",
     "checkout_logo_image": "shopify:\/\/shop_images\/ays-logo-mail.png",
-    "checkout_logo_size": "small",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
     "checkout_input_background_color_mode": "white",
     "checkout_accent_color": "#000000",
     "checkout_button_color": "#000000",
