@@ -58,16 +58,14 @@
             {% endfor %} {% endcomment %}
             {% for link in linklists.collections-filter.links %}
               {% assign collection1 = link.object %}
-              {% if default_collection contains collection1.title %}
-                {% if collection1.title == collection.title %}
-                <div class="active">
-                  <a href="{{ collection1.url }}">{{ collection1.title }}</a>
-                </div>
-                {% else %}
-                <div>
-                  <a href="{{ collection1.url }}">{{ collection1.title }}</a>
-                </div>
-                {% endif %}
+              {% if collection1.title == collection.title %}
+              <div class="active">
+                <a href="{{ collection1.url }}">{{ collection1.title }}</a>
+              </div>
+              {% else %}
+              <div>
+                <a href="{{ collection1.url }}">{{ collection1.title }}</a>
+              </div>
               {% endif %}
             {% endfor %}
         </div>
