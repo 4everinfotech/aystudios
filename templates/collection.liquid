@@ -41,9 +41,23 @@
               </div>
               {% endif %}
             {% endfor %} -->
-            {% assign default_collection = "All,Sunglasses,Travel bags,Female,Male,Alle,Solbriller,Rejsetasker,Kvinde,Mand" | split:"," %}
+            {% comment %} {% assign default_collection = "All,Sunglasses,Travel bags,Female,Male,Alle,Solbriller,Rejsetasker,Kvinde,Mand" | split:"," %}
             {% for collection1 in collections  %}
             <!-- {{ collection1.url }} -->
+              {% if default_collection contains collection1.title %}
+                {% if collection1.title == collection.title %}
+                <div class="active">
+                  <a href="{{ collection1.url }}">{{ collection1.title }}</a>
+                </div>
+                {% else %}
+                <div>
+                  <a href="{{ collection1.url }}">{{ collection1.title }}</a>
+                </div>
+                {% endif %}
+              {% endif %}
+            {% endfor %} {% endcomment %}
+            {% for link in linklists.collections-filter.links %}
+              {% assign collection1 = link.object %}
               {% if default_collection contains collection1.title %}
                 {% if collection1.title == collection.title %}
                 <div class="active">
