@@ -98,7 +98,8 @@
       "male_link": "https:\/\/aystudios.com\/collections\/male",
       "female_link": "https:\/\/aystudios.com\/collections\/female",
       "delivery": "Delivery",
-      "out_of_stock": "Out of stock"
+      "out_of_stock": "Out of stock",
+      "in_stock": "In stock"
     },
     "header": {
       "sustainability": "Responsibility",
