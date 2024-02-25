@@ -155,8 +155,17 @@
                               {{variant.metafields.product_variant_info.acetate_color}} <span class="hide">/ {{variant.metafields.product_variant_info.lense_color}}</span><br>
                             {% endif %}
                             {{ 'general.label.delivery' | t }} : 
+                              {% comment %} {% if variant.metafields.product_variant_info.new_style == 1 %}
+                                PRE-ORDER
+                              {% else %}
+                                {% if variant.inventory_quantity == 0 %} 
+                                  {{ 'general.label.out_of_stock' | t }}
+                                {% else %}
+                                {{ 'general.label.in_stock' | t }}
+                              {% endif %} {% endcomment %}
                               {{variant.metafields.product_variant_info.delivery}}
-                            {% endif %}<br>
+                            {% comment %} {% endif %} {% endcomment %}
+                            <br>
                             {{ variant.price | times: 1.25 | money }}
                           </div>
                         </div>
