@@ -57,7 +57,7 @@
         </a>
         <table class="product_info slide_title_bottom">
           <tr>
-            <td>{{product.title}} / {{json_product1.metafields.product_variant_info.style_number}}<br />{{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}} / {{json_product1.metafields.product_variant_info.color_code}}<br />{{product.metafields.product_frame_sizing.material}}<br /><br />{{product.price | times: 1.25 | money}}</td>
+            <td>{{product.title}} / {{json_product1.metafields.product_variant_info.style_number}}<br />{{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}} / {{json_product1.metafields.product_variant_info.color_code}}<br />{{product.metafields.product_frame_sizing.material}}<br /><br />{{product.price | times: 1.25 | money}} {{ 'cart.general.total_incl_vat' | t }}:</td>
           </tr>
         </table>
         <table class="product_info slide_description_bottom_right price_txt text-uppercase">

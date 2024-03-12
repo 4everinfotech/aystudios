@@ -176,6 +176,8 @@
       "savings": "Du sparer",
       "buy_now": "Køb nu",
       "continue_shopping": "Forsæt med at handle",
+      "excl_vat": "ekskl. moms",
+      "incl_vat": "inkl. moms",      
       "total_excl_vat": "Total ekskl. moms",
       "total_incl_vat": "Total inkl. moms",
       "Subtotal_incl_taxes": "Subtotal incl. taxes",
