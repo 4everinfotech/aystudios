@@ -9,8 +9,11 @@
   <meta http-equiv="Expires" content="30" />
   <meta name="facebook-domain-verification" content="9auj64wzybxsg8ihtzbo5i0zfji3w3" />
   <link rel="canonical" href="{{ canonical_url | split: "?page=" | first }}">
-  <meta name="google-site-verification" content="qFOPL1giKUbGCRF0B9e4WI82oP6O3lJRz1QOxZbP0v4" />
-  
+  {% if request.host == "jamesay.myshopify.com" or request.host == "aystudios.com" %}
+    <meta name="google-site-verification" content="qFOPL1giKUbGCRF0B9e4WI82oP6O3lJRz1QOxZbP0v4" />
+  {% else %}
+    <meta name="google-site-verification" content="ghsF1gg944PlkwfkZo4AuyfcFC6oSukaEp2Pf2WlKdU" />
+  {% endif %}
   
    {% if current_tags %}
       <meta name="robots" content="noindex">
