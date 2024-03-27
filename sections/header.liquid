@@ -34,7 +34,7 @@
     <span class="l-left fadein">
       <a href="/">{% include 'aystudios-svg' %}</a>
     </span>
-    {% if cart.total_price >= 0 %}
+    {% if cart.total_price >= 0 and cart.item_count > 0 %}
       <!-- <div class="total_price_wrapper sticky_btn"> -->
       <a
         href="/cart"
