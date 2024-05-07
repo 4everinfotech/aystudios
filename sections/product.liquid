@@ -72,13 +72,18 @@
               <div class="col-6 fs19">{{current_variant.metafields.product_variant_info.style_number}}</div>
               <div class="col-6 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
                 <span data-product-price>
-                  <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> {{ current_variant.price | times:1.25 | money }}
-                  {% assign discount_percentage = current_variant.compare_at_price
-                  | minus: current_variant.price
-                  | times: 100.0
-                  | divided_by: current_variant.compare_at_price
-                  %}
-                  <span class="percent-count">{{ discount_percentage | round: 0 }}% off</span>
+                  {% if current_variant.compare_at_price  > 0 %}
+                    <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
+                  {% endif %}
+                  {{ current_variant.price | times:1.25 | money }}
+                  {% if current_variant.compare_at_price  > 0 %}
+                    {% assign discount_percentage = current_variant.compare_at_price
+                    | minus: current_variant.price
+                    | times: 100.0
+                    | divided_by: current_variant.compare_at_price
+                    %}
+                    <span class="percent-count">{{ discount_percentage | round: 0 }}%</span>
+                  {% endif %}
                 </span>
               </div></div>
             </div>
