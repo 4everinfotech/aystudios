@@ -72,7 +72,7 @@
               <div class="col-6 fs19">{{current_variant.metafields.product_variant_info.style_number}}</div>
               <div class="col-6 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
                 <span data-product-price>
-                  {{ current_variant.compare_at_price| times:1.25 | money }} {{ current_variant.price | times:1.25 | money }}
+                  <span style="text-decoration: line-through;">{{ current_variant.compare_at_price| times:1.25 | money }}</span> {{ current_variant.price | times:1.25 | money }}
   
                 </span>
               </div></div>
