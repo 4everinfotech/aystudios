@@ -73,10 +73,6 @@
               <div class="col-6 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
                 <span data-product-price>
                   {% if current_variant.compare_at_price  > 0 %}
-                    <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
-                  {% endif %}
-                  {{ current_variant.price | times:1.25 | money }}
-                  {% if current_variant.compare_at_price  > 0 %}
                     {% assign discount_percentage = current_variant.compare_at_price
                     | minus: current_variant.price
                     | times: 100.0
@@ -84,6 +80,10 @@
                     %}
                     <span class="percent-count">{{ discount_percentage | round: 0 }}%</span>
                   {% endif %}
+                  {% if current_variant.compare_at_price  > 0 %}
+                    <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
+                  {% endif %}
+                  {{ current_variant.price | times:1.25 | money }}
                 </span>
               </div></div>
             </div>
