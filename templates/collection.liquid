@@ -168,16 +168,16 @@
                             <br>
                             {{ variant.price | times: 1.25 | money }}
                             <span data-product-price>
-                              {% if current_variant.compare_at_price  > 0 %}
-                                {% assign discount_percentage = current_variant.compare_at_price
-                                | minus: current_variant.price
+                              {% if variant.compare_at_price  > 0 %}
+                                {% assign discount_percentage = variant.compare_at_price
+                                | minus: variant.price
                                 | times: 100.0
-                                | divided_by: current_variant.compare_at_price
+                                | divided_by: variant.compare_at_price
                                 %}
                                 <span class="percent-count">{{ discount_percentage | round: 0 }}%</span>
                               {% endif %}
-                              {% if current_variant.compare_at_price  > 0 %}
-                                <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
+                              {% if variant.compare_at_price  > 0 %}
+                                <span class="compare_at_price">{{ variant.compare_at_price| times:1.25 | money }}</span> 
                               {% endif %}
                           </div>
                         </div>
