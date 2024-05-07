@@ -113,6 +113,15 @@
                   {% else %}
                     {% assign mobile_column = 6 %}
                   {% endif %}
+                  {% if variant.compare_at_price  > 0 %}
+                    {% assign discount_percentage = variant.compare_at_price
+                    | minus: variant.price
+                    | times: 100.0
+                    | divided_by: variant.compare_at_price
+                    %}
+                  {% else %}
+                    {% assign discount_percentage = 0 %}
+                  {% endif %}
                     <div class="col-lg-{{desktop_column}} col-{{mobile_column}} border border-white product">
                       <!-- {{counter}}
                       {{desktop_count_old}}
@@ -123,6 +132,9 @@
                         <div class="reveal">
                           {% if variant.metafields.product_variant_info.new_style == 1 %}
                             <div class="new_style"><span>PRE-ORDER</span></div>
+                          {% endif %}
+                          {% if discount_percentage  > 0 %}
+                            <span class="percent-count">SALE</span>
                           {% endif %}
                         <img width="446" height="463"  src="{{ variant | img_url: '150x' }}" 
                         data-sizes="auto" 
@@ -170,12 +182,7 @@
                             {% if variant.compare_at_price  > 0 %}
                               <span class="compare_at_price">{{ variant.compare_at_price| times:1.25 | money }}</span> 
                             {% endif %}
-                            {% if variant.compare_at_price  > 0 %}
-                              {% assign discount_percentage = variant.compare_at_price
-                              | minus: variant.price
-                              | times: 100.0
-                              | divided_by: variant.compare_at_price
-                              %}
+                            {% if discount_percentage  > 0 %}
                               <span class="percent-count">{{ discount_percentage | round: 0 }}%</span>
                             {% endif %}
                           </div>
