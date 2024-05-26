@@ -113,6 +113,7 @@
                   {% else %}
                     {% assign mobile_column = 6 %}
                   {% endif %}
+                  {% assign discount_percentage = 0 %}
                   {% if variant.compare_at_price  > 0 %}
                     {% assign discount_percentage = variant.compare_at_price
                     | minus: variant.price
