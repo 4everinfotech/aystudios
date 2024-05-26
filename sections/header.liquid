@@ -11,20 +11,20 @@
       {% assign all_collection_link = "/collections/alle" %}
       {% assign travelbags_collection_link = "/collections/rejsetasker" %}
       {% assign sunglasses_collection_link = "/collections/solbriller" %}
-      {% assign sunglasses_collection_link = "/collections/sale" %}
+      {% assign sale_collection_link = "/collections/sale" %}
       {% assign travelbags_collection_text = "Rejsetasker" %}
       {% assign sunglasses_collection_text = "Solbriller" %}
-      {% assign sunglasses_collection_text = "ARCHIVE SALE" %}
+      {% assign sale_collection_text = "ARCHIVE SALE" %}
       {% assign lang_code = "EN" %}
       {% assign site_link = "https://aystudios.com" %}
     {% else %}
       {% assign all_collection_link = "/collections/all" %}
       {% assign travelbags_collection_link = "/collections/travel-bags" %}
       {% assign sunglasses_collection_link = "/collections/sunglasses" %}
-      {% assign sunglasses_collection_link = "/collections/sale" %}
+      {% assign sale_collection_link = "/collections/sale" %}
       {% assign travelbags_collection_text = "TRAVEL BAGS" %}
       {% assign sunglasses_collection_text = "SUNGLASSES" %}
-      {% assign sunglasses_collection_text = "ARCHIVE SALE" %}
+      {% assign sale_collection_text = "ARCHIVE SALE" %}
       {% assign lang_code = "DK" %}
       {% assign site_link = "https://aystudios.dk" %}
     {% endif %}
@@ -33,6 +33,7 @@
       <span class="desktop_only">
       <a href="{{sunglasses_collection_link}}" class="fadein">{{sunglasses_collection_text}}</a>
       <a href="{{travelbags_collection_link}}" class="fadein">{{travelbags_collection_text}}</a>
+      <a href="{{sale_collection_link}}" class="fadein">{{sale_collection_text}}</a>
       </span>
     </span>
     <span class="l-left fadein">
