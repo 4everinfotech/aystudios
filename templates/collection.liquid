@@ -123,9 +123,7 @@
                   {% else %}
                     {% assign discount_percentage = 0 %}
                   {% endif %}
-                  {% if collection.title == "Sale" and discount_percentage  <= 0 %}
-                    XXX
-                  {% else %}
+                  {% unless collection.title == "Sale" and discount_percentage  <= 0 %}
                     <div class="col-lg-{{desktop_column}} col-{{mobile_column}} border border-white product">
                       <!-- {{counter}}
                       {{desktop_count_old}}
@@ -199,7 +197,7 @@
                         </div>
                       </div>
                     </div>
-                  {% endif %}
+                  {% endunless %}
                   {% capture tempList %}
                   {{colorlist | append: color | append: " " }}
                   {% endcapture %}
