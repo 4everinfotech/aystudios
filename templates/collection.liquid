@@ -123,7 +123,7 @@
                   {% else %}
                     {% assign discount_percentage = 0 %}
                   {% endif %}
-                  {% if collection.title == "Sale" && discount_percentage  <= 0 %}
+                  {% if collection.title == "Sale" and discount_percentage  <= 0 %}
                     XXX
                   {% else %}
                     <div class="col-lg-{{desktop_column}} col-{{mobile_column}} border border-white product">
