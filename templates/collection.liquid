@@ -123,7 +123,7 @@
                   {% else %}
                     {% assign discount_percentage = 0 %}
                   {% endif %}
-                  {% unless collection.title == "Sale" and discount_percentage  <= 0 %}
+                  {% unless collection.title == "Archive Sale" and discount_percentage  <= 0 %}
                     <div class="col-lg-{{desktop_column}} col-{{mobile_column}} border border-white product">
                       <!-- {{counter}}
                       {{desktop_count_old}}
