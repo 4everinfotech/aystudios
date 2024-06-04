@@ -74,11 +74,9 @@
 </div>
 {% if article.metafields.story_information.heading_5 != blank or article.metafields.story_information.left_text_5 != blank or article.metafields.story_information.right_text_5 != blank %}
     <div class="row row_9 h-100 mt-3" data-aos="fade-up">
-        {% if article.metafields.story_information.heading_5 != blank %}
-            <div class="col-md-6 community_txt">
-                <h3 class="fs60">{{article.metafields.story_information.heading_5}}</h3>
-            </div>
-        {% endif %}
+        <div class="col-md-6 community_txt">
+            <h3 class="fs60">{{article.metafields.story_information.heading_5}}</h3>
+        </div>
         {% if article.metafields.story_information.left_text_5 != blank or article.metafields.story_information.right_text_5 != blank %}
             <div class="col-md-6 community_txt">
                 <div class="row pt-3">
