@@ -124,7 +124,9 @@
   {% if article.metafields.story_information.hide_other_story != 1 %}
     {% include 'one_column_story_in_product_page', section_number:"one_column_story_in_product_page", story_url:other_story %}
   {% endif %}
-  {% include 'collection_2021' %}
+  {% if article.metafields.story_information.hide_product_section != 1 %}
+    {% include 'collection_2021' %}
+  {% endif %}
 </div>
 <script type="text/javascript">
   $(document).ready(function($) {
