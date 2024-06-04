@@ -93,12 +93,16 @@
         {% endif %}
     </div>
 {% endif %}
+{% if article.metafields.story_information.left_image_6 != blank %}
 <div class="row row_10 h-100 mt-20" data-aos="fade-up">
     <div class="col-lg-5 offset-lg-7 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.left_image_6}}" alt="" class="img-fluid"/></div>
 </div>
+{% endif %}
+{% if article.metafields.story_information.right_image_6 != blank %}
 <div class="row row_11 h-100 mt-10 it_fuels" data-aos="fade-up">
     <div class="col-lg-5 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.right_image_6}}" alt="" class="img-fluid"/></div>
 </div>
+{% endif %}
 {% if article.metafields.story_information.heading_7 != blank %}
     <div class="row row_12 h-100 mt-10 pt-5 mb-20" data-aos="fade-up">
         <div class="col-lg-12 about">
