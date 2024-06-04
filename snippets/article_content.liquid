@@ -38,17 +38,23 @@
         </div>
     </div>
 </div>
+{% if article.metafields.story_information.heading_3 != blank %}
 <div class="row row_4 h-100 mt-20 pt-5 mb-5" data-aos="fade-up">
     <div class="col-lg-12 mb-20 about">
         <h3 class="fs60">{{article.metafields.story_information.heading_3}}</h3>
     </div>
 </div>
+{% endif %}
+{% if article.metafields.story_information.right_image_3 != blank %}
 <div class="row row_5 h-100 mt-20" data-aos="fade-up">
     <div class="col-lg-5 offset-lg-7 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.right_image_3}}" alt="" class="img-fluid"/></div>
 </div>
+{% endif %}
+{% if article.metafields.story_information.left_image_3 != blank %}
 <div class="row row_6 h-100 mt-10 it_fuels" data-aos="fade-up">
     <div class="col-lg-5 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.left_image_3}}" alt="" class="img-fluid mt-5"/></div>
 </div>
+{% endif %}
 {% if article.metafields.story_information.heading_4 != blank or article.metafields.story_information.left_text_4 != blank or article.metafields.story_information.right_text_4 != blank %}
     <div class="row row_7 h-100 mt-20 mb-20" data-aos="fade-up">
         <div class="col-md-6 community_txt">
@@ -79,18 +85,16 @@
         <div class="col-md-6 community_txt">
             <h3 class="fs60">{{article.metafields.story_information.heading_5}}</h3>
         </div>
-        {% if article.metafields.story_information.left_text_5 != blank or article.metafields.story_information.right_text_5 != blank %}
-            <div class="col-md-6 community_txt">
-                <div class="row pt-3">
-                    <div class="col-md-6">
-                        <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_5}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_5}}</p>
-                    </div>
+        <div class="col-md-6 community_txt">
+            <div class="row pt-3">
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_5}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_5}}</p>
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
 {% endif %}
 {% if article.metafields.story_information.left_image_6 != blank %}
@@ -117,23 +121,19 @@
 {% endif %}
 {% if article.metafields.story_information.heading_8 != blank or article.metafields.story_information.left_text_8 != blank or article.metafields.story_information.right_text_8 != blank %}
     <div class="row row_14 h-100  mt-10 pt-5 mb-20" data-aos="fade-up">
-        {% if article.metafields.story_information.heading_8 != blank %}
-            <div class="col-md-6 community_txt">
-                <h3 class="fs60">{{article.metafields.story_information.heading_8}}</h3>
-            </div>
-        {% endif %}
-        {% if article.metafields.story_information.left_text_8 != blank or article.metafields.story_information.right_text_8 != blank %}
-            <div class="col-md-6 community_txt">
-                <div class="row pt-3">
-                    <div class="col-md-6">
-                        <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_8}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_8}}</p>
-                    </div>
+        <div class="col-md-6 community_txt">
+            <h3 class="fs60">{{article.metafields.story_information.heading_8}}</h3>
+        </div>
+        <div class="col-md-6 community_txt">
+            <div class="row pt-3">
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_8}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_8}}</p>
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
 {% endif %}
 {% if article.metafields.story_information.big_image_9 != blank %}
@@ -143,22 +143,18 @@
 {% endif %}
 {% if article.metafields.story_information.heading_10 != blank or article.metafields.story_information.left_text_10 != blank or article.metafields.story_information.right_text_10 != blank %}
     <div class="row row_16 h-100  mt-3 mb-20" data-aos="fade-up">
-        {% if article.metafields.story_information.heading_10 != blank %}
-            <div class="col-md-6 community_txt">
-                <h3 class="fs60">{{article.metafields.story_information.heading_10}}</h3>
-            </div>
-        {% endif %}
-        {% if article.metafields.story_information.left_text_10 != blank or article.metafields.story_information.right_text_10 != blank %}
-            <div class="col-md-6 community_txt">
-                <div class="row pt-3 ">
-                    <div class="col-md-6">
-                        <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_10}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_10}}</p>
-                    </div>
+        <div class="col-md-6 community_txt">
+            <h3 class="fs60">{{article.metafields.story_information.heading_10}}</h3>
+        </div>
+        <div class="col-md-6 community_txt">
+            <div class="row pt-3 ">
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_10}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_10}}</p>
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
 {% endif %}
