@@ -49,21 +49,23 @@
 <div class="row row_6 h-100 mt-10 it_fuels" data-aos="fade-up">
     <div class="col-lg-5 align-self-center mt-5 mb-5 mt-md-0"><img src="{{article.metafields.story_information.left_image_3}}" alt="" class="img-fluid mt-5"/></div>
 </div>
-<div class="row row_7 h-100 mt-20 mb-20" data-aos="fade-up">
-    <div class="col-md-6 community_txt">
-        <h3 class="fs60">{{article.metafields.story_information.heading_4}}</h3>
-    </div>
-    <div class="col-md-6 community_txt">
-        <div class="row pt-3">
-            <div class="col-md-6">
-                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_4}}</p>
-            </div>
-            <div class="col-md-6">
-                <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_4}}</p>
+{% if article.metafields.story_information.heading_4 != blank or article.metafields.story_information.left_text_4 != blank or article.metafields.story_information.right_text_4 != blank %}
+    <div class="row row_7 h-100 mt-20 mb-20" data-aos="fade-up">
+        <div class="col-md-6 community_txt">
+            <h3 class="fs60">{{article.metafields.story_information.heading_4}}</h3>
+        </div>
+        <div class="col-md-6 community_txt">
+            <div class="row pt-3">
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.left_text_4}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-justify text-lg-left mt-5 mt-lg-0">{{article.metafields.story_information.right_text_4}}</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endif %}
 {% if article.title == "Jamesayxnorthside" %}
     {% assign col_class = "col-md-8 offset-md-2" %}
 {% else %}
