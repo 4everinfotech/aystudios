@@ -258,7 +258,7 @@
     </div>
   </section>
   {% unless product.tags contains 'Lifestyle' or product.tags contains 'Livsstil'%}
-    {% if article.metafields.story_information.hide_other_story != 1 %}
+    {% if product.metafields.product_info.hide_eco_material_section != 1 %}
       {% if product.metafields.product_info.premium_eco_materials != blank %}
         {% assign premium_eco_materials = product.metafields.product_info.premium_eco_materials %}
       {% else %}
