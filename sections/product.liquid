@@ -289,51 +289,53 @@
         {% include 'sunglass_frame' %}
       {% endif %}
     {% endif %}
-    {% if product.metafields.product_info.packaging_image != blank %}
-      {% assign packaging_image = product.metafields.product_info.packaging_image %}
-    {% else %}
-      {% assign packaging_image = settings.cdn_file_url | append: "packaging-sustainable-james-ay.jpg" %}
+    {% if product.metafields.product_info.hide_packaging_section != 1 %}
+      {% if product.metafields.product_info.packaging_image != blank %}
+        {% assign packaging_image = product.metafields.product_info.packaging_image %}
+      {% else %}
+        {% assign packaging_image = settings.cdn_file_url | append: "packaging-sustainable-james-ay.jpg" %}
+      {% endif %}
+        {% if product.metafields.product_info.packaging_title != blank %}
+        {% assign packaging_title = product.metafields.product_info.packaging_title %}
+      {% else %}
+        {% assign packaging_title = "Premium recycled packaging" %}
+      {% endif %}
+      {% if product.metafields.product_info.packaging_text != blank %}
+        {% assign packaging_text = product.metafields.product_info.packaging_text %}
+      {% else %}
+        {% assign packaging_text = '<p>When you take pride in your product, you need to wrap it right and tight. With our packaging, aesthetics meets form and function.</p><p>The sunglasses comes in a white hard box with uncoated papir with a white and hot stamp logo on top. Inside the box the sunglasses will be put into a clear pvc case with logo and a brand statement printed outside. There will also be a white cloth with logo in the box.</p>' %}
+      {% endif %}
+      {% if product.metafields.product_info.tree_planted_image != blank %}
+        {% assign tree_planted_image = product.metafields.product_info.tree_planted_image %}
+      {% else %}
+        {% assign tree_planted_image = settings.cdn_file_url | append: "climaider-james-ay-trees.jpg" %}
+      {% endif %}
+      {% if product.metafields.product_info.tree_planted_title != blank %}
+        {% assign tree_planted_title = product.metafields.product_info.tree_planted_title %}
+      {% else %}
+        {% assign tree_planted_title = "One order = One tree planted" %}
+      {% endif %}
+      {% if product.metafields.product_info.tree_planted_text != blank %}
+        {% assign tree_planted_text = product.metafields.product_info.tree_planted_text %}
+      {% else %}
+        {% assign tree_planted_text = '<p>As an environmental charity, One tree planted is on a mission to make it simple for anyone to help the environment by planting trees! One dollar. One tree.</p><p>One tree planted plant trees in North America, South America, Asia, and Africa. Most of our projects help with restoration from forest fires and floods, as well as creating jobs, building communities, and protecting habitat for biodiversity.</p><p><br></p><p><a href="/pages/about">READ MORE</a></p>' %}
+      {% endif %}
+      <section class="vertical-scrolling mx-auto h-100 mt-10 mb-10 pb-5 premium_packing">
+        <div class="container-fluid h-100 px-0">
+          <div class="row pl-50 pr-50 no-gutters">
+            <div class="col-lg-6 dpr mt-5 pt-5">
+              <img src="{{packaging_image}}" class="img-fluid w-100">
+              <h4 class="shop_sml_title mt-4">{{packaging_title}}</h4>
+              <div class="shop_title_desc">{{packaging_text}}</div>
+            </div>
+            <div class="col-lg-6 dpl mt-5 pt-5 ">
+              <img src="{{tree_planted_image}}" class="img-fluid w-100">
+              <h4 class="shop_sml_title mt-4">{{tree_planted_title}}</h4>
+              <div class="shop_title_desc">{{tree_planted_text}}</div>
+            </div>
+        </div>
+      </section>
     {% endif %}
-      {% if product.metafields.product_info.packaging_title != blank %}
-      {% assign packaging_title = product.metafields.product_info.packaging_title %}
-    {% else %}
-      {% assign packaging_title = "Premium recycled packaging" %}
-    {% endif %}
-    {% if product.metafields.product_info.packaging_text != blank %}
-      {% assign packaging_text = product.metafields.product_info.packaging_text %}
-    {% else %}
-      {% assign packaging_text = '<p>When you take pride in your product, you need to wrap it right and tight. With our packaging, aesthetics meets form and function.</p><p>The sunglasses comes in a white hard box with uncoated papir with a white and hot stamp logo on top. Inside the box the sunglasses will be put into a clear pvc case with logo and a brand statement printed outside. There will also be a white cloth with logo in the box.</p>' %}
-    {% endif %}
-    {% if product.metafields.product_info.tree_planted_image != blank %}
-      {% assign tree_planted_image = product.metafields.product_info.tree_planted_image %}
-    {% else %}
-      {% assign tree_planted_image = settings.cdn_file_url | append: "climaider-james-ay-trees.jpg" %}
-    {% endif %}
-    {% if product.metafields.product_info.tree_planted_title != blank %}
-      {% assign tree_planted_title = product.metafields.product_info.tree_planted_title %}
-    {% else %}
-      {% assign tree_planted_title = "One order = One tree planted" %}
-    {% endif %}
-    {% if product.metafields.product_info.tree_planted_text != blank %}
-      {% assign tree_planted_text = product.metafields.product_info.tree_planted_text %}
-    {% else %}
-      {% assign tree_planted_text = '<p>As an environmental charity, One tree planted is on a mission to make it simple for anyone to help the environment by planting trees! One dollar. One tree.</p><p>One tree planted plant trees in North America, South America, Asia, and Africa. Most of our projects help with restoration from forest fires and floods, as well as creating jobs, building communities, and protecting habitat for biodiversity.</p><p><br></p><p><a href="/pages/about">READ MORE</a></p>' %}
-    {% endif %}
-    <section class="vertical-scrolling mx-auto h-100 mt-10 mb-10 pb-5 premium_packing">
-      <div class="container-fluid h-100 px-0">
-        <div class="row pl-50 pr-50 no-gutters">
-          <div class="col-lg-6 dpr mt-5 pt-5">
-            <img src="{{packaging_image}}" class="img-fluid w-100">
-            <h4 class="shop_sml_title mt-4">{{packaging_title}}</h4>
-            <div class="shop_title_desc">{{packaging_text}}</div>
-          </div>
-          <div class="col-lg-6 dpl mt-5 pt-5 ">
-            <img src="{{tree_planted_image}}" class="img-fluid w-100">
-            <h4 class="shop_sml_title mt-4">{{tree_planted_title}}</h4>
-            <div class="shop_title_desc">{{tree_planted_text}}</div>
-          </div>
-      </div>
-    </section>
   {% endunless %}
   {% if request.host != "wholesale.jamesay.com" %}
   {% include 'one_column_find_store', section_number:"one_column_find_store" %}
