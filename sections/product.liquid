@@ -285,7 +285,9 @@
       {% include 'product-material-section' %}
     {% endif %}
     {% if product.metafields.custom.other_product_template.value != true %}
-      {% include 'sunglass_frame' %}
+      {% if product.metafields.product_frame_sizing.hide_frame_section != 1 %}
+        {% include 'sunglass_frame' %}
+      {% endif %}
     {% endif %}
     {% if product.metafields.product_info.packaging_image != blank %}
       {% assign packaging_image = product.metafields.product_info.packaging_image %}
