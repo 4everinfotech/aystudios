@@ -279,10 +279,12 @@
         </div>
       </section>
     {% endif %}
-    {% if product.metafields.custom.other_product_template.value == true %}
-      {% include 'product-other-material-section' %}
-    {% else %}
-      {% include 'product-material-section' %}
+    {% if product.metafields.product_info.hide_other_product_template_section != 1 %}
+      {% if product.metafields.custom.other_product_template.value == true %}
+        {% include 'product-other-material-section' %}
+      {% else %}
+        {% include 'product-material-section' %}
+      {% endif %}
     {% endif %}
     {% if product.metafields.custom.other_product_template.value != true %}
       {% if product.metafields.product_frame_sizing.hide_frame_section != 1 %}
