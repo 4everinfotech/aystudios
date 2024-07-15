@@ -23,11 +23,11 @@
             {% for link in linklists.collections-filter.links %}
               {% assign collection1 = link.object %}
               {% if collection1.title == collection.title %}
-              <div class="active {{ collection1.title | handleize }} mb-1">
+              <div class="active {{ collection1.title | handleize }} mb-2">
                 <a href="{{ collection1.url }}">{{ collection1.title }}</a>
               </div>
               {% else %}
-              <div class="{{ collection1.title | handleize }} mb-1">
+              <div class="{{ collection1.title | handleize }} mb-2">
                 <a href="{{ collection1.url }}">{{ collection1.title }}</a>
               </div>
               {% endif %}
