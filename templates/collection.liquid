@@ -20,50 +20,14 @@
           {{collection.description}}
         </div>
         <div class="product-filter offset-lg-2 col-lg-4 text-lg-right mb-5 justify-content-between d-flex">
-            <!-- <div {% unless current_tags %} class="active"{% endunless %}>
-              {% if collection.handle %}
-              <a href="/collections/{{ collection.handle }}{% if collection.sort_by %}?sort_by={{ collection.sort_by }}{% endif %}">{{ 'general.label.All' | t }}</a>
-              {% elsif collection.current_type %}
-              <a href="{{ collection.current_type | url_for_type | sort_by: collection.sort_by }}">{{ 'general.label.All' | t }}</a>
-              {% elsif collection.current_vendor %}
-              <a href="{{ collection.current_vendor | url_for_vendor | sort_by: collection.sort_by }}">{{ 'general.label.All' | t }}</a>
-              {% endif %}
-            </div>
-            {% assign tags = 'general.label.tags' | t | split: ',' %}
-            {% for tag in tags  %}
-              {% if current_tags contains tag %}
-              <div class="active">
-                {{ tag | link_to_remove_tag: tag }}
-              </div>
-              {% else %}
-              <div>
-                {{ tag | link_to_tag: tag }}
-              </div>
-              {% endif %}
-            {% endfor %} -->
-            {% comment %} {% assign default_collection = "All,Sunglasses,Travel bags,Female,Male,Alle,Solbriller,Rejsetasker,Kvinde,Mand" | split:"," %}
-            {% for collection1 in collections  %}
-            <!-- {{ collection1.url }} -->
-              {% if default_collection contains collection1.title %}
-                {% if collection1.title == collection.title %}
-                <div class="active">
-                  <a href="{{ collection1.url }}">{{ collection1.title }}</a>
-                </div>
-                {% else %}
-                <div>
-                  <a href="{{ collection1.url }}">{{ collection1.title }}</a>
-                </div>
-                {% endif %}
-              {% endif %}
-            {% endfor %} {% endcomment %}
             {% for link in linklists.collections-filter.links %}
               {% assign collection1 = link.object %}
               {% if collection1.title == collection.title %}
-              <div class="active">
+              <div class="active {{ collection1.title | handleize }}">
                 <a href="{{ collection1.url }}">{{ collection1.title }}</a>
               </div>
               {% else %}
-              <div>
+              <div class="{{ collection1.title | handleize }}">
                 <a href="{{ collection1.url }}">{{ collection1.title }}</a>
               </div>
               {% endif %}
