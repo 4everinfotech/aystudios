@@ -375,12 +375,48 @@
     } else {
       $('.responsive-image__wrapper a').css('pointer-events','none');
     }
-document.addEventListener('lazybeforeunveil', function(e){
-  var bg = e.target.getAttribute('data-bg');
-  if(bg){
-      e.target.style.backgroundImage = 'url(' + bg + ')';
-  }
-});
+    document.addEventListener('lazybeforeunveil', function(e){
+      var bg = e.target.getAttribute('data-bg');
+      if(bg){
+          e.target.style.backgroundImage = 'url(' + bg + ')';
+      }
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to get the country code from OpenGeo
+        function getCountryCode(callback) {
+            // This function should call the OpenGeo API or any method provided by the app to get the country code
+            // Here we assume that there's a global object or method provided by OpenGeo to get the user's country
+            // Replace this with the actual method
+            if (typeof OpenGeo !== 'undefined' && OpenGeo.country) {
+                callback(OpenGeo.country);
+            }
+        }
+
+        // Function to get the current page path
+        function getCurrentPath() {
+            return window.location.pathname + window.location.search;
+        }
+
+        // Function to redirect to the corresponding page on the other site
+        function redirectToSite(domain) {
+            var currentPath = getCurrentPath();
+            window.location.href = domain + currentPath;
+        }
+
+        // Get the user's country code and handle the redirection
+        getCountryCode(function(countryCode) {
+            var currentDomain = window.location.hostname;
+
+            // Check if the user is in Denmark and on the .com site
+            if (countryCode === 'DK' && currentDomain === 'aystudios.com') {
+                redirectToSite('https://jamesay.dk');
+            }
+            // Check if the user is outside Denmark and on the Danish site
+            else if (countryCode !== 'DK' && currentDomain === 'jamesay.dk') {
+                redirectToSite('https://aystudios.com');
+            }
+        });
+    });
   </script>
   {% comment %} {% include 'cookiehub' %} {% endcomment %}
 </body>
