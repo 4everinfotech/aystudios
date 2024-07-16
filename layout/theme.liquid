@@ -418,6 +418,12 @@
             }
         });
     });
+    if ( $('.openGeYes').length > 1) {
+      $('.openGeYes').click(function() {
+        getCountryCode('DK');
+      });
+    }
+    
   </script>
   {% comment %} {% include 'cookiehub' %} {% endcomment %}
 </body>
