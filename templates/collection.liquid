@@ -52,31 +52,6 @@
                 {{ variant.options[index] }}
                 {% endcapture %}
                 {% unless colorlist contains color %}
-                  {% assign desktop_column = 4 %}
-                  {% assign mobile_column = 6 %}
-                  {% assign desktop_count_old = desktop_count %}
-                  {% assign desktop_count_plus_old = desktop_count_plus %}
-                  {% assign mobile_count_old = mobile_count %}
-
-                  {% if counter == desktop_count %}
-                    {% assign desktop_count_plus = desktop_count | plus: 1 %}
-                    {% assign plus_count = desktop_times | minus: 1 %}
-                    {% assign desktop_count = 7 | times: desktop_times | plus: plus_count %}
-                    {% assign desktop_times =  desktop_times | plus: 1 %}
-                    {% assign desktop_column = 4 %}
-                  {% elsif counter == desktop_count_plus %}
-                    {% assign desktop_column = 4 %}
-                  {% else %}
-                    {% assign desktop_column = 4 %}
-                  {% endif %}
-
-                  {% if counter == mobile_count %}
-                    {% assign mobile_count = 5 | times: mobile_times %}
-                    {% assign mobile_times =  mobile_times | plus: 1 %}
-                    {% assign mobile_column = 12 %}
-                  {% else %}
-                    {% assign mobile_column = 6 %}
-                  {% endif %}
                   {% assign discount_percentage = 0 %}
                   {% if variant.compare_at_price  > 0 %}
                     {% assign discount_percentage = variant.compare_at_price
@@ -87,7 +62,33 @@
                   {% else %}
                     {% assign discount_percentage = 0 %}
                   {% endif %}
-                  {% unless collection.title == "Archive Sale" and discount_percentage  <= 0 %}
+                  {% unless collection.title == "Archive Sale" and discount_percentage  <= 0 %}                  
+                    {% assign desktop_column = 4 %}
+                    {% assign mobile_column = 6 %}
+                    {% assign desktop_count_old = desktop_count %}
+                    {% assign desktop_count_plus_old = desktop_count_plus %}
+                    {% assign mobile_count_old = mobile_count %}
+
+                    {% if counter == desktop_count %}
+                      {% assign desktop_count_plus = desktop_count | plus: 1 %}
+                      {% assign plus_count = desktop_times | minus: 1 %}
+                      {% assign desktop_count = 7 | times: desktop_times | plus: plus_count %}
+                      {% assign desktop_times =  desktop_times | plus: 1 %}
+                      {% assign desktop_column = 4 %}
+                    {% elsif counter == desktop_count_plus %}
+                      {% assign desktop_column = 4 %}
+                    {% else %}
+                      {% assign desktop_column = 4 %}
+                    {% endif %}
+
+                    {% if counter == mobile_count %}
+                      {% assign mobile_count = 5 | times: mobile_times %}
+                      {% assign mobile_times =  mobile_times | plus: 1 %}
+                      {% assign mobile_column = 12 %}
+                    {% else %}
+                      {% assign mobile_column = 6 %}
+                    {% endif %}
+
                     <div class="col-lg-{{desktop_column}} col-{{mobile_column}} border border-white product">
                       <!-- {{counter}}
                       {{desktop_count_old}}
