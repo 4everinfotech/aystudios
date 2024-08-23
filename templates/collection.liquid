@@ -52,6 +52,17 @@
                 {{ variant.options[index] }}
                 {% endcapture %}
                 {% unless colorlist contains color %}
+                  {% assign discount_percentage = 0 %}
+                  {% if variant.compare_at_price  > 0 %}
+                    {% assign discount_percentage = variant.compare_at_price
+                    | minus: variant.price
+                    | times: 100.0
+                    | divided_by: variant.compare_at_price
+                    %}
+                  {% else %}
+                    {% assign discount_percentage = 0 %}
+                  {% endif %}
+                  {% unless collection.title == "Archive Sale" and discount_percentage  <= 0 %}                  
                   {% assign desktop_column = 4 %}
                   {% assign mobile_column = 6 %}
                   {% assign desktop_count_old = desktop_count %}
@@ -77,23 +88,8 @@
                   {% else %}
                     {% assign mobile_column = 6 %}
                   {% endif %}
-                  {% assign discount_percentage = 0 %}
-                  {% if variant.compare_at_price  > 0 %}
-                    {% assign discount_percentage = variant.compare_at_price
-                    | minus: variant.price
-                    | times: 100.0
-                    | divided_by: variant.compare_at_price
-                    %}
-                  {% else %}
-                    {% assign discount_percentage = 0 %}
-                  {% endif %}
-                  {% unless collection.title == "Archive Sale" and discount_percentage  <= 0 %}
+
                     <div class="col-lg-{{desktop_column}} col-{{mobile_column}} border border-white product">
-                      <!-- {{counter}}
-                      {{desktop_count_old}}
-                      {{desktop_count_plus_old}} 
-                      {{counter}}
-                      {{mobile_count}} -->
                       <a href="{{ variant.url | within: collection }}">
                         <div class="reveal">
                           {% if variant.metafields.product_variant_info.new_style == 1 %}
