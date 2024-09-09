@@ -1,6 +1,15 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "current": {
-    "favicon": "shopify:\/\/shop_images\/favicon24.png",
+    "favicon": "shopify:\/\/shop_images\/favicon-iphone-mobil-512x512.png",
     "checkout_logo_image": "shopify:\/\/shop_images\/ay-studios-logo_669bde9b-60d2-49b5-8f79-6793e378d99d.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "medium",
