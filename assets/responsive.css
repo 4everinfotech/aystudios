@@ -807,11 +807,11 @@
 	.two_column_slide .right_column .section1_imgl,
 	.three_col_3_product .section1_imgl {
 		min-height: 55vh;
-		background-size: contain;
+		/* background-size: contain; */
 	}
 	.two_column_slide_big_pic_right_side .left_column .section1_imgl {
 		min-height: 55vh;
-		background-size: contain;
+		/* background-size: contain; */
 	}
 	.desktop_only {
 		display: none;
