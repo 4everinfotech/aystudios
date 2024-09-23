@@ -9,8 +9,8 @@
 */
 {
   "current": {
-    "favicon": "shopify:\/\/shop_images\/favicon24.png",
-    "checkout_logo_image": "shopify:\/\/shop_images\/ay-studios-logo_669bde9b-60d2-49b5-8f79-6793e378d99d.png",
+    "favicon": "shopify://shop_images/favicon_547bb56a-ed71-42dc-99bb-016fd9e54a79.png",
+    "checkout_logo_image": "shopify://shop_images/ay-studios-logo_669bde9b-60d2-49b5-8f79-6793e378d99d.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "medium",
     "checkout_input_background_color_mode": "white",
