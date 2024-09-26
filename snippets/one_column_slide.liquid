@@ -1,0 +1,63 @@
+{% if shop.metafields.one_column_slide.title != blank %}
+{% assign title = shop.metafields.one_column_slide.title %}
+{% else %}
+{% assign title = "Title" %}
+{% endif %}
+{% if shop.metafields.one_column_slide.description != blank %}
+{% assign description = shop.metafields.one_column_slide.description %}
+{% else %}
+{% assign description = "" %}
+{% endif %}
+
+{% if shop.metafields.one_column_slide.link != blank %}
+{% assign link_url = shop.metafields.one_column_slide.link %}
+{% else %}
+{% assign link_url = "#" %}
+{% endif %}
+
+{% if shop.metafields.one_column_slide.image_url != blank %}
+{% assign desktop_img = shop.metafields.one_column_slide.image_url %}
+{% else %}
+{% assign desktop_img = "default.png" | file_url %}
+{% endif %}
+{% if shop.metafields.one_column_slide.mobile_image_url != blank %}
+{% assign mobile_img = shop.metafields.one_column_slide.mobile_image_url %}
+{% else %}
+{% assign mobile_img = desktop_img %}
+{% endif %} 
+
+{% if shop.metafields.one_column_slide.display_video == 1 %}
+{% assign slide_type = "video" %}
+{% else %}
+{% assign slide_type = "one-image" %}
+{% endif %}
+
+{% if shop.metafields.one_column_slide.sec_order != blank %}
+{% assign sec_order = shop.metafields.one_column_slide.sec_order %}
+{% else %}
+{% assign sec_order = 0 %}
+{% endif %}
+
+<section class="vertical-scrolling {{section_number}} {{slide_type}} lazyload" data-bg="{{desktop_img}}" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-color: #686868; order: {{sec_order}};" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+  {% if shop.metafields.one_column_slide.display_video == 1 %}
+  <div class="vimeo-wrapper lazyload" data-bg="{{desktop_img}}"  style="background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+    <div id="one_column_slide_vimeo-video"></div>
+  </div>
+  {% endif %}
+  <div class="container-fluid h-100">
+    <div class="row min-vh-100">
+      <div class="col-lg-12 pl-50" style="z-index: 997;">
+        <a href="{{ link_url }}" class="testbg">
+          <p class="slide_title_bottom story_title fs80 text-white mb-lg-0">{{ title }}</p>
+        </a>
+          <p class="slide_description_bottom_right text-white mb-0">
+          <u>{{ description }}</u>
+            <!-- <span class="male_link"><a href="{{ 'general.label.male_link' | t }}">{{ 'general.label.male_text' | t }}</a></span>
+            <span class="female_link"><a href="{{ 'general.label.female_link' | t }}">{{ 'general.label.female_text' | t }}</a></span> -->
+          </p>
+        
+      </div>
+    </div>
+  </div>
+  
+</section>
