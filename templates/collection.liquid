@@ -132,7 +132,7 @@
                             {% if variant.metafields.product_variant_info.acetate_color != blank ||  variant.metafields.product_variant_info.lense_color %}
                               {{variant.metafields.product_variant_info.acetate_color}} <span class="hide">/ {{variant.metafields.product_variant_info.lense_color}}</span><br>
                             {% endif %}
-                            {{ 'general.label.delivery' | t }} : 
+                            {% comment %} {{ 'general.label.delivery' | t }} :  {% endcomment %}
                               {% comment %} {% if variant.metafields.product_variant_info.new_style == 1 %}
                                 PRE-ORDER
                               {% else %}
@@ -141,9 +141,9 @@
                                 {% else %}
                                 {{ 'general.label.in_stock' | t }}
                               {% endif %} {% endcomment %}
-                              {{variant.metafields.product_variant_info.delivery}}
+                              {% comment %} {{variant.metafields.product_variant_info.delivery}} {% endcomment %}
                             {% comment %} {% endif %} {% endcomment %}
-                            <br>
+                            {% comment %} <br> {% endcomment %}
                             {{ variant.price | times: 1.25 | money }}
                             {% if variant.compare_at_price  > 0 %}
                               <span class="compare_at_price">{{ variant.compare_at_price| times:1.25 | money }}</span> 
