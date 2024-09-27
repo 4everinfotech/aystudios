@@ -163,7 +163,7 @@
     display: inline-block;
     white-space: nowrap;
     will-change: transform;
-    animation: marquee-animation 20s linear infinite;
+    animation: marquee-animation 16s linear infinite;
   }
 	.marquee-content:hover {
 		animation-play-state: paused;
