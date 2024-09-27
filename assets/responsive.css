@@ -163,9 +163,11 @@
     display: inline-block;
     white-space: nowrap;
     will-change: transform;
-    animation: marquee-animation 10s linear infinite;
+    animation: marquee-animation 20s linear infinite;
   }
-
+	.marquee-content:hover {
+		animation-play-state: paused;
+	}
   @keyframes marquee-animation {
     0% {
       transform: translateX(100%);
