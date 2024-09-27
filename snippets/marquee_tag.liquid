@@ -18,9 +18,11 @@
         {% assign all_collection_link = "/collections/all" %}
       {% endif %}
       <div class="col-12">
-        <a href="{{all_collection_link}}" class="fs60 d-none d-lg-block">
-            <marquee behavior="scroll" scrollamount="20" direction="left" onmouseover="this.stop();" onmouseout="this.start();">{{scrolling_text}}</marquee>
-        </a>
+        <div class="marquee-wrapper d-none d-lg-block">
+          <a href="{{all_collection_link}}" class="marquee-content fs60">
+          {{scrolling_text}}
+          </a>
+        </div>
         <a href="{{all_collection_link}}" class="fs60 d-lg-none">{{scrolling_text}}</a>
       </div>
   </div>

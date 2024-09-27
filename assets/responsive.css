@@ -152,6 +152,33 @@
 		}
 	}
 
+	.marquee-wrapper {
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+		height: 60px; /* Adjust as needed */
+	}
+	
+	.marquee-content {
+		position: absolute;
+		white-space: nowrap;
+		will-change: transform;
+		animation: marquee-animation 20s linear infinite;
+	}
+	
+	@keyframes marquee-animation {
+		0% {
+			transform: translateX(100%);
+		}
+		100% {
+			transform: translateX(-100%);
+		}
+	}
+	
+	.marquee-content:hover {
+		animation-play-state: paused;
+	}
+
 	.example1 {
 		height: 50px;	
 		overflow: hidden;
