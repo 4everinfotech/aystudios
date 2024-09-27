@@ -152,38 +152,32 @@
 		}
 	}
 
-	.marquee-wrapper {
-		overflow: hidden;
-		position: relative;
-		width: 100%;
-		height: 60px; /* Adjust as needed */
-	}
-	
-	.marquee-content {
-		position: absolute;
-		white-space: nowrap;
-		will-change: transform;
-		animation: marquee-animation 20s linear infinite;
-	}
-	
-	@keyframes marquee-animation {
-		0% {
-			transform: translateX(0%);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
-	}
-	
-	.marquee-content:hover {
-		animation-play-state: paused;
-	}
-	
-	/* Ensure that both contents occupy enough space for seamless scrolling */
-	.marquee-content > span {
-		display: inline-block;
-		padding-right: 90%; /* Adjust this based on the length of your text */
-	}
+  .marquee-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 60px; /* Adjust height as needed */
+  }
+
+  .marquee-content {
+    display: inline-block;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee-animation 10s linear infinite;
+  }
+
+  @keyframes marquee-animation {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .marquee-content span {
+    padding-right: 100px; /* Adjust padding as needed for spacing */
+  }
 
 	.example1 {
 		height: 50px;	
