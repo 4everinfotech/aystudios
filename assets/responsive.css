@@ -174,11 +174,7 @@
       transform: translateX(-100%);
     }
   }
-
-  .marquee-content span {
-    padding-right: 100px; /* Adjust padding as needed for spacing */
-  }
-
+	
 	.example1 {
 		height: 50px;	
 		overflow: hidden;
