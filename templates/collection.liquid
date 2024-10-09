@@ -28,7 +28,7 @@
                 </div>
               {% else %}
                 {% assign archive_sale_menu = "" %}
-                {% if collection1.title | handleize == archive-sale %}
+                {% if collection1.title | handleize == "archive-sale" %}
                   {% assign archive_sale_menu = "archive_sale_menu" %}
                 {% endif %}
                 <div class="{{archive_sale_menu}} {{ collection1.title | handleize }} mb-4">
