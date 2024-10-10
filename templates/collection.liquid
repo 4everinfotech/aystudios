@@ -21,17 +21,17 @@
         </div>
         <div class="product-filter offset-lg-2 col-lg-4 text-lg-right mb-5 justify-content-between d-flex">
             {% for link in linklists.collections-filter.links %}
+              {% assign archive_sale_menu = "" %}
               {% assign collection1 = link.object %}
               {% if collection1.title == collection.title %}
                 <div class="active {{ collection1.title | handleize }} mb-4">
                   <a href="{{ collection1.url }}">{{ collection1.title }}</a>
                 </div>
               {% else %}
-                {% assign archive_sale_menu = "" %}
                 {% if collection1.title | handleize == "archive-sale" %}
                   {% assign archive_sale_menu = "archive_sale_menu" %}
                 {% endif %}
-                <div class="{{ collection1.title | handleize }} mb-4">
+                <div class="{{archive_sale_menu}} {{ collection1.title | handleize }} mb-4">
                   <a href="{{ collection1.url }}">{{ collection1.title }}</a>
                 </div>
               {% endif %}
