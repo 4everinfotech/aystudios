@@ -28,7 +28,7 @@
                         <a href="{{ collection1.url }}">{{ collection1.title }}</a>
                     </div>
                 {% else %}
-                    <div class="{% if collection1.title | handleize == 'archive-sale' %}archive_sale_menu {% endif %}{{ collection1.title | handleize }} mb-4">
+                    <div class="{% if collection1.handle == 'archive-sale' %}archive_sale_menu {% endif %}{{ collection1.handle }} mb-4">
                         <a href="{{ collection1.url }}">{{ collection1.title }}</a>
                     </div>
                 {% endif %}
