@@ -223,11 +223,11 @@
               <div id="reviews" class="tab_content collapse"><div>{{ reviews }}</div></div>
 
             </div>
-            <div id="sticky-add-to-cart" class="btn-signup sticky-add-to-cart">
+            <div id="sticky-add-to-cart" class="sticky-add-to-cart">
               <span class="product-title">{{ product.title }}</span>
               <button 
                 type="button"
-                class="add-to-cart-button ajax_add_to_Cart_Btn" 
+                class="btn-signup add-to-cart-button ajax_add_to_Cart_Btn" 
                 data-variant-id="{{ current_variant.id }}"
                 {% unless current_variant.available %}disabled="disabled"{% endunless %}>
                 Add to Cart
@@ -568,7 +568,6 @@
 
 .sticky-add-to-cart .product-title {
   font-size: 18px;
-  font-weight: bold;
 }
 
 .sticky-add-to-cart .add-to-cart-button {
