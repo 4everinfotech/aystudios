@@ -729,7 +729,7 @@ nav li a:hover {
 a.remove_product_link {
   font-size: inherit;
 }
-#vl-overlay {
+/*#vl-overlay {
   width: 100% !important;
   height: 100% !important;
   left: 0 !important;
@@ -737,7 +737,25 @@ a.remove_product_link {
   position: fixed !important;
   background: #000 !important;
   z-index: 123 !important;
+}*/
+
+#vl-overlay {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  position: fixed !important;
+  background: rgba(0, 0, 0, 0); /* Initially transparent */
+  z-index: 123 !important;
+  transition: background 0.3s ease; /* Smooth transition for opacity */
+  pointer-events: none; /* Prevent clicks when hidden */
 }
+
+#vl-overlay.visible {
+  background: rgba(0, 0, 0, 0.7); /* Overlay becomes visible */
+  pointer-events: auto; /* Enable clicks when visible */
+}
+
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
   background: white;
