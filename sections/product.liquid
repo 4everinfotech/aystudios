@@ -615,9 +615,11 @@
       }
     }
 
-    // Simulate click on the main "Add to Cart" button
+    // Prevent bubbling and default behavior
     const stickyAddToCartButton = stickyAddToCart.querySelector(".add-to-cart-button");
-    stickyAddToCartButton.addEventListener("click", function () {
+    stickyAddToCartButton.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent default action
+      event.stopPropagation(); // Stop event from propagating
       if (mainAddToCartButton) {
         mainAddToCartButton.click(); // Trigger the main button click
       } else {
@@ -628,6 +630,7 @@
     // Attach scroll event
     window.addEventListener("scroll", toggleStickyAddToCart);
   });
+
 
   if ($('#followthesun_video_id').length > 0) {
     var options_story = {
