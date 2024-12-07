@@ -605,6 +605,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const stickyAddToCart = document.getElementById("sticky-add-to-cart");
     const productForm = document.querySelector("form[data-product-form]");
+    const mainAddToCartButton = productForm.querySelector(".ajax_add_to_Cart_Btn");
 
     // Function to toggle sticky add-to-cart visibility
     function toggleStickyAddToCart() {
@@ -616,43 +617,19 @@
       }
     }
 
-    // AJAX Add to Cart for sticky button
+    // Simulate click on the main "Add to Cart" button
     const stickyAddToCartButton = stickyAddToCart.querySelector(".add-to-cart-button");
     stickyAddToCartButton.addEventListener("click", function () {
-      const variantId = this.getAttribute("data-variant-id");
-      if (!variantId) return;
-
-      fetch("/cart/add.js", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: variantId,
-          quantity: 1,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to add to cart.");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Item added to cart:", data);
-          // Optionally, trigger a cart refresh or update the cart UI
-          alert("Item added to cart!");
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("There was an issue adding the item to the cart.");
-        });
+      if (mainAddToCartButton) {
+        mainAddToCartButton.click(); // Trigger the main button click
+      } else {
+        console.error("Main Add to Cart button not found.");
+      }
     });
 
     // Attach scroll event
     window.addEventListener("scroll", toggleStickyAddToCart);
   });
-
 
   if ($('#followthesun_video_id').length > 0) {
     var options_story = {
