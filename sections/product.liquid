@@ -63,167 +63,173 @@
         </div><!-- col -->
         <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative">
           {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
-          <div class="col-lg-8 offset-lg-2">
-            <h1 class="fs60 mb-5">{{ product.title }}</h1>
-            {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
-              <p class="afterpay-paragraph_desktop" data-product-id="6818314485946"><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><br><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
-            {% endif %}
-            <div class="row border-bottom pb-4 border-dark no-gutters">
-              <div class="col-5 fs19">{{current_variant.metafields.product_variant_info.style_number}}</div>
-              <div class="col-7 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
-                <span data-product-price>
-                  {% if current_variant.compare_at_price  > 0 %}
-                    {% assign discount_percentage = current_variant.compare_at_price
-                    | minus: current_variant.price
-                    | times: 100.0
-                    | divided_by: current_variant.compare_at_price
-                    %}
-                    <span class="percent-count">{{ discount_percentage | round: 0 }}%</span>
-                  {% endif %}
-                  {% if current_variant.compare_at_price  > 0 %}
-                    <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
-                  {% endif %}
-                  {{ current_variant.price | times:1.25 | money }}
-                </span>
-              </div></div>
-            </div>
-            <span data-product-price class="price_non_eu">
-             Price for Non-EU Destinations {{ current_variant.price | money }}
-            </span>
-            {% assign short_description_old = product.metafields.cf_product.short_description %}
-            {% if product.metafields.product_info.short_description != blank %}
-              {% assign short_description = product.metafields.product_info.short_description %}
-            {% else %}
-              {% assign short_description = "The sunglasses are made from 100% biodegradable acetate from Mazzucchelli in Italy. 90% of the material is converted into natural gasses after only 115 days. The remaining share is converted into water and biomass." %}
-            {% endif %}
-             
-            <p>{{ short_description }}</p>
-            {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
-                <p class="afterpay-paragraph_mobile" data-product-id="6818314485946"><span class="afterpay-text1">Make 4 interest-free payments of </span><strong class="afterpay-instalments">$70.00&nbsp;AUD</strong><span class="afterpay-text2"> fortnightly with </span><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
-            {% endif %}
-            <div class="pb-2 pt-4">
-              <div class="form-group">
-                {% if product.has_only_default_variant %}
-                  <input name="id" value="{{ product.variants.first.id }}" type="hidden">
-                {% else %}
-                  {% for option in product.options_with_values %}
-                    <div class="js">
-  
-                      {% if forloop.index0 > 0 %}
-  
-                        {% for value in option.values %}
-                          <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
-                          <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
-                        {% endfor %}
-  
-                      {% else %}
-                        <div class="swatch_area" style="display:none;">
-                          <div class="selected_color">{{ 'general.label.COLOURS' | t }} / <span>{{option.selected_value}}</span></div>
-                        </div>
-                        <select
-                          class="custom-select single-option-selector"
-                          id="Option{{ option.position }}"
-                          name="options[{{ option.name | escape }}]" >
-                          {% for value in option.values %}
-                            <option
-                              value="{{ value | escape }}"
-                              {% if option.selected_value == value %}selected="selected"{% endif %}>
-                                {{ 'general.label.COLOURS' | t }} : &nbsp;{{ value }}
-                            </option>
-                          {% endfor %}
-                        </select>
-                        <div class="swatch_area" style="display:none;">
-                            {% include 'swatch' with 'Color' %}
-                        </div>
-                      {% endif %}
-                    </div>
-                  {% endfor %}
-                {% endif %}
-  
-                <noscript>
-                  <select name="id" class="single-option-selector">
-                    {% for variant in product.variants %}
-                      <option
-                        {% if variant == current_variant %}selected="selected"{% endif %}
-                        {% unless variant.available %}disabled="disabled"{% endunless %}
-                        value="{{ variant.id }}">
-                      {{ variant.title }}
-                      </option>
-                    {% endfor %}
-                  </select>
-                </noscript>
-                {% if request.host != "wholesale.jamesay.com" %}
-                  <input class="form-control" type="hidden" id="quantity" name="quantity" value="1" min="1">
-                {% endif %}
+            <div class="col-lg-8 offset-lg-2">
+              <h1 class="fs60 mb-5">{{ product.title }}</h1>
+              {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
+                <p class="afterpay-paragraph_desktop" data-product-id="6818314485946"><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><br><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
+              {% endif %}
+              <div class="row border-bottom pb-4 border-dark no-gutters">
+                <div class="col-5 fs19">{{current_variant.metafields.product_variant_info.style_number}}</div>
+                <div class="col-7 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
+                  <span data-product-price>
+                    {% if current_variant.compare_at_price  > 0 %}
+                      {% assign discount_percentage = current_variant.compare_at_price
+                      | minus: current_variant.price
+                      | times: 100.0
+                      | divided_by: current_variant.compare_at_price
+                      %}
+                      <span class="percent-count">{{ discount_percentage | round: 0 }}%</span>
+                    {% endif %}
+                    {% if current_variant.compare_at_price  > 0 %}
+                      <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
+                    {% endif %}
+                    {{ current_variant.price | times:1.25 | money }}
+                  </span>
+                </div></div>
               </div>
-            </div>
-          </div>
-          <div class="col-lg-8 offset-lg-2 buy-now-btn text-lg-left pt-0 mb-5 pb-5">
-            {% if request.host == "wholesale.jamesay.com" %}
-              <div class="qtydiv mb-5">
-                <div class="qtybox">
-                  <span class="btnqty qtyminus icon icon-minus">-</span>
-                  <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector quantity-input" readonly="">
-                  <span class="btnqty qtyplus icon icon-plus">+</span>
+              <span data-product-price class="price_non_eu">
+              Price for Non-EU Destinations {{ current_variant.price | money }}
+              </span>
+              {% assign short_description_old = product.metafields.cf_product.short_description %}
+              {% if product.metafields.product_info.short_description != blank %}
+                {% assign short_description = product.metafields.product_info.short_description %}
+              {% else %}
+                {% assign short_description = "The sunglasses are made from 100% biodegradable acetate from Mazzucchelli in Italy. 90% of the material is converted into natural gasses after only 115 days. The remaining share is converted into water and biomass." %}
+              {% endif %}
+              
+              <p>{{ short_description }}</p>
+              {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
+                  <p class="afterpay-paragraph_mobile" data-product-id="6818314485946"><span class="afterpay-text1">Make 4 interest-free payments of </span><strong class="afterpay-instalments">$70.00&nbsp;AUD</strong><span class="afterpay-text2"> fortnightly with </span><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
+              {% endif %}
+              <div class="pb-2 pt-4">
+                <div class="form-group">
+                  {% if product.has_only_default_variant %}
+                    <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                  {% else %}
+                    {% for option in product.options_with_values %}
+                      <div class="js">
+    
+                        {% if forloop.index0 > 0 %}
+    
+                          {% for value in option.values %}
+                            <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                            <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                          {% endfor %}
+    
+                        {% else %}
+                          <div class="swatch_area" style="display:none;">
+                            <div class="selected_color">{{ 'general.label.COLOURS' | t }} / <span>{{option.selected_value}}</span></div>
+                          </div>
+                          <select
+                            class="custom-select single-option-selector"
+                            id="Option{{ option.position }}"
+                            name="options[{{ option.name | escape }}]" >
+                            {% for value in option.values %}
+                              <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}selected="selected"{% endif %}>
+                                  {{ 'general.label.COLOURS' | t }} : &nbsp;{{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                          <div class="swatch_area" style="display:none;">
+                              {% include 'swatch' with 'Color' %}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+    
+                  <noscript>
+                    <select name="id" class="single-option-selector">
+                      {% for variant in product.variants %}
+                        <option
+                          {% if variant == current_variant %}selected="selected"{% endif %}
+                          {% unless variant.available %}disabled="disabled"{% endunless %}
+                          value="{{ variant.id }}">
+                        {{ variant.title }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </noscript>
+                  {% if request.host != "wholesale.jamesay.com" %}
+                    <input class="form-control" type="hidden" id="quantity" name="quantity" value="1" min="1">
+                  {% endif %}
                 </div>
               </div>
-            {% endif %}
-            <button
-            type="submit"
-            name="add"
-            class="btn-signup ajax_add_to_Cart_Btn"
-            data-submit-button
-            {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-              <span data-submit-button-text>
-                {% if current_variant.available %}
-                  {{ 'products.product.add_to_cart' | t }}
-                {% else %}
-                  {{ 'products.product.sold_out' | t }}
-                {% endif %}
-              </span>
-            </button>
-            <div class="viabill-pricetag"
-    data-view="product"
-    data-price="{{ product.price | money }}"
-    data-language="da"
-    data-currency="dkk">
-</div>
-          </div>
-          <div class="col-lg-8 offset-lg-2 product-tabs-wrapper">
-            <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title">{{ 'products.label.product_detail_txt' | t }}<span><i></i><i></i></span></p>
-            {% if product.metafields.product_info.product_details != blank %}
-              {% assign tab_product_details = product.metafields.product_info.product_details %}
-            {% else %}
-              {% assign tab_product_details = "Detail not available." %}
-            {% endif %}
-            <div id="tab_product_details" class="tab_content collapse"><div>{{ tab_product_details }}</div></div>
+            </div>
+            <div class="col-lg-8 offset-lg-2 buy-now-btn text-lg-left pt-0 mb-5 pb-5">
+              {% if request.host == "wholesale.jamesay.com" %}
+                <div class="qtydiv mb-5">
+                  <div class="qtybox">
+                    <span class="btnqty qtyminus icon icon-minus">-</span>
+                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector quantity-input" readonly="">
+                    <span class="btnqty qtyplus icon icon-plus">+</span>
+                  </div>
+                </div>
+              {% endif %}
+              <button
+              type="submit"
+              name="add"
+              class="btn-signup ajax_add_to_Cart_Btn"
+              data-submit-button
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                <span data-submit-button-text>
+                  {% if current_variant.available %}
+                    {{ 'products.product.add_to_cart' | t }}
+                  {% else %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                </span>
+              </button>
+              <div class="viabill-pricetag"
+                  data-view="product"
+                  data-price="{{ product.price | money }}"
+                  data-language="da"
+                  data-currency="dkk">
+              </div>
+            </div>
+            <div class="col-lg-8 offset-lg-2 product-tabs-wrapper">
+              <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title">{{ 'products.label.product_detail_txt' | t }}<span><i></i><i></i></span></p>
+              {% if product.metafields.product_info.product_details != blank %}
+                {% assign tab_product_details = product.metafields.product_info.product_details %}
+              {% else %}
+                {% assign tab_product_details = "Detail not available." %}
+              {% endif %}
+              <div id="tab_product_details" class="tab_content collapse"><div>{{ tab_product_details }}</div></div>
 
-            <p data-toggle="collapse" aria-expanded="false" data-target="#size_and_fit" class="mb-0 tab_title">{{ 'products.label.sizefit_txt' | t }}<span><i></i><i></i></span></p>
-            {% if product.metafields.product_info.size_and_fit != blank %}
-              {% assign size_and_fit = product.metafields.product_info.size_and_fit %}
-            {% else %}
-              {% assign size_and_fit = "Detail not available." %}
-            {% endif %}
-            <div id="size_and_fit" class="tab_content collapse"><div>{{size_and_fit}}</div></div>
+              <p data-toggle="collapse" aria-expanded="false" data-target="#size_and_fit" class="mb-0 tab_title">{{ 'products.label.sizefit_txt' | t }}<span><i></i><i></i></span></p>
+              {% if product.metafields.product_info.size_and_fit != blank %}
+                {% assign size_and_fit = product.metafields.product_info.size_and_fit %}
+              {% else %}
+                {% assign size_and_fit = "Detail not available." %}
+              {% endif %}
+              <div id="size_and_fit" class="tab_content collapse"><div>{{size_and_fit}}</div></div>
 
-            <p data-toggle="collapse" aria-expanded="false" data-target="#shiping_and_returns" class="mb-0 tab_title">{{ 'products.label.shipping_returns_txt' | t }}<span><i></i><i></i></span></p>
-            {% if product.metafields.product_info.shiping_and_returns != blank %}
-              {% assign shiping_and_returns = product.metafields.product_info.shiping_and_returns %}
-            {% else %}
-              {% assign shiping_and_returns = "Detail not available." %}
-            {% endif %}
-            <div id="shiping_and_returns" class="tab_content collapse"><div>{{ shiping_and_returns }}</div></div>
+              <p data-toggle="collapse" aria-expanded="false" data-target="#shiping_and_returns" class="mb-0 tab_title">{{ 'products.label.shipping_returns_txt' | t }}<span><i></i><i></i></span></p>
+              {% if product.metafields.product_info.shiping_and_returns != blank %}
+                {% assign shiping_and_returns = product.metafields.product_info.shiping_and_returns %}
+              {% else %}
+                {% assign shiping_and_returns = "Detail not available." %}
+              {% endif %}
+              <div id="shiping_and_returns" class="tab_content collapse"><div>{{ shiping_and_returns }}</div></div>
 
-            <p data-toggle="collapse" aria-expanded="false" data-target="#reviews" class="mb-0 tab_title last">{{ 'products.label.reviews_txt' | t }}<span><i></i><i></i></span></p>
-            {% if product.metafields.product_info.reviews != blank %}
-              {% assign reviews = product.metafields.product_info.reviews %}
-            {% else %}
-              {% assign reviews = "Detail not available." %}
-            {% endif %}
-            <div id="reviews" class="tab_content collapse"><div>{{ reviews }}</div></div>
+              <p data-toggle="collapse" aria-expanded="false" data-target="#reviews" class="mb-0 tab_title last">{{ 'products.label.reviews_txt' | t }}<span><i></i><i></i></span></p>
+              {% if product.metafields.product_info.reviews != blank %}
+                {% assign reviews = product.metafields.product_info.reviews %}
+              {% else %}
+                {% assign reviews = "Detail not available." %}
+              {% endif %}
+              <div id="reviews" class="tab_content collapse"><div>{{ reviews }}</div></div>
 
-          </div>
-        {% endform %}
+            </div>
+            <div id="sticky-add-to-cart" class="sticky-add-to-cart">
+              <span class="product-title">{{ product.title }}</span>
+              <button class="add-to-cart-button" type="submit" form="AddToCartForm">
+                Add to Cart
+              </button>
+            </div>
+          {% endform %}
         </div><!-- col -->
       </div><!-- row -->
     </div><!-- container -->
@@ -534,7 +540,40 @@
 }
 .swatch_area {
   padding: 20px 0 15px 0;
-}   
+}
+.sticky-add-to-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sticky-add-to-cart.show {
+  transform: translateY(0);
+}
+
+.sticky-add-to-cart .product-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sticky-add-to-cart .add-to-cart-button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
 </style>
   {% assign article = articles[story_url] %}
   {% if article.metafields.cf_story.display_video == 1 %}
@@ -558,6 +597,24 @@
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    const stickyAddToCart = document.getElementById("sticky-add-to-cart");
+    const productForm = document.querySelector("form[data-product-form]");
+
+    // Function to toggle sticky add-to-cart visibility
+    function toggleStickyAddToCart() {
+      const formBottom = productForm.getBoundingClientRect().bottom;
+      if (formBottom < window.innerHeight) {
+        stickyAddToCart.classList.add("show");
+      } else {
+        stickyAddToCart.classList.remove("show");
+      }
+    }
+
+    // Attach scroll event
+    window.addEventListener("scroll", toggleStickyAddToCart);
+  });
+
   if ($('#followthesun_video_id').length > 0) {
     var options_story = {
         id: {{followthesun_video_id}},
