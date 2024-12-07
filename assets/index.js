@@ -104,17 +104,17 @@ jQuery('.dot_img').each(function( index ) {
     });
   }
   
-  // $("#vl-overlay").click(function(event) {
-  //   $('.header-top').removeClass('shop-menu');
-  //   $('.header-top').removeClass('open-menu');
-  //   $('.header-top').removeClass('open-searchbar');
-  //   toggleScrollAndOverlay();
-  // });
   $("#vl-overlay").click(function(event) {
-    // Remove specific classes from `.header-top`
-    $('.header-top').removeClass('shop-menu open-menu open-searchbar');
+    $('.header-top').removeClass('shop-menu');
+    $('.header-top').removeClass('open-menu');
+    $('.header-top').removeClass('open-searchbar');
     toggleScrollAndOverlay();
   });
+  // $("#vl-overlay").click(function(event) {
+  //   // Remove specific classes from `.header-top`
+  //   $('.header-top').removeClass('shop-menu open-menu open-searchbar');
+  //   toggleScrollAndOverlay();
+  // });
 
   $('.menu_middle').on('click', function() {
     $('.header-top').toggleClass('open-menu');
@@ -153,19 +153,19 @@ jQuery('.dot_img').each(function( index ) {
         $('body').css({"overflow":"auto"});
       }
     }
-    // if($('.header-top').hasClass('open-menu') || $('.header-top').hasClass('shop-menu') || $('.header-top').hasClass('open-searchbar')) {
-    //   $("#vl-overlay").css("opacity", "0.7");
-    //   $("#vl-overlay").fadeIn();
-    // }else{
-    //   $("#vl-overlay").css("opacity", "0");
-    //   $("#vl-overlay").fadeOut();
-    // }
-    // Replace repetitive logic with CSS class toggling
-    if ($('.header-top').hasClass('open-menu') || $('.header-top').hasClass('shop-menu') || $('.header-top').hasClass('open-searchbar')) {
-      $("#vl-overlay").addClass('visible');
-    } else {
-      $("#vl-overlay").removeClass('visible');
+    if($('.header-top').hasClass('open-menu') || $('.header-top').hasClass('shop-menu') || $('.header-top').hasClass('open-searchbar')) {
+      $("#vl-overlay").css("opacity", "0.7");
+      $("#vl-overlay").fadeIn();
+    }else{
+      $("#vl-overlay").css("opacity", "0");
+      $("#vl-overlay").fadeOut();
     }
+    // Replace repetitive logic with CSS class toggling
+    // if ($('.header-top').hasClass('open-menu') || $('.header-top').hasClass('shop-menu') || $('.header-top').hasClass('open-searchbar')) {
+    //   $("#vl-overlay").addClass('visible');
+    // } else {
+    //   $("#vl-overlay").removeClass('visible');
+    // }
   }
 
   AOS.init({
