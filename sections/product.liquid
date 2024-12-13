@@ -57,13 +57,13 @@
         <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative">
           <div class="product-details">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
-              <div class="col-lg-8 offset-lg-2">
-                <h1 class="fs60 mb-5">{{ product.title }}</h1>
+              <div class="col-lg-10 offset-lg-1">
+                {% comment %} <h1 class="fs60 mb-5">{{ product.title }}</h1> {% endcomment %}
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
                   <p class="afterpay-paragraph_desktop" data-product-id="6818314485946"><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><br><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
                 {% endif %}
                 <div class="row border-bottom pb-4 border-dark no-gutters">
-                  <div class="col-5 fs19">{{current_variant.metafields.product_variant_info.style_number}}</div>
+                  <div class="col-5 fs19">{{ product.title }}<br />{{current_variant.metafields.product_variant_info.style_number}}</div>
                   <div class="col-7 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
                     <span data-product-price>
                       {% if current_variant.compare_at_price  > 0 %}
@@ -78,12 +78,14 @@
                         <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
                       {% endif %}
                       {{ current_variant.price | times:1.25 | money }}
+                    </span><br /> <span data-product-price class="price_non_eu">
+                    Price for Non-EU Destinations {{ current_variant.price | money }}
                     </span>
                   </div></div>
                 </div>
-                <span data-product-price class="price_non_eu">
+                {% comment %} <span data-product-price class="price_non_eu">
                 Price for Non-EU Destinations {{ current_variant.price | money }}
-                </span>
+                </span> {% endcomment %}
                 {% assign short_description_old = product.metafields.cf_product.short_description %}
                 {% if product.metafields.product_info.short_description != blank %}
                   {% assign short_description = product.metafields.product_info.short_description %}
@@ -152,7 +154,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-8 offset-lg-2 buy-now-btn text-lg-left pt-0 mb-5 pb-5">
+              <div class="col-lg-10 offset-lg-1 buy-now-btn text-lg-left pt-0 mb-5 pb-5">
                 {% if request.host == "wholesale.jamesay.com" %}
                   <div class="qtydiv mb-5">
                     <div class="qtybox">
@@ -183,7 +185,7 @@
                     data-currency="dkk">
                 </div>
               </div>
-              <div class="col-lg-8 offset-lg-2 product-tabs-wrapper">
+              <div class="col-lg-10 offset-lg-1 product-tabs-wrapper">
                 <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title">{{ 'products.label.product_detail_txt' | t }}<span><i></i><i></i></span></p>
                 {% if product.metafields.product_info.product_details != blank %}
                   {% assign tab_product_details = product.metafields.product_info.product_details %}
@@ -601,7 +603,6 @@
   top: 0;
   height: 100vh;
   overflow-y: auto;
-  padding: 20px;
 }
 
 @media (max-width: 768px) {
