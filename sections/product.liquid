@@ -43,7 +43,7 @@
               <img id="Image-{{ image.id }}"
               class="product-image lazyload {{ wrapper_class }}"
               src="{{ image | img_url: '300x' }}"
-              data-src="{{ img_url }}"
+              data-src="{{ image | img_url: 'master' }}"
               data-widths="[{{ image_widths }}]"
               data-aspectratio="{{ image.aspect_ratio }}"
               data-sizes="auto"
@@ -62,7 +62,7 @@
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
                   <p class="afterpay-paragraph_desktop" data-product-id="6818314485946"><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><br><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
                 {% endif %}
-                <div class="row border-bottom1 pb-4 border-dark no-gutters">
+                <div class="row border-bottom1 pb-5 border-dark no-gutters">
                   <div class="col-5 fs19">{{ product.title }}<br />{{current_variant.metafields.product_variant_info.style_number}}</div>
                   <div class="col-7 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
                     <span data-product-price>
