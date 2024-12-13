@@ -7,7 +7,6 @@
       <div class="row mx-0">
         <div class="col-lg-6 px-0 product-order product-images">
           <div class="product-image1 product_slider1 image-scroll">
-            {% comment %} <span class="arrow-shop"><img src="{{ 'shop_arrow.png' | asset_url }}" class="img-fluid"></span> {% endcomment %}
             {% assign featured_alt = current_variant.option1 %}
             {% for image in product.images %}
               {% assign image_alt = image.alt | split: " - " %}
@@ -23,23 +22,6 @@
                 {% endif %}
               {% endcapture %}
 
-              {% capture data_fancybox %}
-                {% if image_alt[1] == featured_alt %}
-                  data-fancybox1="gallery"
-                {% else %}
-                  data-fancybox1=""
-                {% endif %}
-              {% endcapture %}
-              
-              {% comment %} {% include 'responsive-image' with
-              image: image,
-              max_width: 1500,
-              max_height: 1500,
-              image_attributes: "data-product-featured-image",
-              wrapper_class: wrapper_class,
-              wrapper_attributes: "data-product-image-wrapper",
-              data_fancybox: data_fancybox,
-              %} {% endcomment %}
               <img id="Image-{{ image.id }}"
               class="product-image lazyload {{ wrapper_class }}"
               src="{{ image | img_url: '300x' }}"
@@ -58,7 +40,6 @@
           <div class="product-details">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
               <div class="col-lg-10 offset-lg-1">
-                {% comment %} <h1 class="fs60 mb-5">{{ product.title }}</h1> {% endcomment %}
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
                   <p class="afterpay-paragraph_desktop" data-product-id="6818314485946"><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><br><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
                 {% endif %}
@@ -83,9 +64,6 @@
                     </span>
                   </div></div>
                 </div>
-                {% comment %} <span data-product-price class="price_non_eu">
-                Price for Non-EU Destinations {{ current_variant.price | money }}
-                </span> {% endcomment %}
                 {% assign short_description_old = product.metafields.cf_product.short_description %}
                 {% if product.metafields.product_info.short_description != blank %}
                   {% assign short_description = product.metafields.product_info.short_description %}
@@ -582,6 +560,16 @@
 .product-images {
   position: relative;
 }
+.product-images {
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+}
+
+body {
+    overscroll-behavior-y: none; /* Prevent body from scrolling until the container scrolls */
+}
+
 
 .image-scroll {
   position: sticky;
@@ -640,28 +628,23 @@
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", () => {
-    const images = document.querySelectorAll(".image-scroll img");
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
+  const productImageContainer = document.querySelector('.product-container');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        } else {
-          entry.target.style.opacity = "0.5";
-          entry.target.style.transform = "translateY(10px)";
-        }
-      });
-    }, observerOptions);
+  productImageContainer.addEventListener('wheel', (event) => {
+      const container = productImageContainer;
+      const isAtTop = container.scrollTop === 0;
+      const isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight;
 
-    images.forEach((img) => observer.observe(img));
+      if ((isAtTop && event.deltaY < 0) || (isAtBottom && event.deltaY > 0)) {
+          // Let the page scroll when container is fully scrolled
+          return;
+      }
+
+      // Prevent page scroll when scrolling inside the product image container
+      event.preventDefault();
+      container.scrollBy({ top: event.deltaY });
   });
+
 
   document.addEventListener("DOMContentLoaded", function () {
     const stickyAddToCart = document.getElementById("sticky-add-to-cart");
