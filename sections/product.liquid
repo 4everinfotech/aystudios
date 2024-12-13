@@ -7,7 +7,7 @@
       <div class="row mx-0">
         <div class="col-lg-6 px-0 product-order product-images">
           <div class="product-image1 product_slider1 image-scroll">
-            <span class="arrow-shop"><img src="{{ 'shop_arrow.png' | asset_url }}" class="img-fluid"></span>
+            {% comment %} <span class="arrow-shop"><img src="{{ 'shop_arrow.png' | asset_url }}" class="img-fluid"></span> {% endcomment %}
             {% assign featured_alt = current_variant.option1 %}
             {% for image in product.images %}
               {% assign image_alt = image.alt | split: " - " %}
@@ -31,7 +31,7 @@
                 {% endif %}
               {% endcapture %}
               
-              {% include 'responsive-image' with
+              {% comment %} {% include 'responsive-image' with
               image: image,
               max_width: 1500,
               max_height: 1500,
@@ -39,7 +39,18 @@
               wrapper_class: wrapper_class,
               wrapper_attributes: "data-product-image-wrapper",
               data_fancybox: data_fancybox,
-              %}
+              %} {% endcomment %}
+              <img id="Image-{{ image.id }}"
+              class="product-image lazyload {{ wrapper_class }}"
+              src="{{ image | img_url: '300x' }}"
+              data-src="{{ img_url }}"
+              data-widths="[{{ image_widths }}]"
+              data-aspectratio="{{ image.aspect_ratio }}"
+              data-sizes="auto"
+              tabindex="-1"
+              alt="{{ image.alt | escape }}"
+              {{ image_attributes }}
+              >
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
