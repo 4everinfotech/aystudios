@@ -589,6 +589,29 @@ body {
   display: none; /* For Chrome, Safari, and Opera */
 }
 
+.product-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-images {
+  position: relative;
+  height: 100%; /* This ensures the images fill the container */
+  overflow: hidden; /* Hides the scrollbar */
+}
+
+.product-images img {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.vertical-scrolling {
+  scroll-snap-type: y mandatory;
+}
+
+.container-fluid {
+  overflow: hidden; /* Prevent page scroll within the container */
+}
 
 </style>
   {% assign article = articles[story_url] %}
@@ -613,38 +636,41 @@ body {
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function () {
-    const productContainer = document.querySelector(".product-container");
-    const productImages = document.querySelector(".product-images .image-scroll");
+// Get the elements
+const productContainer = document.querySelector('.product-container');
+const productImages = document.querySelector('.product-images');
+const images = productImages.querySelectorAll('img');
+let isScrolling = false;
 
-    // Sync scroll of images with product-container
-    productContainer.addEventListener("scroll", function () {
-      const containerScrollTop = productContainer.scrollTop;
-      const containerHeight = productContainer.offsetHeight;
-      const containerScrollHeight = productContainer.scrollHeight;
+productContainer.addEventListener('wheel', function(event) {
+  if (isScrolling) return;
 
-      const imagesScrollHeight = productImages.scrollHeight;
-      const imagesScrollTop = (containerScrollTop / containerScrollHeight) * imagesScrollHeight;
+  // Check if we need to scroll the images
+  isScrolling = true;
 
-      if (containerScrollTop < containerScrollHeight - containerHeight) {
-        productImages.scrollTop = imagesScrollTop;
-      }
-    });
+  const scrollAmount = event.deltaY;
 
-    // Optional: Reset image scroll position when entering/exiting the section
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            productImages.scrollTop = 0; // Scroll images to the top on re-entry
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  // Check the current scroll position of the images
+  const currentScrollPosition = productImages.scrollTop;
+  const maxScroll = productImages.scrollHeight - productImages.clientHeight;
 
-    observer.observe(productContainer);
-  });
+  if (scrollAmount > 0 && currentScrollPosition < maxScroll) {
+    // Scroll images down
+    productImages.scrollTop += scrollAmount;
+  } else if (scrollAmount < 0 && currentScrollPosition > 0) {
+    // Scroll images up
+    productImages.scrollTop += scrollAmount;
+  } else {
+    // Allow normal page scrolling after image section scroll
+    window.scrollBy(0, scrollAmount);
+  }
+
+  // Allow normal scroll behavior after image scrolling completes
+  setTimeout(() => {
+    isScrolling = false;
+  }, 100);
+});
+
 
 
 
