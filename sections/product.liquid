@@ -563,7 +563,7 @@
 }
 
 .image-scroll {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   height: 100%; /* Make images container scrollable */
 }
 .image-scroll img {
@@ -612,6 +612,33 @@ body {
 .container-fluid {
   overflow: hidden; /* Prevent page scroll within the container */
 }
+.product-container {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.product-images {
+  position: relative;
+  height: 100%;
+  overflow: hidden; /* Prevent scrollbar from appearing */
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.product-details {
+  position: relative;
+  top: 0;
+  left: 0;
+  flex-shrink: 0;
+  flex-grow: 1;
+  transition: transform 0.3s ease;
+}
+
+.product-images img {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
 
 </style>
   {% assign article = articles[story_url] %}
@@ -639,29 +666,34 @@ body {
 // Get the elements
 const productContainer = document.querySelector('.product-container');
 const productImages = document.querySelector('.product-images');
-const images = productImages.querySelectorAll('img');
+const productDetails = document.querySelector('.product-details');
 let isScrolling = false;
 
 productContainer.addEventListener('wheel', function(event) {
   if (isScrolling) return;
 
-  // Check if we need to scroll the images
   isScrolling = true;
 
   const scrollAmount = event.deltaY;
 
-  // Check the current scroll position of the images
+  // Check the current scroll position of the product images
   const currentScrollPosition = productImages.scrollTop;
   const maxScroll = productImages.scrollHeight - productImages.clientHeight;
 
   if (scrollAmount > 0 && currentScrollPosition < maxScroll) {
-    // Scroll images down
+    // Scroll the images down
     productImages.scrollTop += scrollAmount;
+
+    // Keep product details in place
+    productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
   } else if (scrollAmount < 0 && currentScrollPosition > 0) {
-    // Scroll images up
+    // Scroll the images up
     productImages.scrollTop += scrollAmount;
+
+    // Keep product details in place
+    productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
   } else {
-    // Allow normal page scrolling after image section scroll
+    // Allow normal page scrolling after the images section scrolls
     window.scrollBy(0, scrollAmount);
   }
 
@@ -670,6 +702,7 @@ productContainer.addEventListener('wheel', function(event) {
     isScrolling = false;
   }, 100);
 });
+
 
 
 
