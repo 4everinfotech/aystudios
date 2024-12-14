@@ -566,8 +566,11 @@
 .product-images {
   overflow-y: auto;
   height: 100vh;
+  scroll-behavior: smooth;
 }
-
+body {
+    overscroll-behavior-y: none; /* Prevent body from scrolling until the container scrolls */
+}
 .product-details {
   position: sticky;
   top: 0;
@@ -575,6 +578,42 @@
   overflow-y: auto;
 }
 
+.product-images {
+  position: relative;
+}
+
+
+
+
+
+.image-scroll {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.image-scroll img {
+  width: 100%;
+  object-fit: cover;
+}
+
+
+
+@media (max-width: 768px) {
+  .product-details {
+    position: static;
+    height: auto;
+  }
+
+  .image-scroll {
+    position: static;
+    height: auto;
+  }
+}
 
 </style>
   {% assign article = articles[story_url] %}
@@ -599,6 +638,8 @@
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
+  const productImageContainer = document.querySelector('.product-images');
+
   document.addEventListener('DOMContentLoaded', () => {
     const productImages = document.querySelector('.product-images');
     const productDetails = document.querySelector('.product-details');
