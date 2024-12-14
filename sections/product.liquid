@@ -36,8 +36,7 @@
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
-        <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative">
-          <div class="product-details">
+        <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative product-details">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
               <div class="col-lg-10 offset-lg-1">
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
@@ -214,7 +213,6 @@
                 </button>
               </div>
             {% endform %}
-          </div>
         </div><!-- col -->
       </div><!-- row -->
     </div><!-- container -->
@@ -234,6 +232,7 @@
       ]
     }
   {% endschema %}
+  
   {% if product.metafields.product_info.product_intro_text != blank %}
     {% assign product_intro_text = product.metafields.product_info.product_intro_text %}
   {% else %}
@@ -632,32 +631,36 @@ body {
   document.addEventListener('DOMContentLoaded', () => {
     const productImages = document.querySelector('.product-images');
     const imageScroll = document.querySelector('.image-scroll');
+    const productContainer = document.querySelector('.product-container');
     const body = document.body;
 
     if (productImages && imageScroll) {
-      productImages.addEventListener('wheel', (event) => {
-        const isScrollable =
-          imageScroll.scrollHeight > imageScroll.clientHeight; // Check if there’s enough content to scroll
-        const atTop = imageScroll.scrollTop === 0;
-        const atBottom =
-          imageScroll.scrollHeight - imageScroll.scrollTop === imageScroll.clientHeight;
+      let isImageScrolling = true;
 
-        if (isScrollable) {
-          if (event.deltaY > 0 && !atBottom) {
-            // Scrolling down within `image-scroll`
+      productImages.addEventListener('wheel', (event) => {
+        const scrollableHeight = imageScroll.scrollHeight - imageScroll.clientHeight;
+        const atTop = imageScroll.scrollTop === 0;
+        const atBottom = imageScroll.scrollTop >= scrollableHeight;
+
+        if (isImageScrolling) {
+          if ((event.deltaY > 0 && !atBottom) || (event.deltaY < 0 && !atTop)) {
+            // Scroll within image-scroll
             imageScroll.scrollTop += event.deltaY;
-            event.preventDefault(); // Prevent body scroll
-          } else if (event.deltaY < 0 && !atTop) {
-            // Scrolling up within `image-scroll`
-            imageScroll.scrollTop += event.deltaY;
-            event.preventDefault(); // Prevent body scroll
-          } else {
-            // Unlock body scroll if at the boundaries
+            event.preventDefault(); // Prevent body scrolling
+          } else if (event.deltaY > 0 && atBottom) {
+            // Allow body scroll after images are done
+            isImageScrolling = false;
             body.style.overflow = 'auto';
           }
         } else {
-          // If there's no scrolling content, allow body scroll
-          body.style.overflow = 'auto';
+          // Lock body scrolling if returning to the images section
+          const containerRect = productContainer.getBoundingClientRect();
+          if (containerRect.top >= 0 && event.deltaY < 0) {
+            isImageScrolling = true;
+            body.style.overflow = 'hidden';
+            imageScroll.scrollTop += event.deltaY; // Resume image scrolling
+            event.preventDefault();
+          }
         }
       });
     }
