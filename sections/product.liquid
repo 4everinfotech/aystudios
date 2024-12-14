@@ -557,33 +557,15 @@
   border: none;
   cursor: pointer;
 }
-.product-images {
-  position: relative;
-}
-.product-images {
-    height: 100vh; /* Full viewport height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    scroll-behavior: smooth; /* Smooth scrolling effect */
-}
-
-body {
-    overscroll-behavior-y: none; /* Prevent body from scrolling until the container scrolls */
-}
-
-
-.image-scroll {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
+.product-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.image-scroll img {
-  width: 100%;
-  object-fit: cover;
+.product-images {
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .product-details {
@@ -593,17 +575,6 @@ body {
   overflow-y: auto;
 }
 
-@media (max-width: 768px) {
-  .product-details {
-    position: static;
-    height: auto;
-  }
-
-  .image-scroll {
-    position: static;
-    height: auto;
-  }
-}
 
 </style>
   {% assign article = articles[story_url] %}
@@ -628,22 +599,18 @@ body {
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  const productImageContainer = document.querySelector('.product-images');
+  document.addEventListener('DOMContentLoaded', () => {
+    const productImages = document.querySelector('.product-images');
+    const productDetails = document.querySelector('.product-details');
 
-  productImageContainer.addEventListener('wheel', (event) => {
-      const container = productImageContainer;
-      const isAtTop = container.scrollTop === 0;
-      const isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight;
-
-      if ((isAtTop && event.deltaY < 0) || (isAtBottom && event.deltaY > 0)) {
-          // Let the page scroll when container is fully scrolled
-          return;
-      }
-
-      // Prevent page scroll when scrolling inside the product image container
-      event.preventDefault();
-      container.scrollBy({ top: event.deltaY });
+    // Ensure productDetails is fixed while allowing productImages to scroll
+    if (productImages && productDetails) {
+      productDetails.style.position = 'sticky';
+      productDetails.style.top = '0';
+      productDetails.style.height = '100vh';
+    }
   });
+
 
 
   document.addEventListener("DOMContentLoaded", function () {
