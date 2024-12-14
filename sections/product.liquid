@@ -36,7 +36,7 @@
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
-        <div class="col-lg-6 product-details">
+        <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative product-details">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
               <div class="col-lg-10 offset-lg-1">
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
@@ -566,11 +566,10 @@
   overflow-y: scroll;
   height: 100%; /* Make images container scrollable */
 }
-
 .image-scroll img {
-  width: 100%;
-  object-fit: cover;
-}
+    width: 100%;
+    object-fit: cover;
+  }
 
 .vertical-scrolling {
   scroll-snap-align: start; /* For smooth scrolling between sections */
