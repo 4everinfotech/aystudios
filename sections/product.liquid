@@ -6,7 +6,7 @@
     <div class="container-fluid product-container px-0">
       <div class="row mx-0">
         <div class="col-lg-6 px-0 product-order product-images">
-          <div class="product-image1 product_slider1 image-scroll">
+          <div class="image-scroll">
             {% assign featured_alt = current_variant.option1 %}
             {% for image in product.images %}
               {% assign image_alt = image.alt | split: " - " %}
@@ -557,38 +557,23 @@
   border: none;
   cursor: pointer;
 }
+body {
+  overscroll-behavior-y: none; /* Prevent body scroll until unlocked */
+  overflow: hidden; /* Lock body scroll initially */
+}
+
 .product-container {
   display: flex;
   height: 100vh;
-  overflow: hidden;
 }
 
 .product-images {
-  overflow-y: auto;
+  overflow: hidden; /* Lock scrolling; managed dynamically with JS */
   height: 100vh;
   scroll-behavior: smooth;
 }
-body {
-    overscroll-behavior-y: none; /* Prevent body from scrolling until the container scrolls */
-}
-.product-details {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.product-images {
-  position: relative;
-}
-
-
-
-
 
 .image-scroll {
-  position: sticky;
-  top: 0;
   height: 100vh;
   overflow-y: auto;
   display: flex;
@@ -601,7 +586,12 @@ body {
   object-fit: cover;
 }
 
-
+.product-details {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
 
 @media (max-width: 768px) {
   .product-details {
@@ -614,6 +604,7 @@ body {
     height: auto;
   }
 }
+
 
 </style>
   {% assign article = articles[story_url] %}
@@ -638,19 +629,40 @@ body {
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  const productImageContainer = document.querySelector('.product-images');
-
   document.addEventListener('DOMContentLoaded', () => {
     const productImages = document.querySelector('.product-images');
-    const productDetails = document.querySelector('.product-details');
+    const imageScroll = document.querySelector('.image-scroll');
+    const body = document.body;
 
-    // Ensure productDetails is fixed while allowing productImages to scroll
-    if (productImages && productDetails) {
-      productDetails.style.position = 'sticky';
-      productDetails.style.top = '0';
-      productDetails.style.height = '100vh';
+    if (productImages && imageScroll) {
+      productImages.addEventListener('wheel', (event) => {
+        const isScrollable =
+          imageScroll.scrollHeight > imageScroll.clientHeight; // Check if there’s enough content to scroll
+        const atTop = imageScroll.scrollTop === 0;
+        const atBottom =
+          imageScroll.scrollHeight - imageScroll.scrollTop === imageScroll.clientHeight;
+
+        if (isScrollable) {
+          if (event.deltaY > 0 && !atBottom) {
+            // Scrolling down within `image-scroll`
+            imageScroll.scrollTop += event.deltaY;
+            event.preventDefault(); // Prevent body scroll
+          } else if (event.deltaY < 0 && !atTop) {
+            // Scrolling up within `image-scroll`
+            imageScroll.scrollTop += event.deltaY;
+            event.preventDefault(); // Prevent body scroll
+          } else {
+            // Unlock body scroll if at the boundaries
+            body.style.overflow = 'auto';
+          }
+        } else {
+          // If there's no scrolling content, allow body scroll
+          body.style.overflow = 'auto';
+        }
+      });
     }
   });
+
 
 
 
