@@ -5,7 +5,7 @@
     <div class="big-break"></div>
     <div class="container-fluid product-container px-0">
       <div class="row mx-0">
-        <div class="col-lg-6 px-0 product-order product-images">
+        <div class="col-lg-6 px-0 product-images">
           <div class="image-scroll">
             {% assign featured_alt = current_variant.option1 %}
             {% for image in product.images %}
@@ -36,7 +36,7 @@
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
-        <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative product-details">
+        <div class="col-lg-6 px-0 product-details">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
               <div class="col-lg-10 offset-lg-1">
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
@@ -557,8 +557,9 @@
   cursor: pointer;
 }
 body {
-  overscroll-behavior-y: none; /* Prevent body scroll until unlocked */
-  overflow: hidden; /* Lock body scroll initially */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent default body scroll */
 }
 
 .product-container {
@@ -567,43 +568,33 @@ body {
 }
 
 .product-images {
-  overflow: hidden; /* Lock scrolling; managed dynamically with JS */
   height: 100vh;
-  scroll-behavior: smooth;
+  overflow: hidden;
+  position: relative;
 }
 
 .image-scroll {
-  height: 100vh;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
-.image-scroll img {
+.product-image {
   width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
 .product-details {
-  position: sticky;
-  top: 0;
   height: 100vh;
   overflow: auto;
+  padding: 20px;
 }
-
-@media (max-width: 768px) {
-  .product-details {
-    position: static;
-    height: auto;
-  }
-
-  .image-scroll {
-    position: static;
-    height: auto;
-  }
-}
-
 
 </style>
   {% assign article = articles[story_url] %}
@@ -628,43 +619,38 @@ body {
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', () => {
-    const productImages = document.querySelector('.product-images');
-    const imageScroll = document.querySelector('.image-scroll');
-    const productContainer = document.querySelector('.product-container');
-    const body = document.body;
+document.addEventListener('DOMContentLoaded', () => {
+  const productImages = document.querySelector('.product-images');
+  const imageScroll = document.querySelector('.image-scroll');
+  const productDetails = document.querySelector('.product-details');
 
-    if (productImages && imageScroll) {
-      let isImageScrolling = true;
+  let imageScrollEnabled = true;
 
-      productImages.addEventListener('wheel', (event) => {
-        const scrollableHeight = imageScroll.scrollHeight - imageScroll.clientHeight;
-        const atTop = imageScroll.scrollTop === 0;
-        const atBottom = imageScroll.scrollTop >= scrollableHeight;
+  productImages.addEventListener('wheel', (event) => {
+    if (imageScrollEnabled) {
+      event.preventDefault();
+      const scrollAmount = event.deltaY;
+      imageScroll.scrollBy(0, scrollAmount);
 
-        if (isImageScrolling) {
-          if ((event.deltaY > 0 && !atBottom) || (event.deltaY < 0 && !atTop)) {
-            // Scroll within image-scroll
-            imageScroll.scrollTop += event.deltaY;
-            event.preventDefault(); // Prevent body scrolling
-          } else if (event.deltaY > 0 && atBottom) {
-            // Allow body scroll after images are done
-            isImageScrolling = false;
-            body.style.overflow = 'auto';
-          }
-        } else {
-          // Lock body scrolling if returning to the images section
-          const containerRect = productContainer.getBoundingClientRect();
-          if (containerRect.top >= 0 && event.deltaY < 0) {
-            isImageScrolling = true;
-            body.style.overflow = 'hidden';
-            imageScroll.scrollTop += event.deltaY; // Resume image scrolling
-            event.preventDefault();
-          }
-        }
-      });
+      // Check if all images are scrolled
+      const isAtBottom =
+        imageScroll.scrollHeight - imageScroll.scrollTop <= imageScroll.clientHeight;
+
+      if (isAtBottom) {
+        imageScrollEnabled = false; // Disable image scroll
+        productDetails.focus(); // Focus on the right-side content
+      }
     }
   });
+
+  productDetails.addEventListener('wheel', () => {
+    if (!imageScrollEnabled) {
+      // Allow scrolling in the right section
+      productDetails.style.overflow = 'auto';
+    }
+  });
+});
+
 
 
 
