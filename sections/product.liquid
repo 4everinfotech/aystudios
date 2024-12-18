@@ -36,8 +36,8 @@
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
-        <div class="col-lg-6 d-lg-flex text-left shop1_imgr product-details">
-          <div class="sticky-details">
+        <div class="col-lg-6 d-lg-flex text-left product-details">
+          <div class="sticky-details shop1_imgr">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
               <div class="col-lg-10 offset-lg-1">
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
