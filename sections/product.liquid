@@ -626,24 +626,45 @@ body {
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-  const productImages = document.querySelector('.image-scroll');
+  // Get the elements
   const productContainer = document.querySelector('.product-container');
+  const productImages = document.querySelector('.product-images');
+  const productDetails = document.querySelector('.product-details');
+  let isScrolling = false;
 
-  productContainer.addEventListener('wheel', (event) => {
-    const maxScrollHeight = productImages.scrollHeight - productImages.clientHeight;
+  productContainer.addEventListener('wheel', function(event) {
+    if (isScrolling) return;
 
-    if (event.deltaY > 0 && productImages.offsetTop > -maxScrollHeight) {
+    isScrolling = true;
+
+    const scrollAmount = event.deltaY;
+
+    // Check the current scroll position of the product images
+    const currentScrollPosition = productImages.scrollTop;
+    const maxScroll = productImages.scrollHeight - productImages.clientHeight;
+
+    if (scrollAmount > 0 && currentScrollPosition < maxScroll) {
       // Scroll the images down
-      event.preventDefault();
-      productImages.style.transform = `translateY(${Math.max(productImages.offsetTop - event.deltaY, -maxScrollHeight)}px)`;
-    } else if (event.deltaY < 0 && productImages.offsetTop < 0) {
+      productImages.scrollTop += scrollAmount;
+
+      // Keep product details in place
+      productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
+    } else if (scrollAmount < 0 && currentScrollPosition > 0) {
       // Scroll the images up
-      event.preventDefault();
-      productImages.style.transform = `translateY(${Math.min(productImages.offsetTop - event.deltaY, 0)}px)`;
+      productImages.scrollTop += scrollAmount;
+
+      // Keep product details in place
+      productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
+    } else {
+      // Allow normal page scrolling after the images section scrolls
+      window.scrollBy(0, scrollAmount);
     }
+
+    // Allow normal scroll behavior after image scrolling completes
+    setTimeout(() => {
+      isScrolling = false;
+    }, 100);
   });
-});
 
 
 
