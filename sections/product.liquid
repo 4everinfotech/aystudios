@@ -621,45 +621,25 @@ body {
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  // Get the elements
-  const productContainer = document.querySelector('.product-container');
+document.addEventListener('DOMContentLoaded', () => {
   const productImages = document.querySelector('.product-images');
-  const productDetails = document.querySelector('.product-details');
-  let isScrolling = false;
+  const productContainer = document.querySelector('.product-container');
+  const nextSection = productContainer.nextElementSibling;
 
-  productContainer.addEventListener('wheel', function(event) {
-    if (isScrolling) return;
-
-    isScrolling = true;
-
-    const scrollAmount = event.deltaY;
-
-    // Check the current scroll position of the product images
-    const currentScrollPosition = productImages.scrollTop;
+  productImages.addEventListener('scroll', () => {
     const maxScroll = productImages.scrollHeight - productImages.clientHeight;
+    const currentScroll = productImages.scrollTop;
 
-    if (scrollAmount > 0 && currentScrollPosition < maxScroll) {
-      // Scroll the images down
-      productImages.scrollTop += scrollAmount;
-
-      // Keep product details in place
-      productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
-    } else if (scrollAmount < 0 && currentScrollPosition > 0) {
-      // Scroll the images up
-      productImages.scrollTop += scrollAmount;
-
-      // Keep product details in place
-      productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
+    if (currentScroll >= maxScroll) {
+      // Allow page scrolling after reaching the end of images
+      productContainer.style.position = 'relative';
     } else {
-      // Allow normal page scrolling after the images section scrolls
-      window.scrollBy(0, scrollAmount);
+      // Keep the product-details fixed
+      productContainer.style.position = 'sticky';
     }
-
-    // Allow normal scroll behavior after image scrolling completes
-    setTimeout(() => {
-      isScrolling = false;
-    }, 100);
   });
+});
+
 
 
 
