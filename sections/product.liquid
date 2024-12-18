@@ -527,7 +527,7 @@
 .swatch_area {
   padding: 20px 0 15px 0;
 }
-.sticky-add-to-cart {
+/* .sticky-add-to-cart {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -541,6 +541,17 @@
   align-items: center;
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
+} */
+.sticky-add-to-cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    display: none; /* Initially hidden */
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .sticky-add-to-cart.show {
