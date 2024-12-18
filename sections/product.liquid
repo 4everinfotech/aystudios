@@ -3,7 +3,7 @@
     {%- assign current_variant = product.selected_or_first_available_variant -%}
     {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
     <div class="big-break"></div>
-    <div class="container-fluid product-container px-0 hidden-scrollbar1">
+    <div class="container-fluid product-container px-0">
       <div class="row mx-0">
         <div class="col-lg-6 px-0 product-order product-images">
           <div class="image-scroll">
@@ -578,15 +578,6 @@
 
 body {
   scroll-snap-type: y mandatory; /* Enable smooth snap scrolling */
-}
-
-.hidden-scrollbar {
-  -ms-overflow-style: none; /* For Internet Explorer */
-  scrollbar-width: none; /* For Firefox */
-}
-
-.hidden-scrollbar::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
 }
 
 .product-container {
