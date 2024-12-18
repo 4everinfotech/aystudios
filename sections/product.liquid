@@ -626,44 +626,31 @@ body {
   {% endif %}
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  // Get the elements
-  const productContainer = document.querySelector('.product-container');
-  const productImages = document.querySelector('.product-images');
-  const productDetails = document.querySelector('.product-details');
-  let isScrolling = false;
+  document.addEventListener('DOMContentLoaded', () => {
+    const productImages = document.querySelector('.image-scroll');
+    const productContainer = document.querySelector('.product-container');
+    const stickyDetails = document.querySelector('.sticky-details');
 
-  productContainer.addEventListener('wheel', function(event) {
-    if (isScrolling) return;
+    let totalScroll = 0; // Tracks the total scroll amount
 
-    isScrolling = true;
+    productContainer.addEventListener('wheel', (event) => {
+      const maxScrollHeight = productImages.scrollHeight - productImages.clientHeight;
 
-    const scrollAmount = event.deltaY;
+      if (event.deltaY > 0 && totalScroll < maxScrollHeight) {
+        // Scroll the images down
+        event.preventDefault();
+        totalScroll = Math.min(totalScroll + event.deltaY, maxScrollHeight);
+        productImages.style.transform = `translateY(-${totalScroll}px)`;
+      } else if (event.deltaY < 0 && totalScroll > 0) {
+        // Scroll the images up
+        event.preventDefault();
+        totalScroll = Math.max(totalScroll + event.deltaY, 0);
+        productImages.style.transform = `translateY(-${totalScroll}px)`;
+      }
 
-    // Check the current scroll position of the product images
-    const currentScrollPosition = productImages.scrollTop;
-    const maxScroll = productImages.scrollHeight - productImages.clientHeight;
-
-    if (scrollAmount > 0 && currentScrollPosition < maxScroll) {
-      // Scroll the images down
-      productImages.scrollTop += scrollAmount;
-
-      // Keep product details in place
-      productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
-    } else if (scrollAmount < 0 && currentScrollPosition > 0) {
-      // Scroll the images up
-      productImages.scrollTop += scrollAmount;
-
-      // Keep product details in place
-      productDetails.style.transform = `translateY(${productImages.scrollTop}px)`;
-    } else {
-      // Allow normal page scrolling after the images section scrolls
-      window.scrollBy(0, scrollAmount);
-    }
-
-    // Allow normal scroll behavior after image scrolling completes
-    setTimeout(() => {
-      isScrolling = false;
-    }, 100);
+      // Prevent any scroll movement in the sticky details
+      stickyDetails.scrollTop = 0;
+    });
   });
 
 
