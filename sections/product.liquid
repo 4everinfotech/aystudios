@@ -564,40 +564,35 @@ body {
   overflow: hidden;
 }
 .product-container {
-  position: relative;
-  overflow: hidden;
   display: flex;
+  position: relative;
 }
 
 .product-images {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  flex-shrink: 0;
-  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 100vh; /* Constrain to viewport height */
 }
 
 .product-details {
-  position: relative;
+  position: sticky;
   top: 0;
-  left: 0;
+  height: 100vh; /* Ensures it stays within the viewport */
+  overflow: hidden;
   flex-shrink: 0;
-  flex-grow: 1;
-  transition: transform 0.3s ease;
+  flex-basis: 50%; /* Adjust width as needed */
 }
 
-.product-images img {
-  transition: transform 0.3s ease;
-  will-change: transform;
-}
 .image-scroll {
-  /* overflow-y: scroll; */
-  height: 100%; /* Make images container scrollable */
+  display: flex;
+  flex-direction: column;
 }
+
 .image-scroll img {
-    width: 100%;
-    object-fit: cover;
-  }
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
 
 .vertical-scrolling {
   scroll-snap-align: start; /* For smooth scrolling between sections */
