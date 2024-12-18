@@ -704,39 +704,39 @@ body {
 
 
     // Change button text and trigger main button
-    stickyAddToCartButton.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevent default action
-      event.stopPropagation(); // Stop event bubbling
+  //   stickyAddToCartButton.addEventListener("click", function (event) {
+  //     event.preventDefault(); // Prevent default action
+  //     event.stopPropagation(); // Stop event bubbling
 
-      //if (stickyAddToCartButton.disabled) return; // Prevent duplicate clicks
+  //     //if (stickyAddToCartButton.disabled) return; // Prevent duplicate clicks
 
-      // Save the original button text
-      const originalText = stickyAddToCartButton.textContent;
+  //     // Save the original button text
+  //     const originalText = stickyAddToCartButton.textContent;
 
-      // Update the button text to "Adding..."
-      stickyAddToCartButton.textContent = "Adding...";
-      stickyAddToCartButton.disabled = true; // Disable the button during the process
+  //     // Update the button text to "Adding..."
+  //     stickyAddToCartButton.textContent = "Adding...";
+  //     stickyAddToCartButton.disabled = true; // Disable the button during the process
 
-      if (mainAddToCartButton) {
-        // Simulate a click on the main button
-        mainAddToCartButton.click();
+  //     if (mainAddToCartButton) {
+  //       // Simulate a click on the main button
+  //       mainAddToCartButton.click();
 
-        // Revert the text and re-enable the button after a short delay
-        setTimeout(() => {
-          stickyAddToCartButton.textContent = originalText;
-          stickyAddToCartButton.disabled = false;
-        }, 500); // Adjust the delay based on your AJAX response time
-      } else {
-        console.error("Main Add to Cart button not found.");
-        // Revert the text and re-enable the button in case of an error
-        stickyAddToCartButton.textContent = originalText;
-        stickyAddToCartButton.disabled = false;
-      }
-    });
+  //       // Revert the text and re-enable the button after a short delay
+  //       setTimeout(() => {
+  //         stickyAddToCartButton.textContent = originalText;
+  //         stickyAddToCartButton.disabled = false;
+  //       }, 500); // Adjust the delay based on your AJAX response time
+  //     } else {
+  //       console.error("Main Add to Cart button not found.");
+  //       // Revert the text and re-enable the button in case of an error
+  //       stickyAddToCartButton.textContent = originalText;
+  //       stickyAddToCartButton.disabled = false;
+  //     }
+  //   });
 
-    // Attach scroll event
-    window.addEventListener("scroll", toggleStickyAddToCart);
-  });
+  //   // Attach scroll event
+  //   window.addEventListener("scroll", toggleStickyAddToCart);
+  // });
 
   document.addEventListener("scroll", function () {
     const productContainer = document.querySelector(".product-container");
