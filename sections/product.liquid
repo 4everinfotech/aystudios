@@ -738,6 +738,20 @@ body {
     window.addEventListener("scroll", toggleStickyAddToCart);
   });
 
+  document.addEventListener("scroll", function () {
+    const productContainer = document.querySelector(".product-container");
+    const stickyAddToCart = document.querySelector(".sticky-add-to-cart");
+
+    // Get the product container's top position relative to the viewport
+    const containerTop = productContainer.getBoundingClientRect().top;
+
+    // Show sticky bar only when the container reaches the top
+    if (containerTop <= 0) {
+        stickyAddToCart.style.display = "block";
+    } else {
+        stickyAddToCart.style.display = "none";
+    }
+});
 
 
   if ($('#followthesun_video_id').length > 0) {
