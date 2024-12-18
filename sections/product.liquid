@@ -556,50 +556,10 @@
   border: none;
   cursor: pointer;
 }
-.product-images {
-  overflow: hidden; /* Hide scrollbar */
-  position: relative;
-  height: 100vh; /* Full height for proper scroll syncing */
-}
-
-.image-scroll {
-  /* overflow-y: scroll; */
-  height: 100%; /* Make images container scrollable */
-}
-.image-scroll img {
-    width: 100%;
-    object-fit: cover;
-  }
-
-.vertical-scrolling {
-  scroll-snap-align: start; /* For smooth scrolling between sections */
-  scroll-snap-type: y mandatory;
-}
 
 body {
   scroll-snap-type: y mandatory; /* Enable smooth snap scrolling */
 }
-
-.product-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.product-images {
-  position: relative;
-  height: 100%; /* This ensures the images fill the container */
-  overflow: hidden; /* Hides the scrollbar */
-}
-
-.product-images img {
-  transition: transform 0.3s ease;
-  will-change: transform;
-}
-
-.vertical-scrolling {
-  scroll-snap-type: y mandatory;
-}
-
 .container-fluid {
   overflow: hidden;
 }
@@ -630,7 +590,19 @@ body {
   transition: transform 0.3s ease;
   will-change: transform;
 }
+.image-scroll {
+  /* overflow-y: scroll; */
+  height: 100%; /* Make images container scrollable */
+}
+.image-scroll img {
+    width: 100%;
+    object-fit: cover;
+  }
 
+.vertical-scrolling {
+  scroll-snap-align: start; /* For smooth scrolling between sections */
+  scroll-snap-type: y mandatory;
+}
 </style>
   {% assign article = articles[story_url] %}
   {% if article.metafields.cf_story.display_video == 1 %}
