@@ -465,9 +465,9 @@
 	.shop1_imgr .btn-signup {
 		max-width: 100%;
 	}
-	.shop1_imgr {
+	/* .shop1_imgr {
 		margin: 15px 0 30px;
-	}
+	} */
 	.contentWidth {
 		width: calc(100% - 5px);
 	}
