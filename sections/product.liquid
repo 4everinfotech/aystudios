@@ -560,7 +560,10 @@
   cursor: pointer;
   height: inherit;
 }
-
+body, html {
+    position: relative;
+    z-index: 1;
+}
 body {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
