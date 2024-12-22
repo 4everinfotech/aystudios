@@ -197,22 +197,7 @@
                 <div id="reviews" class="tab_content collapse"><div>{{ reviews }}</div></div>
 
               </div>
-              <div id="sticky-add-to-cart" class="sticky-add-to-cart">
-                <span class="product-title">{{ product.title }}</span>
-                <button 
-                  type="button"
-                  class="btn-signup w-auto add-to-cart-button ajax_add_to_Cart_Btn" 
-                  data-variant-id="{{ current_variant.id }}"
-                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-                  <span data-submit-button-text>
-                    {% if current_variant.available %}
-                      {{ 'products.product.add_to_cart' | t }}
-                    {% else %}
-                      {{ 'products.product.sold_out' | t }}
-                    {% endif %}
-                  </span>
-                </button>
-              </div>
+
             {% endform %}
           </div>
         </div><!-- col -->
@@ -350,6 +335,22 @@
   
   <!-- {% include 'followthesun_video', section_number:"followthesun_video position-relative" %} -->
   {% include 'followthesun', section_number:"followthesun" %}
+  <div id="sticky-add-to-cart" class="sticky-add-to-cart">
+    <span class="product-title">{{ product.title }}</span>
+    <button 
+      type="button"
+      class="btn-signup w-auto add-to-cart-button ajax_add_to_Cart_Btn" 
+      data-variant-id="{{ current_variant.id }}"
+      {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+      <span data-submit-button-text>
+        {% if current_variant.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </span>
+    </button>
+  </div>
 </div>
 <style>
 {% assign width = '14px' %}
