@@ -321,12 +321,12 @@
     {% include 'one_column_find_store', section_number:"one_column_find_store" %}
     {% endif %}
   {% endif %}
-  {% if product.metafields.story_in_productpage.story_url != blank %}
+  {% comment %} {% if product.metafields.story_in_productpage.story_url != blank %}
   {% assign story_url = product.metafields.story_in_productpage.story_url %}
   {% else %}
   {% assign story_url = "stories/following-dreams" %}
   {% endif %}
-  {% include 'one_column_story_in_product_page', section_number:"one_column_story_in_product_page", story_url:story_url %}  
+  {% include 'one_column_story_in_product_page', section_number:"one_column_story_in_product_page", story_url:story_url %}   {% endcomment %}
   {% if product.metafields.custom.other_product_template.value == true %}
     {% include 'collection_bags' %}
   {% else %}
