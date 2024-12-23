@@ -316,11 +316,11 @@
       </section>
     {% endif %}
   {% endunless %}
-  {% if product.metafields.product_info.hide_find_store_section != 1 %}
+  {% comment %} {% if product.metafields.product_info.hide_find_store_section != 1 %}
     {% if request.host != "wholesale.jamesay.com" %}
     {% include 'one_column_find_store', section_number:"one_column_find_store" %}
     {% endif %}
-  {% endif %}
+  {% endif %} {% endcomment %}
   {% comment %} {% if product.metafields.story_in_productpage.story_url != blank %}
   {% assign story_url = product.metafields.story_in_productpage.story_url %}
   {% else %}
