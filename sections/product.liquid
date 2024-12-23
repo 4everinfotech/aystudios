@@ -263,11 +263,6 @@
         {% include 'product-material-section' %}
       {% endif %}
     {% endif %}
-    {% if product.metafields.custom.other_product_template.value != true %}
-      {% if product.metafields.product_frame_sizing.hide_frame_section != 1 %}
-        {% include 'sunglass_frame' %}
-      {% endif %}
-    {% endif %}
     {% if product.metafields.product_info.hide_packaging_section != 1 %}
       {% if product.metafields.product_info.packaging_image != blank %}
         {% assign packaging_image = product.metafields.product_info.packaging_image %}
@@ -314,6 +309,11 @@
             </div>
         </div>
       </section>
+    {% endif %}
+    {% if product.metafields.custom.other_product_template.value != true %}
+      {% if product.metafields.product_frame_sizing.hide_frame_section != 1 %}
+        {% include 'sunglass_frame' %}
+      {% endif %}
     {% endif %}
   {% endunless %}
   {% comment %} {% if product.metafields.product_info.hide_find_store_section != 1 %}
