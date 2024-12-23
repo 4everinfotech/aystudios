@@ -172,7 +172,7 @@
                 {% endif %}
                 <div id="tab_product_details" class="tab_content collapse"><div>{{ tab_product_details }}</div></div>
 
-                <p data-toggle="collapse" aria-expanded="false" data-target="#size_and_fit" class="mb-0 tab_title">{{ 'products.label.sizefit_txt' | t }}<span><i></i><i></i></span></p>
+                <p data-toggle="collapse" aria-expanded="false" data-target="#size_and_fit" class="mb-0 tab_title">{{ 'products.label.sizefit_txt' | t | downcase }}<span><i></i><i></i></span></p>
                 {% if product.metafields.product_info.size_and_fit != blank %}
                   {% assign size_and_fit = product.metafields.product_info.size_and_fit %}
                 {% else %}
@@ -180,7 +180,7 @@
                 {% endif %}
                 <div id="size_and_fit" class="tab_content collapse"><div>{{size_and_fit}}</div></div>
 
-                <p data-toggle="collapse" aria-expanded="false" data-target="#shiping_and_returns" class="mb-0 tab_title">{{ 'products.label.shipping_returns_txt' | t }}<span><i></i><i></i></span></p>
+                <p data-toggle="collapse" aria-expanded="false" data-target="#shiping_and_returns" class="mb-0 tab_title">{{ 'products.label.shipping_returns_txt' | t | downcase }}<span><i></i><i></i></span></p>
                 {% if product.metafields.product_info.shiping_and_returns != blank %}
                   {% assign shiping_and_returns = product.metafields.product_info.shiping_and_returns %}
                 {% else %}
@@ -188,7 +188,7 @@
                 {% endif %}
                 <div id="shiping_and_returns" class="tab_content collapse"><div>{{ shiping_and_returns }}</div></div>
 
-                <p data-toggle="collapse" aria-expanded="false" data-target="#reviews" class="mb-0 tab_title last">{{ 'products.label.reviews_txt' | t }}<span><i></i><i></i></span></p>
+                <p data-toggle="collapse" aria-expanded="false" data-target="#reviews" class="mb-0 tab_title last">{{ 'products.label.reviews_txt' | t | downcase }}<span><i></i><i></i></span></p>
                 {% if product.metafields.product_info.reviews != blank %}
                   {% assign reviews = product.metafields.product_info.reviews %}
                 {% else %}
