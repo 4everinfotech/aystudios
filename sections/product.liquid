@@ -164,7 +164,7 @@
                 </div>
               </div>
               <div class="col-lg-10 offset-lg-1 product-tabs-wrapper">
-                <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title MonumentSemiMono text-capitalize">{{ 'products.label.product_detail_txt' | t }}<span><i></i><i></i></span></p>
+                <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title MonumentSemiMono text-capitalize">{{ 'products.label.product_detail_txt' | t | downcase }}<span><i></i><i></i></span></p>
                 {% if product.metafields.product_info.product_details != blank %}
                   {% assign tab_product_details = product.metafields.product_info.product_details %}
                 {% else %}
