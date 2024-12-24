@@ -219,7 +219,7 @@
       ]
     }
   {% endschema %}
-  {% if shop.metafields.n_scrolling_text.display_slide == 1 %}
+  {% if product.metafields.product_info.hide_product_intro_section == 1 %}
     {% include 'product_scrolling_text', section_number: "marquee_tag" %}
   {% endif %}
   {% if product.metafields.product_info.product_intro_text != blank %}
