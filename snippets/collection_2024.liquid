@@ -2,12 +2,14 @@
   <div class="container-fluid h-100 px-0">
     <div class="row pl-50 pr-50 no-gutters align-items-center mobile_min-vh-40 min-vh-100">
       {% if request.host == "jamesay-dk.myshopify.com" or request.host == "aystudios.dk" %}
+        {% assign find_reseller_link = "/pages/store-locator" %}
         {% assign all_collection_link = "/collections/alle" %}
       {% else %}
+        {% assign find_reseller_link = "/pages/store-locator" %}
         {% assign all_collection_link = "/collections/all" %}
       {% endif %}
       <div class="col-lg-10">
-        <a href="{{all_collection_link}}"><p class="">{{ 'general.label.Find_reseller' | t }}</p></a>
+        <a href="{{find_reseller_link}}"><p class="">{{ 'general.label.Find_reseller' | t }}</p></a>
         <a href="{{all_collection_link}}"><p class="mt-lg-5 pt-lg-5">{{ 'general.label.ALL_PRODUCTS' | t }}</p></a>
       </div>
       <div class="col-lg-2 text-right">
