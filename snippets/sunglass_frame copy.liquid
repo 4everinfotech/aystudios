@@ -1,0 +1,54 @@
+<section class="vertical-scrolling mx-auto h-100" style="background-color: #193EFF;">
+    <div class="container-fluid h-100 px-0">
+      <div class="row pl-50 pr-50 no-gutters min-vh-100 text-white">
+        <div class="col-12 mt-5">
+          <h1 class="fs80">{{ 'products.label.frame_sizing_txt' | t }}</h1>
+        </div>
+        <div class="col-12">
+          <div class="row mt-5 align-items-center">
+            <div class="col-lg-3 mb-5 mt-5 text-center">
+              {% if product.metafields.product_frame_sizing.frame_width_image != blank %}
+                {% assign frame_width_image = product.metafields.product_frame_sizing.frame_width_image %}
+              {% else %}
+                {% assign frame_width_image = settings.cdn_file_url | append: "cannes_frame_width.png?v=1617622313" %}
+              {% endif %}
+              <img src="{{frame_width_image}}" class="img-fluid mb-5" alt="">
+              <p>{{ 'products.label.width_txt' | t }}: {{product.metafields.product_frame_sizing.frame_width}}mm</p>
+            </div>
+            <div class="col-lg-3 mb-5 mt-5 text-center">
+              {% if product.metafields.product_frame_sizing.lens_length_image != blank %}
+                {% assign lens_length_image = product.metafields.product_frame_sizing.lens_length_image %}
+              {% else %}
+                {% assign lens_length_image = settings.cdn_file_url | append: "cannes_frame_lens_length.png?v=1617624722" %}
+              {% endif %}
+              <img src="{{lens_length_image}}" class="img-fluid mb-5" alt="">
+              <p>{{ 'products.label.lens_length_txt' | t }}: {{product.metafields.product_frame_sizing.lens_length}}mm</p>
+            </div>
+            <div class="col-lg-3 mb-5 mt-5 text-center">
+              {% if product.metafields.product_frame_sizing.nose_bridge_size_image != blank %}
+                {% assign nose_bridge_size_image = product.metafields.product_frame_sizing.nose_bridge_size_image %}
+              {% else %}
+                {% assign nose_bridge_size_image = settings.cdn_file_url | append: "cannes_frame_nose_bridge.png?v=1617622313" %}
+              {% endif %}
+              <img src="{{nose_bridge_size_image}}" class="img-fluid mb-5" alt="">
+              <p>{{ 'products.label.nose_bridge_txt' | t }}: {{product.metafields.product_frame_sizing.nose_bridge_size}}mm</p>
+            </div>
+            <div class="col-lg-3 mb-5 mt-5 text-center">
+              {% if product.metafields.product_frame_sizing.temple_size_image != blank %}
+                {% assign temple_size_image = product.metafields.product_frame_sizing.temple_size_image %}
+              {% else %}
+                {% assign temple_size_image = settings.cdn_file_url | append: "cannes_frame_temple1.png?v=1617629431" %}
+              {% endif %}
+              <img src="{{temple_size_image}}" class="img-fluid mb-5" alt="">
+              <p>{{ 'products.label.temple_txt' | t }}: {{product.metafields.product_frame_sizing.temple_size}}mm</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7 d-none d-lg-block">
+          <p class="slide_title_bottom">{{ 'products.label.dimensions_txt' | t }}: {{product.metafields.product_frame_sizing.lens_length}}-{{product.metafields.product_frame_sizing.nose_bridge_size}}-{{product.metafields.product_frame_sizing.temple_size}}</p>
+        </div>
+        <div class="col-lg-4 d-none d-lg-block">
+          <p class="slide_description_bottom_right mt-5">{{ 'products.label.frame_sizing_desc_txt' | t }}</p>
+        </div>
+    </div>
+  </section>
