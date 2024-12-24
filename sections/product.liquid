@@ -222,20 +222,6 @@
   {% if product.metafields.product_info.hide_product_intro_section != 1 %}
     {% include 'product_scrolling_text', section_number: "marquee_tag" %}
   {% endif %}
-  {% if product.metafields.product_info.product_intro_text != blank %}
-    {% assign product_intro_text = product.metafields.product_info.product_intro_text %}
-  {% else %}
-    {% assign product_intro_text = "Glance represents a feeling of quality in all layers of life.<br><br>
-      It is about not wanting to compromise with anything but embracing all the great things in life." %}
-  {% endif %}
-  <section class="vertical-scrolling mx-auto h-100">
-    <div class="container-fluid h-100 px-0">
-      <div class="row pl-50 pr-50 no-gutters align-items-center min-vh-100">
-        <div class="col-lg-10">
-          <h1 class="fs80">{{product_intro_text}}</h1>
-        </div>
-    </div>
-  </section>
   {% unless product.tags contains 'Lifestyle' or product.tags contains 'Livsstil'%}
     {% if product.metafields.product_info.hide_eco_material_section != 1 %}
       {% if product.metafields.product_info.premium_eco_materials != blank %}
