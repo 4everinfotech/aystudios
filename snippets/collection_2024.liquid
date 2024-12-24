@@ -1,6 +1,6 @@
 <section class="vertical-scrolling mx-auto h-100 collection_2021">
   <div class="container-fluid h-100 px-0">
-    <div class="row pl-50 pr-50 no-gutters align-items-center mobile_min-vh-40 min-vh-100">
+    <div class="row pl-50 pr-50 no-gutters align-items-center 1mobile_min-vh-40 1min-vh-100">
       {% if request.host == "jamesay-dk.myshopify.com" or request.host == "aystudios.dk" %}
         {% assign find_reseller_link = "/pages/store-locator" %}
         {% assign all_collection_link = "/collections/alle" %}
@@ -8,7 +8,7 @@
         {% assign find_reseller_link = "/pages/store-locator" %}
         {% assign all_collection_link = "/collections/all" %}
       {% endif %}
-      <div class="col-lg-10">
+      <div class="col-lg-10 py-5 my-5">
         <a href="{{find_reseller_link}}"><p class="">{{ 'general.label.Find_reseller' | t }}</p></a>
         <a href="{{all_collection_link}}"><p class="mt-lg-5 pt-lg-5">{{ 'general.label.All_products' | t }}</p></a>
       </div>
