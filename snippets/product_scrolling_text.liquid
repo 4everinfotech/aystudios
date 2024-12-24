@@ -4,12 +4,7 @@
 {% assign scrolling_text = "Please Enter Text" %}
 {% endif %}
 
-{% if shop.metafields.n_scrolling_text.sec_order != blank %}
-{% assign sec_order = shop.metafields.n_scrolling_text.sec_order %}
-{% else %}
-{% assign sec_order = 0 %}
-{% endif %}
-<section class="vertical-scrolling h-100  {{section_number}}" style="order: {{sec_order}};">
+<section class="vertical-scrolling h-100  {{section_number}}">
   <div class="container-fluid h-100 px-0">
     <div class="row pl-50 pr-50 pl-lg-0 pr-lg-0 no-gutters align-items-center mobile_min-vh-40 min-vh-100">
       {% if request.host == "jamesay-dk.myshopify.com" or request.host == "aystudios.dk" %}
