@@ -1,26 +1,27 @@
-{% if shop.metafields.n_scrolling_text.scrolling_text != blank %}
-{% assign scrolling_text = shop.metafields.n_scrolling_text.scrolling_text %}
+{% if product.metafields.product_info.product_intro_text != blank %}
+  {% assign product_intro_text = product.metafields.product_info.product_intro_text %}
 {% else %}
-{% assign scrolling_text = "Please Enter Text" %}
+  {% assign product_intro_text = "Glance represents a feeling of quality in all layers of life.<br><br>
+    It is about not wanting to compromise with anything but embracing all the great things in life." %}
 {% endif %}
 
 <section class="vertical-scrolling h-100  {{section_number}}">
   <div class="container-fluid h-100 px-0">
     <div class="row pl-50 pr-50 pl-lg-0 pr-lg-0 no-gutters align-items-center mobile_min-vh-40 min-vh-100">
       {% if request.host == "jamesay-dk.myshopify.com" or request.host == "aystudios.dk" %}
-        {% assign all_collection_link = "/collections/alle" %}
+        {% assign all_collection_link = "javascript:void(0)" %}
       {% else %}
-        {% assign all_collection_link = "/collections/all" %}
+        {% assign all_collection_link = "javascript:void(0)" %}
       {% endif %}
       <div class="col-12">
         <div class="marquee-wrapper d-none d-lg-block">
           <div class="marquee-content">
             <a href="{{all_collection_link}}" class="fs60">
-              {{scrolling_text}}
+              {{product_intro_text}}
             </a>
           </div>
         </div>
-        <a href="{{all_collection_link}}" class="fs60 d-lg-none">{{scrolling_text}}</a>
+        <a href="{{all_collection_link}}" class="fs60 d-lg-none">{{product_intro_text}}</a>
       </div>
   </div>
 </section>
