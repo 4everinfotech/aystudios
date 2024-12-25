@@ -1,19 +1,7 @@
-{% if shop.metafields.one_column_general.title != blank %}
-{% assign title = shop.metafields.one_column_general.title %}
-{% else %}
 {% assign title = "Title" %}
-{% endif %}
-{% if shop.metafields.one_column_general.description != blank %}
-{% assign description = shop.metafields.one_column_general.description %}
-{% else %}
 {% assign description = "" %}
-{% endif %}
-
-{% if shop.metafields.one_column_general.link != blank %}
-{% assign link_url = shop.metafields.one_column_general.link %}
-{% else %}
 {% assign link_url = "#" %}
-{% endif %}
+
 
 {% if shop.metafields.one_column_general.image_url != blank %}
 {% assign desktop_img = shop.metafields.one_column_general.image_url %}
