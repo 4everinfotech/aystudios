@@ -32,13 +32,7 @@
 {% assign slide_type = "one-image" %}
 {% endif %}
 
-{% if shop.metafields.one_column_general.sec_order != blank %}
-{% assign sec_order = shop.metafields.one_column_general.sec_order %}
-{% else %}
-{% assign sec_order = 0 %}
-{% endif %}
-
-<section class="vertical-scrolling {{section_number}} {{slide_type}} lazyload" data-bg="{{desktop_img}}" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-color: #686868; order: {{sec_order}};" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+<section class="vertical-scrolling {{section_number}} {{slide_type}} lazyload" data-bg="{{desktop_img}}" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-color: #686868;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
   {% if product.metafields.product_info.display_video_eco_material_section == 1 %}
   <div class="vimeo-wrapper lazyload" data-bg="{{desktop_img}}"  style="background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
     <div id="one_column_general_vimeo-video"></div>
