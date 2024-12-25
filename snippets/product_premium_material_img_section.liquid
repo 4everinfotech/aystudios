@@ -1,18 +1,12 @@
 {% assign title = "Title" %}
 {% assign description = "" %}
 {% assign link_url = "#" %}
-
-
-{% if shop.metafields.one_column_general.image_url != blank %}
-{% assign desktop_img = shop.metafields.one_column_general.image_url %}
+{% if product.metafields.product_info.premium_eco_materials_image != blank %}
+  {% assign desktop_img = product.metafields.product_info.premium_eco_materials_image %}
 {% else %}
-{% assign desktop_img = "default.png" | file_url %}
+  {% assign desktop_img = settings.cdn_file_url | append: "plant-based-material.jpg" %}
 {% endif %}
-{% if shop.metafields.one_column_general.mobile_image_url != blank %}
-{% assign mobile_img = shop.metafields.one_column_general.mobile_image_url %}
-{% else %}
 {% assign mobile_img = desktop_img %}
-{% endif %} 
 
 {% if product.metafields.product_info.display_video_eco_material_section == 1 %}
 {% assign slide_type = "video" %}

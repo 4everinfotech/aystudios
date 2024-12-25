@@ -229,12 +229,7 @@
       {% else %}
         {% assign premium_eco_materials = "Premium eco materials" %}
       {% endif %}
-      {% if product.metafields.product_info.premium_eco_materials_image != blank %}
-        {% assign desktop_img = product.metafields.product_info.premium_eco_materials_image %}
-      {% else %}
-        {% assign desktop_img = settings.cdn_file_url | append: "plant-based-material.jpg" %}
-      {% endif %}
-      {% assign mobile_img = desktop_img %}
+
       {% include 'product_premium_material_img_section' %}
     {% endif %}
     {% if product.metafields.product_info.hide_other_product_template_section != 1 %}
