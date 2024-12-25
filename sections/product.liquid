@@ -605,6 +605,26 @@ body {
   scroll-snap-align: start;
 }
 </style>
+{% if product.metafields.product_info.hide_eco_material_section != 1 %}
+  {% if product.metafields.product_info.display_video_eco_material_section == 1 %}
+    {% if product.metafields.product_info.video_vimeo_id_premium_eco_materials != blank %}
+      {% assign vimeo_video = product.metafields.product_info.video_vimeo_id_premium_eco_materials %}
+    {% else %}
+      {% assign vimeo_video = 693990646 %}
+    {% endif %}
+    <script type="text/javascript">
+      if ($('#one_column_slide_vimeo-video').length > 0) { 
+      var options = {
+                    id: {{ vimeo_video }},
+      autoplay: true,
+                    loop: true,
+                    responsive: true,
+                    background: true,
+                };
+                var chasing = new Vimeo.Player('one_column_slide_vimeo-video', options);
+              }</script>
+  {% endif %}
+{% endif %}
   {% assign article = articles[story_url] %}
   {% if article.metafields.cf_story.display_video == 1 %}
     {% if article.metafields.cf_story.vimeo_video_id != blank %}
