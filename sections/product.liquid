@@ -613,7 +613,7 @@ body {
       {% assign vimeo_video = 693990646 %}
     {% endif %}
     <script type="text/javascript">
-      if ($('#one_column_slide_vimeo-video').length > 0) { 
+      if ($('#one_column_general_vimeo-video').length > 0) { 
       var options = {
                     id: {{ vimeo_video }},
       autoplay: true,
@@ -621,7 +621,7 @@ body {
                     responsive: true,
                     background: true,
                 };
-                var chasing = new Vimeo.Player('one_column_slide_vimeo-video', options);
+                var chasing = new Vimeo.Player('one_column_general_vimeo-video', options);
               }</script>
   {% endif %}
 {% endif %}
