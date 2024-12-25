@@ -292,11 +292,29 @@
             </div>
             <div class="col-lg-6 dpl mt-5 pt-5 ">
               <img src="{{tree_planted_image}}" class="img-fluid w-100">
-              <h4 class="shop_sml_title mt-4">{{tree_planted_title}}</h4>
-              <div class="shop_title_desc">{{tree_planted_text}}</div>
+              {% comment %} <h4 class="shop_sml_title mt-4">{{tree_planted_title}}</h4>
+              <div class="shop_title_desc">{{tree_planted_text}}</div> {% endcomment %}
             </div>
         </div>
       </section>
+      <section class="vertical-scrolling mx-auto h-100">
+          <div class="container-fluid h-100 px-0">
+              <div class="row pl-50 pr-50 mt-5 mb-10 no-gutters product_info1">
+              <div class="col-lg-6">
+                  <div class="row no-gutters">
+                  <div class="col-lg-8">
+                      <p class="fs36">{{tree_planted_title}}</p>
+                  </div>
+                  <div class="col-lg-6">
+                      <p>&nbsp;</p>
+                  </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 offset-lg-1">
+                  {{tree_planted_text}}
+              </div>
+          </div>
+      </section>  
     {% endif %}
     {% if product.metafields.custom.other_product_template.value != true %}
       {% if product.metafields.product_frame_sizing.hide_frame_section != 1 %}
