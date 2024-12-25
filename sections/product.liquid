@@ -224,7 +224,25 @@
   {% endif %}
   {% unless product.tags contains 'Lifestyle' or product.tags contains 'Livsstil'%}
     {% if product.metafields.product_info.hide_eco_material_section != 1 %}
-      
+      {% if product.metafields.product_info.premium_eco_materials != blank %}
+        {% assign premium_eco_materials = product.metafields.product_info.premium_eco_materials %}
+      {% else %}
+        {% assign premium_eco_materials = "Premium eco materials" %}
+      {% endif %}
+      {% if product.metafields.product_info.premium_eco_materials_image != blank %}
+        {% assign desktop_img = product.metafields.product_info.premium_eco_materials_image %}
+      {% else %}
+        {% assign desktop_img = settings.cdn_file_url | append: "plant-based-material.jpg" %}
+      {% endif %}
+      {% assign mobile_img = desktop_img %}
+      <section class="vertical-scrolling mx-auto h-100 lazyload" data-bg="{{desktop_img}}" style="background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+        <div class="container-fluid h-100 px-0">
+          <div class="row pl-50 pr-50 no-gutters min-vh-100">
+            <div class="col-lg-10 mt-5">
+              <h1 class="fs80 text-white hide">{{premium_eco_materials}}</h1>
+            </div>
+        </div>
+      </section>
     {% endif %}
     {% if product.metafields.product_info.hide_other_product_template_section != 1 %}
       {% if product.metafields.custom.other_product_template.value == true %}
