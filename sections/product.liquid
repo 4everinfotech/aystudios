@@ -230,7 +230,7 @@
         {% assign premium_eco_materials = "Premium eco materials" %}
       {% endif %}
 
-      {% comment %} {% include 'product_premium_material_img_section' %} {% endcomment %}
+      {% include 'product_premium_material_img_section' %}
     {% endif %}
     {% if product.metafields.product_info.hide_other_product_template_section != 1 %}
       {% if product.metafields.custom.other_product_template.value == true %}
