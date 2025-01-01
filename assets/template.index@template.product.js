@@ -144,7 +144,7 @@
 					this.renderSwatches(e), 
 					this.renderSelectedColor(e), 
 					this.renderImages(e), 
-					this.renderScrollToImages(e), 
+					//this.renderScrollToImages(e), 
 					this.renderFancybox(e), 
 					this.renderPrice(e), 
 					this.renderComparePrice(e), 
