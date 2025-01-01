@@ -660,39 +660,62 @@
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
-    const productImages = document.querySelector('.image-scroll');
-    const productContainer = document.querySelector('.product-container');
-    const stickyDetails = document.querySelector('.sticky-details');
+    // Function to check if the device is desktop
+    function isDesktop() {
+      return window.innerWidth > 768; // Adjust breakpoint (768px) as per your design
+    }
 
-    let totalScroll = 0; // Tracks the total scroll amount
+    // Function to initialize the scroll behavior
+    function initializeDesktopScroll() {
+      const productImages = document.querySelector('.image-scroll');
+      const productContainer = document.querySelector('.product-container');
+      const stickyDetails = document.querySelector('.sticky-details');
 
-    productContainer.addEventListener('wheel', (event) => {
-      const maxScrollHeight = productImages.scrollHeight - productImages.clientHeight;
+      let totalScroll = 0; // Tracks the total scroll amount
 
-      if (event.deltaY > 0 && totalScroll < maxScrollHeight) {
-        // Scroll the images down
-        event.preventDefault();
-        totalScroll = Math.min(totalScroll + event.deltaY, maxScrollHeight);
-        productImages.style.transform = `translateY(-${totalScroll}px)`;
-      } else if (event.deltaY < 0 && totalScroll > 0) {
-        // Scroll the images up
-        event.preventDefault();
-        totalScroll = Math.max(totalScroll + event.deltaY, 0);
-        productImages.style.transform = `translateY(-${totalScroll}px)`;
+      if (productContainer && productImages && stickyDetails) {
+        productContainer.addEventListener('wheel', (event) => {
+          // Ensure this logic runs only on desktop
+          if (isDesktop()) {
+            const maxScrollHeight = productImages.scrollHeight - productImages.clientHeight;
+
+            if (event.deltaY > 0 && totalScroll < maxScrollHeight) {
+              // Scroll the images down
+              event.preventDefault();
+              totalScroll = Math.min(totalScroll + event.deltaY, maxScrollHeight);
+              productImages.style.transform = `translateY(-${totalScroll}px)`;
+            } else if (event.deltaY < 0 && totalScroll > 0) {
+              // Scroll the images up
+              event.preventDefault();
+              totalScroll = Math.max(totalScroll + event.deltaY, 0);
+              productImages.style.transform = `translateY(-${totalScroll}px)`;
+            }
+
+            // Prevent any scroll movement in the sticky details
+            stickyDetails.scrollTop = 0;
+          }
+        });
       }
+    }
 
-      // Prevent any scroll movement in the sticky details
-      stickyDetails.scrollTop = 0;
+    // Initialize the functionality if the device is desktop
+    if (isDesktop()) {
+      initializeDesktopScroll();
+    }
+
+    // Recheck and reinitialize on window resize
+    window.addEventListener('resize', () => {
+      if (isDesktop()) {
+        initializeDesktopScroll();
+      } else {
+        // Reset styles for mobile (optional)
+        const productImages = document.querySelector('.image-scroll');
+        if (productImages) {
+          productImages.style.transform = '';
+        }
+      }
     });
   });
-
-
-
-
-
-
-
-
   document.addEventListener("DOMContentLoaded", function () {
     const stickyAddToCart = document.getElementById("sticky-add-to-cart");
     const productForm = document.querySelector("form[data-product-form]");
@@ -754,9 +777,6 @@
     // Attach scroll event
     window.addEventListener("scroll", toggleStickyAddToCart);
   });
-
-
-
   if ($('#followthesun_video_id').length > 0) {
     var options_story = {
         id: {{followthesun_video_id}},
@@ -768,4 +788,4 @@
     var chasing_story = new Vimeo.Player('followthesun_video_id', options_story);
   }  
 </script>
-      <script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script>
+<script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script>
