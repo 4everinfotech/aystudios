@@ -336,7 +336,7 @@
   <!-- {% include 'followthesun_video', section_number:"followthesun_video position-relative" %} -->
   {% comment %} {% include 'followthesun', section_number:"followthesun" %} {% endcomment %}
   <div id="sticky-add-to-cart" class="sticky-add-to-cart">
-    <span class="product-title">{{ product.title }}</span>
+    <span class="product-title">{{ product.title }} {{current_variant.metafields.product_variant_info.style_number}}</span>
     <button 
       type="button"
       class="btn-signup w-auto add-to-cart-button ajax_add_to_Cart_Btn" 
