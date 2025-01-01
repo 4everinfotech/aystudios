@@ -188,7 +188,9 @@
 								$(this).parent().addClass("hide")
 							}
 						}
-						mySlider.reloadSlider();
+						if ($('.product_slider').length > 0) {
+							mySlider.reloadSlider();
+						}
 					})
 					// t && null !== t.featured_image && (this.renderFeaturedImage(t.featured_image.id), this.renderActiveThumbnail(t.featured_image.id))
 				},
