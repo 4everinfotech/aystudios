@@ -141,7 +141,15 @@
 				onFormOptionChange(t) {
 					const e = t.dataset.variant;
          //alert(e.title.split(" / ")[0]);
-					this.renderSwatches(e), this.renderSelectedColor(e), this.renderImages(e), this.renderScrollToImages(e), this.renderFancybox(e), this.renderPrice(e), this.renderComparePrice(e), this.renderSubmitButton(e), this.updateBrowserHistory(e)
+					this.renderSwatches(e), 
+					this.renderSelectedColor(e), 
+					this.renderImages(e), 
+					this.renderScrollToImages(e), 
+					this.renderFancybox(e), 
+					this.renderPrice(e), 
+					this.renderComparePrice(e), 
+					this.renderSubmitButton(e), 
+					this.updateBrowserHistory(e)
 				},
 				onThumbnailClick(t) {
 					const e = t.target.closest(h.thumbnail);
