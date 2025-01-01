@@ -22,17 +22,23 @@
                 {% endif %}
               {% endcapture %}
 
-              <img id="Image-{{ image.id }}"
-              class="product-image lazyload {{ wrapper_class }}"
-              src="{{ image | img_url: '300x' }}"
-              data-src="{{ image | img_url: 'master' }}"
-              data-widths="[{{ image_widths }}]"
-              data-aspectratio="{{ image.aspect_ratio }}"
-              data-sizes="auto"
-              tabindex="-1"
-              alt="{{ image.alt | escape }}"
-              {{ image_attributes }}
-              >
+              {% capture data_fancybox %}
+                {% if image_alt[1] == featured_alt %}
+                  data-fancybox1="gallery"
+                {% else %}
+                  data-fancybox1=""
+                {% endif %}
+              {% endcapture %}
+              
+              {% include 'responsive-image' with
+                image: image,
+                max_width: 1500,
+                max_height: 1500,
+                image_attributes: "data-product-featured-image",
+                wrapper_class: wrapper_class,
+                wrapper_attributes: "data-product-image-wrapper",
+                data_fancybox: data_fancybox,
+              %}
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
