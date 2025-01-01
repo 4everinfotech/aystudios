@@ -610,8 +610,10 @@ body {
 .vertical-scrolling {
   scroll-snap-align: start;
 }
-.product-image .responsive-image__wrapper a {
-  pointer-events: none;
+@media only screen and (min-width: 768px) {
+  .product-image .responsive-image__wrapper a {
+    pointer-events: none;
+  }
 }
 </style>
 {% if product.metafields.product_info.hide_eco_material_section != 1 %}
