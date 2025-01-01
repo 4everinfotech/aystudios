@@ -6,7 +6,7 @@
     <div class="container-fluid product-container px-0">
       <div class="row mx-0">
         <div class="col-lg-6 px-0 product-order product-images">
-          <div class="product-image product_slider1 image-scroll">
+          <div class="product-image product_slider image-scroll">
             {% assign featured_alt = current_variant.option1 %}
             {% for image in product.images %}
               {% assign image_alt = image.alt | split: " - " %}
