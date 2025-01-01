@@ -332,25 +332,6 @@
         }
       }
     });
-    jQuery(document).ready(function(){
-      if (jQuery('.product_slider').length) {	
-        mySlider =  jQuery('.product_slider').bxSlider({
-          slideSelector: "div.slide-visible",	
-          pager : false,
-          pagerType: 'short',
-          responsive: true,
-          mode: 'fade',
-          pager: true,
-          preloadImages:'visible',
-          //auto: true,
-          //autoHover: true,
-          //autoControls: true
-          //infin
-          iteLoop: false	
-        });
-      }
-
-    });
     if ( $('div.slide-visible').length > 1) {
       $('.responsive-image__wrapper a').css('pointer-events','');
     } else {
