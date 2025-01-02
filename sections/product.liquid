@@ -732,6 +732,23 @@
       }
     }
 
+    let lastKnownScrollPosition = 0;
+    let ticking = false;
+
+    function handleScroll() {
+      lastKnownScrollPosition = window.scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          toggleStickyAddToCart();
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
 
 
     // Change button text and trigger main button
@@ -764,9 +781,6 @@
         stickyAddToCartButton.disabled = false;
       }
     });
-
-    // Attach scroll event
-    window.addEventListener("scroll", toggleStickyAddToCart);
   });
   if ($('#followthesun_video_id').length > 0) {
     var options_story = {
