@@ -5,8 +5,8 @@
     <div class="big-break"></div>
     <div class="container-fluid product-container px-0">
       <div class="row mx-0">
-        <div class="col-lg-6 px-0 product-order product-images1">
-          <div class="product-image product_slider image-scroll1">
+        <div class="col-lg-6 px-0 product-order product-images">
+          <div class="product-image product_slider image-scroll">
             {% assign featured_alt = current_variant.option1 %}
             {% for image in product.images %}
               {% assign image_alt = image.alt | split: " - " %}
@@ -42,7 +42,7 @@
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
-        <div class="col-lg-6 d-lg-flex text-left shop1_imgr product-details1 position-relative">
+        <div class="col-lg-6 d-lg-flex text-left shop1_imgr product-details">
           <div class="sticky-details">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
               <div class="col-lg-10 offset-lg-1">
@@ -564,7 +564,7 @@
   height: inherit;
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
   body, html {
       position: relative;
       z-index: 0;
@@ -582,7 +582,7 @@
   .product-images {
     flex: 1;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden; /* Hide the scrollbar */
   }
 
   .image-scroll {
@@ -590,10 +590,10 @@
     display: flex;
     flex-direction: column;
     transform: translateY(0);
-    
+    will-change: transform;
   }
 
-  .image-scroll img1 {
+  .image-scroll img {
     width: 100%;
     object-fit: cover;
   }
@@ -617,7 +617,7 @@
   .product-image .responsive-image__wrapper a {
     pointer-events: none;
   }
-} */
+}
 </style>
 {% if product.metafields.product_info.hide_eco_material_section != 1 %}
   {% if product.metafields.product_info.display_video_eco_material_section == 1 %}
