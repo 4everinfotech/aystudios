@@ -717,15 +717,6 @@
     const mainAddToCartButton = productForm.querySelector(".ajax_add_to_Cart_Btn");
     const stickyAddToCartButton = stickyAddToCart.querySelector(".add-to-cart-button");
 
-    // Function to toggle sticky add-to-cart visibility
-    // function toggleStickyAddToCart() {
-    //   const formBottom = productForm.getBoundingClientRect().bottom;
-    //   if (formBottom < window.innerHeight) {
-    //     stickyAddToCart.classList.add("show");
-    //   } else {
-    //     stickyAddToCart.classList.remove("show");
-    //   }
-    // }
     function toggleStickyAddToCart() {
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
