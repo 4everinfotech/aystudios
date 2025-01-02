@@ -720,13 +720,18 @@
     function toggleStickyAddToCart() {
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
-      console.log("Form Bottom:", formBottom, "Window Height:", window.innerHeight);
-      if (formBottom < window.innerHeight - stickyBarHeight) {
+
+      // Add a small buffer to account for browser rendering differences
+      const buffer = 10;
+
+      // If form is out of view, show the sticky bar
+      if (formBottom < window.innerHeight - stickyBarHeight - buffer) {
         stickyAddToCart.classList.add("show");
       } else {
         stickyAddToCart.classList.remove("show");
       }
     }
+
 
 
     // Change button text and trigger main button
