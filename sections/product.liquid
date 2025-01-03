@@ -337,6 +337,20 @@
   {% comment %} {% include 'followthesun', section_number:"followthesun" %} {% endcomment %}
   <div id="sticky-add-to-cart" class="sticky-add-to-cart">
     <span class="product-title">{{ product.title }} {{current_variant.metafields.product_variant_info.style_number}} <span class="selected_color1"><span></span></span></span>
+    <span data-product-price>
+                      {% if current_variant.compare_at_price  > 0 %}
+                        {% assign discount_percentage = current_variant.compare_at_price
+                        | minus: current_variant.price
+                        | times: 100.0
+                        | divided_by: current_variant.compare_at_price
+                        %}
+                        <span class="percent-count">{{ discount_percentage | round: 0 }}%</span>
+                      {% endif %}
+                      {% if current_variant.compare_at_price  > 0 %}
+                        <span class="compare_at_price">{{ current_variant.compare_at_price| times:1.25 | money }}</span> 
+                      {% endif %}
+                      {{ current_variant.price | times:1.25 | money }}
+                    </span>
     <button 
       type="button"
       class="btn-signup w-auto add-to-cart-button ajax_add_to_Cart_Btn" 
