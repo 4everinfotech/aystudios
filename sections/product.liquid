@@ -580,7 +580,9 @@
   height: inherit;
   margin-left: 10px;
 }
-p:empty, p:only-child:where(:has(*), :not(:icontains('\u00A0'))) 
+p:empty, p:only-child:where(:has(*), :not(:icontains('\u00A0'))) {
+  display: none;
+}
 
 @media (min-width: 768px) {
   body, html {
