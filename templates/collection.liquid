@@ -25,11 +25,14 @@
                 
                 {% if collection1.title == collection.title %}
                     <div class="active {{ collection1.title | handleize }} mb-4">
+                      {% if collection1.title == "Archive Sale" %}
+                        <a href="{{ collection1.url }}">Sale</a>
+                      {% else %}
                         <a href="{{ collection1.url }}">{{ collection1.title }}</a>
+                      {% endif %}
                     </div>
                 {% else %}
                     <div class="{% if collection1.handle == 'sale' %}archive_sale_menu {% endif %}{{ collection1.title | handleize }} mb-4">
-                      {{ collection1.title }} XXXX
                         {% if collection1.title == "Archive Sale" %}
                           <a href="{{ collection1.url }}">Sale</a>
                         {% else %}
