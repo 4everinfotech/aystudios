@@ -755,36 +755,40 @@
     const mainAddToCartButton = productForm.querySelector(".ajax_add_to_Cart_Btn");
     const stickyAddToCartButton = stickyAddToCart.querySelector(".add-to-cart-button");
 
+    if (!stickyAddToCart || !productForm) {
+      console.error("Sticky add-to-cart bar or product form not found.");
+      return;
+    }
+
+    let ticking = false;
+
     function toggleStickyAddToCart() {
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
 
+      // Check if the main "Add to Cart" button is visible
       if (formBottom < window.innerHeight - stickyBarHeight) {
-        if (!stickyAddToCart.classList.contains("show")) {
-          stickyAddToCart.classList.add("show");
-        }
+        stickyAddToCart.classList.add("show");
       } else {
-        if (stickyAddToCart.classList.contains("show")) {
-          stickyAddToCart.classList.remove("show");
-        }
+        stickyAddToCart.classList.remove("show");
       }
     }
 
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          toggleStickyAddToCart();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
 
-    // let lastKnownScrollPosition = 0;
-    // let ticking = false;
+    // Initial check on page load
+    toggleStickyAddToCart();
 
-    // window.addEventListener("scroll", () => {
-    //   lastKnownScrollPosition = window.scrollY;
 
-    //   if (!ticking) {
-    //     window.requestAnimationFrame(() => {
-    //       toggleStickyAddToCart();
-    //       ticking = false;
-    //     });
-    //     ticking = true;
-    //   }
-    // });
+    
 
     window.addEventListener("scroll", toggleStickyAddToCart, { passive: true });
 
