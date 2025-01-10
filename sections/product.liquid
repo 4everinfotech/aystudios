@@ -756,6 +756,10 @@
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
 
+      console.log("Form Bottom:", formBottom);
+      console.log("Window Height:", window.innerHeight);
+      console.log("Sticky Bar Height:", stickyBarHeight);
+
       // Force style recalculation
       stickyAddToCart.style.display = "none";
       stickyAddToCart.offsetHeight; // Trigger reflow
