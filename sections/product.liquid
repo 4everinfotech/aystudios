@@ -755,41 +755,30 @@
     const mainAddToCartButton = productForm.querySelector(".ajax_add_to_Cart_Btn");
     const stickyAddToCartButton = stickyAddToCart.querySelector(".add-to-cart-button");
 
-    function toggleStickyAddToCart() {
-      const formBottom = productForm.getBoundingClientRect().bottom;
-      const stickyBarHeight = stickyAddToCart.offsetHeight;
-
-      console.log("Form Bottom:", formBottom, "Window Height:", window.innerHeight);
-
-      if (formBottom < window.innerHeight - stickyBarHeight) {
-        if (!stickyAddToCart.classList.contains("show")) {
+    // Observer callback function
+    function handleIntersect(entries) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          stickyAddToCart.classList.remove("show");
+        } else {
           stickyAddToCart.classList.add("show");
         }
-      } else {
-        if (stickyAddToCart.classList.contains("show")) {
-          stickyAddToCart.classList.remove("show");
-        }
-      }
+      });
     }
 
+    // Initialize IntersectionObserver
+    const observer = new IntersectionObserver(handleIntersect, {
+      root: null, // Observes viewport
+      threshold: 0.1, // Trigger when 10% of the target is visible
+    });
 
-    // let lastKnownScrollPosition = 0;
-    // let ticking = false;
+    if (productForm) {
+      observer.observe(productForm);
+    } else {
+      console.error("Product form not found.");
+    }
 
-    // window.addEventListener("scroll", () => {
-    //   lastKnownScrollPosition = window.scrollY;
-
-    //   if (!ticking) {
-    //     window.requestAnimationFrame(() => {
-    //       toggleStickyAddToCart();
-    //       ticking = false;
-    //     });
-    //     ticking = true;
-    //   }
-    // });
-
-    window.addEventListener("scroll", toggleStickyAddToCart, { passive: true });
-
+    // Adjust transition for Mac users
     if (navigator.userAgent.includes("Macintosh")) {
       stickyAddToCart.style.transition = "transform 0.5s ease-in-out"; // Slightly slower transition
     }
