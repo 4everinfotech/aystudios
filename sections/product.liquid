@@ -820,9 +820,7 @@
       }
     });
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    
+    window.addEventListener("scroll", toggleStickyAddToCart, { passive: true });
 
     if (navigator.userAgent.includes("Macintosh")) {
       stickyAddToCart.style.transition = "transform 0.5s ease-in-out"; // Slightly slower transition
