@@ -755,41 +755,38 @@
     const mainAddToCartButton = productForm.querySelector(".ajax_add_to_Cart_Btn");
     const stickyAddToCartButton = stickyAddToCart.querySelector(".add-to-cart-button");
 
-    if (!stickyAddToCart || !productForm) {
-      console.error("Sticky add-to-cart bar or product form not found.");
-      return;
-    }
-
-    let ticking = false;
-
     function toggleStickyAddToCart() {
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
 
-      console.log("Form Bottom:", formBottom, "Window Height:", window.innerHeight);
-      
-      // Check if the main "Add to Cart" button is visible
       if (formBottom < window.innerHeight - stickyBarHeight) {
-        stickyAddToCart.classList.add("show");
+        if (!stickyAddToCart.classList.contains("show")) {
+          stickyAddToCart.classList.add("show");
+        }
       } else {
-        stickyAddToCart.classList.remove("show");
+        if (stickyAddToCart.classList.contains("show")) {
+          stickyAddToCart.classList.remove("show");
+        }
       }
     }
 
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          toggleStickyAddToCart();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
 
-    // Initial check on page load
-    toggleStickyAddToCart();
+    // let lastKnownScrollPosition = 0;
+    // let ticking = false;
 
-    //window.addEventListener("scroll", toggleStickyAddToCart, { passive: true });
+    // window.addEventListener("scroll", () => {
+    //   lastKnownScrollPosition = window.scrollY;
+
+    //   if (!ticking) {
+    //     window.requestAnimationFrame(() => {
+    //       toggleStickyAddToCart();
+    //       ticking = false;
+    //     });
+    //     ticking = true;
+    //   }
+    // });
+
+    window.addEventListener("scroll", toggleStickyAddToCart, { passive: true });
 
     if (navigator.userAgent.includes("Macintosh")) {
       stickyAddToCart.style.transition = "transform 0.5s ease-in-out"; // Slightly slower transition
