@@ -778,7 +778,6 @@
 
     function handleScroll() {
       lastKnownScrollPosition = window.scrollY;
-      console.log("Scroll event fired.");
       if (!ticking) {
         window.requestAnimationFrame(() => {
           toggleStickyAddToCart();
