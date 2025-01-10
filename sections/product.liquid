@@ -759,6 +759,8 @@
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
 
+      console.log("Form Bottom:", formBottom, "Window Height:", window.innerHeight);
+
       if (formBottom < window.innerHeight - stickyBarHeight) {
         if (!stickyAddToCart.classList.contains("show")) {
           stickyAddToCart.classList.add("show");
