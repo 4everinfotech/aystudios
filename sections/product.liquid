@@ -755,41 +755,6 @@
     const mainAddToCartButton = productForm.querySelector(".ajax_add_to_Cart_Btn");
     const stickyAddToCartButton = stickyAddToCart.querySelector(".add-to-cart-button");
 
-    // function toggleStickyAddToCart() {
-    //   const formBottom = productForm.getBoundingClientRect().bottom;
-    //   const stickyBarHeight = stickyAddToCart.offsetHeight;
-
-    //   // Add a small buffer to account for browser rendering differences
-    //   const buffer = 10;
-
-    //   // If form is out of view, show the sticky bar
-    //   if (formBottom < window.innerHeight - stickyBarHeight - buffer) {
-    //     stickyAddToCart.classList.add("show");
-    //   } else {
-    //     stickyAddToCart.classList.remove("show");
-    //   }
-    // }
-
-    // function toggleStickyAddToCart() {
-    //   const formBottom = productForm.getBoundingClientRect().bottom;
-    //   const stickyBarHeight = stickyAddToCart.offsetHeight;
-
-    //   console.log("Form Bottom:", formBottom);
-    //   console.log("Window Height:", window.innerHeight);
-    //   console.log("Sticky Bar Height:", stickyBarHeight);
-
-    //   // Force style recalculation
-    //   stickyAddToCart.style.display = "none";
-    //   stickyAddToCart.offsetHeight; // Trigger reflow
-    //   stickyAddToCart.style.display = "";
-
-    //   if (formBottom < window.innerHeight - stickyBarHeight) {
-    //     stickyAddToCart.classList.add("show");
-    //   } else {
-    //     stickyAddToCart.classList.remove("show");
-    //   }
-    // }
-
     function toggleStickyAddToCart() {
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
