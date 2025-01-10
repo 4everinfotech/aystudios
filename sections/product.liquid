@@ -808,8 +808,9 @@
     let lastKnownScrollPosition = 0;
     let ticking = false;
 
-    function handleScroll() {
+    window.addEventListener("scroll", () => {
       lastKnownScrollPosition = window.scrollY;
+
       if (!ticking) {
         window.requestAnimationFrame(() => {
           toggleStickyAddToCart();
@@ -817,7 +818,7 @@
         });
         ticking = true;
       }
-    }
+    });
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
