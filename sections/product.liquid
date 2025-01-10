@@ -804,7 +804,10 @@
 
     observer.observe(productForm);
 
-
+    if (navigator.userAgent.includes("Macintosh")) {
+      // Add specific code for macOS behavior if necessary
+      console.log("Running on macOS - applying fallback behavior.");
+    }
 
     // Change button text and trigger main button
     stickyAddToCartButton.addEventListener("click", function (event) {
