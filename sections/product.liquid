@@ -791,6 +791,20 @@
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          stickyAddToCart.classList.remove("show");
+        } else {
+          stickyAddToCart.classList.add("show");
+        }
+      },
+      { root: null, threshold: 0 }
+    );
+
+    observer.observe(productForm);
+
+
 
     // Change button text and trigger main button
     stickyAddToCartButton.addEventListener("click", function (event) {
