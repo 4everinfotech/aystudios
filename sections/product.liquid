@@ -544,7 +544,7 @@
 .swatch_area {
   padding: 20px 0 15px 0;
 }
-.sticky-add-to-cart {
+/* .sticky-add-to-cart {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -560,8 +560,25 @@
   isolation: auto;
   border-top: 1px solid;
   will-change: transform;
+} */
+.sticky-add-to-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 999999;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+  transform: translateY(100%);
 }
 
+.sticky-add-to-cart.show {
+  transform: translateY(0);
+}
 .sticky-add-to-cart.show {
   transform: translateY(0);
 }
@@ -752,23 +769,38 @@
     //   }
     // }
 
+    // function toggleStickyAddToCart() {
+    //   const formBottom = productForm.getBoundingClientRect().bottom;
+    //   const stickyBarHeight = stickyAddToCart.offsetHeight;
+
+    //   console.log("Form Bottom:", formBottom);
+    //   console.log("Window Height:", window.innerHeight);
+    //   console.log("Sticky Bar Height:", stickyBarHeight);
+
+    //   // Force style recalculation
+    //   stickyAddToCart.style.display = "none";
+    //   stickyAddToCart.offsetHeight; // Trigger reflow
+    //   stickyAddToCart.style.display = "";
+
+    //   if (formBottom < window.innerHeight - stickyBarHeight) {
+    //     stickyAddToCart.classList.add("show");
+    //   } else {
+    //     stickyAddToCart.classList.remove("show");
+    //   }
+    // }
+
     function toggleStickyAddToCart() {
       const formBottom = productForm.getBoundingClientRect().bottom;
       const stickyBarHeight = stickyAddToCart.offsetHeight;
 
-      console.log("Form Bottom:", formBottom);
-      console.log("Window Height:", window.innerHeight);
-      console.log("Sticky Bar Height:", stickyBarHeight);
-
-      // Force style recalculation
-      stickyAddToCart.style.display = "none";
-      stickyAddToCart.offsetHeight; // Trigger reflow
-      stickyAddToCart.style.display = "";
-
       if (formBottom < window.innerHeight - stickyBarHeight) {
-        stickyAddToCart.classList.add("show");
+        if (!stickyAddToCart.classList.contains("show")) {
+          stickyAddToCart.classList.add("show");
+        }
       } else {
-        stickyAddToCart.classList.remove("show");
+        if (stickyAddToCart.classList.contains("show")) {
+          stickyAddToCart.classList.remove("show");
+        }
       }
     }
 
@@ -783,30 +815,18 @@
           toggleStickyAddToCart();
           ticking = false;
         });
-
         ticking = true;
       }
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          stickyAddToCart.classList.remove("show");
-        } else {
-          stickyAddToCart.classList.add("show");
-        }
-      },
-      { root: null, threshold: 0 }
-    );
-
-    observer.observe(productForm);
+    
 
     if (navigator.userAgent.includes("Macintosh")) {
-      // Add specific code for macOS behavior if necessary
-      console.log("Running on macOS - applying fallback behavior.");
+      stickyAddToCart.style.transition = "transform 0.5s ease-in-out"; // Slightly slower transition
     }
+
 
     // Change button text and trigger main button
     stickyAddToCartButton.addEventListener("click", function (event) {
