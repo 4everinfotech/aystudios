@@ -360,12 +360,13 @@
               responsive: true,
               mode: 'horizontal',
               pager: true,
-              preloadImages: 'visible',
+              preloadImages: 'all',
               infiniteLoop: true,
-              preventDefaultSwipeX: false,
-              preventDefaultSwipeY: true,
               touchEnabled: true,
-              swipeThreshold: 20
+              swipeThreshold: 20,
+              onSliderLoad: function () {
+                jQuery('.product_slider').css('visibility', 'visible');
+              }
             });
           }
         } else {
