@@ -351,14 +351,14 @@
         var windowWidth = jQuery(window).width();
         
         // Check if the screen width is below the mobile breakpoint
-        //if (windowWidth <= 768) { // Adjust the value (768px) as per your mobile breakpoint
+        if (windowWidth <= 768) { // Adjust the value (768px) as per your mobile breakpoint
           if (jQuery('.product_slider').length && !mySlider) { // Check if slider is not already initialized
             mySlider = jQuery('.product_slider').bxSlider({
               slideSelector: "div.slide-visible",
               pager: false,
               pagerType: 'short',
               responsive: true,
-              mode: 'horizontal',
+              mode: 'fade',
               pager: true,
               preloadImages: 'visible',
               infiniteLoop: true,
@@ -368,13 +368,13 @@
               swipeThreshold: 20
             });
           }
-        // } else {
-        //   // Destroy the slider for desktop if initialized
-        //   if (mySlider) {
-        //     mySlider.destroySlider();
-        //     mySlider = null;
-        //   }
-        // }
+        } else {
+          // Destroy the slider for desktop if initialized
+          if (mySlider) {
+            mySlider.destroySlider();
+            mySlider = null;
+          }
+        }
         if (jQuery('.partner_logo_slider').length) {	
           partnerLogoSlider =  jQuery('.partner_logo_slider').bxSlider({
             //slideSelector: "div.slide",	
