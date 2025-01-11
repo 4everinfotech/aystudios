@@ -358,15 +358,14 @@
               pager: false,
               pagerType: 'short',
               responsive: true,
-              mode: 'horizontal',
+              mode: 'fade',
               pager: true,
-              preloadImages: 'all',
+              preloadImages: 'visible',
               infiniteLoop: true,
+              preventDefaultSwipeX: false,
+              preventDefaultSwipeY: true,
               touchEnabled: true,
-              swipeThreshold: 20,
-              onSliderLoad: function () {
-                jQuery('.product_slider').css('visibility', 'visible');
-              }
+              swipeThreshold: 20
             });
           }
         } else {
