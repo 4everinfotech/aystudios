@@ -355,17 +355,9 @@
           if (jQuery('.product_slider').length && !mySlider) { // Check if slider is not already initialized
             mySlider = jQuery('.product_slider').bxSlider({
               slideSelector: "div.slide-visible",
-              pager: false,
-              pagerType: 'short',
-              responsive: true,
-              mode: 'horizontal',
-              pager: true,
-              preloadImages: 'visible',
-              infiniteLoop: true,
-              preventDefaultSwipeX: false,
-              preventDefaultSwipeY: true,
-              touchEnabled: true,
-              swipeThreshold: 20
+  mode: 'horizontal',
+  pager: true,
+  touchEnabled: true
             });
           }
         } else {
