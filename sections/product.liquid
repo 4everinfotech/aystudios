@@ -162,12 +162,12 @@
                     {% endif %}
                   </span>
                 </button>
-                <div class="viabill-pricetag"
+                {% comment %} <div class="viabill-pricetag"
                     data-view="product"
                     data-price="{{ product.price | money }}"
                     data-language="da"
                     data-currency="dkk">
-                </div>
+                </div> {% endcomment %}
               </div>
               <div class="col-lg-10 offset-lg-1 product-tabs-wrapper">
                 <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 mt-5 tab_title MonumentSemiMono text-capitalize">{{ 'products.label.product_detail_txt' | t | downcase }}<span><i></i><i></i></span></p>
