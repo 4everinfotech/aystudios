@@ -187,6 +187,7 @@
       "savings": "You're saving",
       "buy_now": "Buy now",
       "continue_shopping": "Continue shopping",
+      "continue_shopping_link": "/collections/all",
       "excl_vat": "excl. VAT",
       "incl_vat": "incl. VAT",
       "total_excl_vat": "Total excl. VAT",
