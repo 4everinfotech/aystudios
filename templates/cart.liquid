@@ -111,12 +111,12 @@
                 <p class="usp_text d-none">{{ 'cart.general.purchase_plants_tree_remove_waste' | t }}</p>
                 {% if cart.total_discounts > 0 %}
                   <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
-                <div class="viabill-pricetag"
+                {% comment %} <div class="viabill-pricetag"
     data-view="basket"
     data-price="{{ cart.total_price | times: 1.25 | money }}"
     data-language="da"
     data-currency="dkk">
-</div>
+</div> {% endcomment %}
                 {% endif %}
               </div>             
               <div class="col-12 d-block d-md-none mb-4 no-gutter" style="border-bottom: 1px solid #dee2e6;">
