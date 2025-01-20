@@ -818,7 +818,7 @@
 }
 @media only screen and (max-width: 669px) {
 	.template-index .slide_title_bottom {
-		bottom: 20px;
+		bottom: 120px;
 		margin-bottom: 0px;
 	}
 	#fullpage1.homepage { 
