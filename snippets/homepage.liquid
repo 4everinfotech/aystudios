@@ -145,16 +145,37 @@
       {% assign vimeo_video = 693990646 %}
     {% endif %}
     <script type="text/javascript">
-      if ($('#one_column_general_vimeo-video').length > 0) { 
-      var options = {
-                    id: {{ vimeo_video }},
-      autoplay: true,
-                    loop: true,
-                    responsive: true,
-                    background: true,
-                };
-                var chasing = new Vimeo.Player('one_column_general_vimeo-video', options);
-              }</script>
+      // Use Intersection Observer to lazy load the Vimeo player for the one-column general video
+      if ($('#one_column_general_vimeo-video').length > 0) {
+        var observerOneColumnGeneral = new IntersectionObserver(function(entries, observer) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              // Initialize the Vimeo player once the video is in the viewport
+              var one_column_general_vimeo_video_id = {{ vimeo_video }}; // Ensure the variable is passed correctly
+
+              var options_general = {
+                id: one_column_general_vimeo_video_id,
+                autoplay: true,
+                loop: true,
+                responsive: true,
+                background: true,
+              };
+
+              // Initialize the Vimeo player
+              var chasing_general = new Vimeo.Player('one_column_general_vimeo-video', options_general);
+
+              // Stop observing once the video player is initialized
+              observer.disconnect();
+            }
+          });
+        }, {
+          threshold: 0.5 // 50% of the video must be in view to load
+        });
+
+        // Start observing the Vimeo video container
+        observerOneColumnGeneral.observe(document.querySelector('#one_column_general_vimeo-video'));
+      }
+    </script>
   {% endif %}
 {% endif %}
 {% if shop.metafields.one_column_slide.display_slide == 1 %}
