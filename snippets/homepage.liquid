@@ -112,15 +112,34 @@
     {% endif %}
     <script type="text/javascript">
       if ($('#story_vimeo_video_id').length > 0) {
-      var options_story = {
-                        id: {{ story_vimeo_video_id }},
-      autoplay: true,
-                        loop: true,
-                        responsive: true,
-                        background: true,
-                    };
-                    var chasing_story = new Vimeo.Player('story_vimeo_video_id', options_story);
-                  }
+        var observerStoryVideo = new IntersectionObserver(function(entries, observer) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              // Initialize the Vimeo player once the video is in the viewport
+              var story_vimeo_video_id = {{ story_vimeo_video_id }}; // Ensure the variable is passed correctly
+
+              var options_story = {
+                id: story_vimeo_video_id,
+                autoplay: true,
+                loop: true,
+                responsive: true,
+                background: true,
+              };
+
+              // Initialize the Vimeo player
+              var chasing_story = new Vimeo.Player('story_vimeo_video_id', options_story);
+
+              // Stop observing once the video player is initialized
+              observer.disconnect();
+            }
+          });
+        }, {
+          threshold: 0.5 // 50% of the video must be in view to load
+        });
+
+        // Start observing the Vimeo video container
+        observerStoryVideo.observe(document.querySelector('#story_vimeo_video_id'));
+      }
     </script>
   {% endif %}
 {% endif %}
