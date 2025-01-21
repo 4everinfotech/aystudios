@@ -127,16 +127,38 @@
 
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
+  // Use Intersection Observer to lazy load the Vimeo player for the follow-the-sun video
   if ($('#followthesun_video_id').length > 0) {
-  var options_story = {
-            id: {{ followthesun_video_id }},
-  autoplay: true,
+    var observerFollowTheSun = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Initialize the Vimeo player once the video is in the viewport
+          var followthesun_video_id = {{ followthesun_video_id }}; // Ensure the variable is passed correctly
+
+          var options_followthesun = {
+            id: followthesun_video_id,
+            autoplay: true,
             loop: true,
             responsive: true,
             background: true,
-        };
-        var chasing_story = new Vimeo.Player('followthesun_video_id', options_story);
-      }</script>
+          };
+
+          // Initialize the Vimeo player
+          var chasing_followthesun = new Vimeo.Player('followthesun_video_id', options_followthesun);
+
+          // Stop observing once the video player is initialized
+          observer.disconnect();
+        }
+      });
+    }, {
+      threshold: 0.5 // 50% of the video must be in view to load
+    });
+
+    // Start observing the Vimeo video container
+    observerFollowTheSun.observe(document.querySelector('#followthesun_video_id'));
+  }
+</script>
+
 {% if shop.metafields.one_column_general.display_slide == 1 %}
   {% if shop.metafields.one_column_general.display_video == 1 %}
     {% if shop.metafields.one_column_general.video_id != blank %}
