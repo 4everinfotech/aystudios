@@ -127,7 +127,6 @@
 
 {% assign followthesun_video_id = 618752735 %}
 <script type="text/javascript">
-  // Use Intersection Observer to lazy load the Vimeo player for the follow-the-sun video
   if ($('#followthesun_video_id').length > 0) {
     var observerFollowTheSun = new IntersectionObserver(function(entries, observer) {
       entries.forEach(function(entry) {
