@@ -145,7 +145,6 @@
       {% assign vimeo_video = 693990646 %}
     {% endif %}
     <script type="text/javascript">
-      // Use Intersection Observer to lazy load the Vimeo player for the one-column general video
       if ($('#one_column_general_vimeo-video').length > 0) {
         var observerOneColumnGeneral = new IntersectionObserver(function(entries, observer) {
           entries.forEach(function(entry) {
