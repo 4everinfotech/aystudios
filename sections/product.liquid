@@ -687,7 +687,7 @@
             }
           });
         }, {
-          threshold: 0.5 // 50% of the video must be in view to load
+          threshold: 0.05 // Trigger when 5% of the video is visible
         });
     
         // Start observing the Vimeo video container
@@ -729,7 +729,7 @@
             }
           });
         }, {
-          threshold: 0.5 // 50% of the video must be in view to load
+          threshold: 0.05 // Trigger when 5% of the video is visible
         });
     
         // Start observing the Vimeo video container
@@ -764,7 +764,7 @@
         }
       });
     }, {
-      threshold: 0.5 // 50% of the video must be in view to load
+      threshold: 0.05 // Trigger when 5% of the video is visible
     });
 
     // Start observing the Vimeo video container
