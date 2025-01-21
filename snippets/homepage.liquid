@@ -165,15 +165,35 @@
       {% assign vimeo_video = 693990646 %}
     {% endif %}
     <script type="text/javascript">
-      if ($('#one_column_slide_vimeo-video').length > 0) { 
-      var options = {
-                    id: {{ vimeo_video }},
-      autoplay: true,
-                    loop: true,
-                    responsive: true,
-                    background: true,
-                };
-                var chasing = new Vimeo.Player('one_column_slide_vimeo-video', options);
-              }</script>
+      if ($('#one_column_slide_vimeo-video').length > 0) {
+        var observerOneColumnSlide = new IntersectionObserver(function(entries, observer) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              // Initialize the Vimeo player once the video is in the viewport
+              var one_column_slide_vimeo_video_id = {{ vimeo_video }}; // Ensure the variable is passed correctly
+
+              var options_slide = {
+                id: one_column_slide_vimeo_video_id,
+                autoplay: true,
+                loop: true,
+                responsive: true,
+                background: true,
+              };
+
+              // Initialize the Vimeo player
+              var chasing_slide = new Vimeo.Player('one_column_slide_vimeo-video', options_slide);
+
+              // Stop observing once the video player is initialized
+              observer.disconnect();
+            }
+          });
+        }, {
+          threshold: 0.5 // 50% of the video must be in view to load
+        });
+
+        // Start observing the Vimeo video container
+        observerOneColumnSlide.observe(document.querySelector('#one_column_slide_vimeo-video'));
+      }
+    </script>
   {% endif %}
 {% endif %}
