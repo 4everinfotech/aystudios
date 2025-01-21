@@ -499,7 +499,6 @@ li {
   padding: 16px 0 14px;
   text-transform: uppercase;
   position: relative;
-  border-top: 1px solid;
   line-height: normal;
   font-size: 12px;
 }
@@ -507,9 +506,6 @@ li {
   border-bottom: 1px solid;
 }
 
-.tab_content.last {
-  border-bottom: 1px solid;
-}
 .tab_content.last div p{
   margin-bottom: 0;
 }
@@ -1752,6 +1748,12 @@ a.menu_middle.blk i {
   transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   z-index: 999;
+}
+.product-tabs-wrapper > div {
+  border-top: 1px solid;
+}
+.product-tabs-wrapper > div:last-child {
+  border-bottom: 1px solid;
 }
 .tab_title {
   cursor: pointer;
