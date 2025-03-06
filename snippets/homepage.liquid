@@ -38,8 +38,8 @@
 {% endif %}
 </div>
 
-  {% if shop.metafields.fp_fullslide_video.disable_video_slide != 1 %}
-    {% if shop.metafields.fp_fullslide_video.vimeo_video_id != blank %}
+{% if shop.metafields.fp_fullslide_video.disable_video_slide != 1 %}
+  {% if shop.metafields.fp_fullslide_video.vimeo_video_id != blank %}
     {% assign vimeo_video = shop.metafields.fp_fullslide_video.vimeo_video_id %}
   {% else %}
     {% assign vimeo_video = 693990646 %}
