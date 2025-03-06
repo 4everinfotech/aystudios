@@ -285,44 +285,39 @@
     </script>
   {% endif %}
 {% endif %}
-{% if shop.metafields.one_column_slide.display_slide == 1 %}
-  {% if shop.metafields.one_column_slide.display_video == 1 %}
-    {% if shop.metafields.one_column_slide.video_id != blank %}
-      {% assign vimeo_video = shop.metafields.one_column_slide.video_id %}
+{% if shop.metafields.one_column_general.display_slide == 1 %}
+  {% if shop.metafields.one_column_general.display_video == 1 %}
+    {% if shop.metafields.one_column_general.video_id != blank %}
+      {% assign vimeo_video = shop.metafields.one_column_general.video_id %}
     {% else %}
       {% assign vimeo_video = 693990646 %}
     {% endif %}
+
     <script type="text/javascript">
-      if ($('#one_column_slide_vimeo-video').length > 0) {
-        var observerOneColumnSlide = new IntersectionObserver(function(entries, observer) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              // Initialize the Vimeo player once the video is in the viewport
-              var one_column_slide_vimeo_video_id = {{ vimeo_video }}; // Ensure the variable is passed correctly
+      document.addEventListener("DOMContentLoaded", function () {
+        var vimeoContainer = document.getElementById("one_column_general_vimeo-video");
 
-              var options_slide = {
-                id: one_column_slide_vimeo_video_id,
-                autoplay: true,
-                loop: true,
-                responsive: true,
-                background: true,
-                muted: true
-              };
+        if (vimeoContainer) {
+          var options = {
+            id: {{ vimeo_video }},
+            autoplay: true,
+            loop: true,
+            responsive: true,
+            background: true,
+            muted: true
+          };
 
-              // Initialize the Vimeo player
-              var chasing_slide = new Vimeo.Player('one_column_slide_vimeo-video', options_slide);
+          var vimeoPlayer = new Vimeo.Player(vimeoContainer, options);
 
-              // Stop observing once the video player is initialized
-              observer.disconnect();
-            }
+          // Ensure video starts smoothly without lag
+          vimeoPlayer.ready().then(function () {
+            vimeoPlayer.setVolume(0);
+            vimeoPlayer.play().catch(function(error) {
+              console.warn("Vimeo autoplay failed:", error);
+            });
           });
-        }, {
-          threshold: 0.05 // Trigger when 5% of the video is visible
-        });
-
-        // Start observing the Vimeo video container
-        observerOneColumnSlide.observe(document.querySelector('#one_column_slide_vimeo-video'));
-      }
+        }
+      });
     </script>
   {% endif %}
 {% endif %}
