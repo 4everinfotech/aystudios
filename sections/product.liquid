@@ -662,37 +662,30 @@
       {% assign vimeo_video = 693990646 %}
     {% endif %}
     <script type="text/javascript">
-      // Use Intersection Observer to lazy load the Vimeo player
-      if ($('#one_column_general_vimeo-video').length > 0) {
-        var observer = new IntersectionObserver(function(entries, observer) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              // Initialize the Vimeo player once the video is in the viewport
-              var vimeo_video_id = {{ vimeo_video }}; // Ensure the variable is passed correctly
-    
-              var options = {
-                id: vimeo_video_id,
-                autoplay: true,
-                loop: true,
-                responsive: true,
-                background: true,
-                muted: true
-              };
-    
-              // Initialize the Vimeo player
-              var chasing = new Vimeo.Player('one_column_general_vimeo-video', options);
-    
-              // Stop observing once the video player is initialized
-              observer.disconnect();
-            }
+      document.addEventListener("DOMContentLoaded", function () {
+        var vimeoContainer = document.getElementById("one_column_general_vimeo-video");
+
+        if (vimeoContainer) {
+          var options = {
+            id: {{ vimeo_video }},
+            autoplay: true,
+            loop: true,
+            responsive: true,
+            background: true,
+            muted: true
+          };
+
+          var vimeoPlayer = new Vimeo.Player(vimeoContainer, options);
+
+          // Ensure video starts smoothly without lag
+          vimeoPlayer.ready().then(function () {
+            vimeoPlayer.setVolume(0);
+            vimeoPlayer.play().catch(function(error) {
+              console.warn("Vimeo autoplay failed:", error);
+            });
           });
-        }, {
-          threshold: 0.05 // Trigger when 5% of the video is visible
-        });
-    
-        // Start observing the Vimeo video container
-        observer.observe(document.querySelector('#one_column_general_vimeo-video'));
-      }
+        }
+      });
     </script>
   {% endif %}
 {% endif %}
