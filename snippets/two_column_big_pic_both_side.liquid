@@ -82,8 +82,8 @@
 <section class="fp-auto-height-responsive vertical-scrolling {{section_number}}" data-section="two-image" style="background-color: #f0f0f0; order: {{sec_order}};">
   <div class="container-fluid h-100">
     <div class="row h-100">
-      <div class="d-none1 d-lg-flex col-lg-6 left_column bg-white">
-        <div class="section1_imgl my-auto mx-auto custom_overlay lazyload" data-bg="{{left_bg_image_desktop}}" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}">
+      <div class="d-none1 d-lg-flex col-lg-6 left_column bg-white section1_imgl my-auto mx-auto custom_overlay lazyload" data-bg="{{left_bg_image_desktop}}" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}">
+        {% comment %} <div class="section1_imgl my-auto mx-auto custom_overlay lazyload" data-bg="{{left_bg_image_desktop}}" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}"> {% endcomment %}
           {% if shop.metafields.two_column_slide_big_pic_left_side.display_video == 1 and shop.metafields.two_column_slide_big_pic_left_side.display_video_left == 1 %}
           <div class="vimeo-wrapper">
             <div id="vimeo_video_id_sixth"></div>
@@ -94,7 +94,7 @@
             <h2 class="slide_title_bottom fs80 text-white mb-lg-0">{{left_title}}</h2>
             <h5 class="slide_description_bottom_left text-white mb-0"><u>{{left_description}}</u></h5>
           </a>
-        </div>          
+        {% comment %} </div>           {% endcomment %}
       </div>
       <div class="col-lg-6 pl-50 my-auto section1_imgl  custom_overlay lazyload right_column" data-bg="{{right_bg_image_desktop}}" data-desktop-url="{{right_bg_image_desktop}}" data-mobile-url="{{right_bg_image_mobile}}">
         {% if shop.metafields.two_column_big_pic_both_side.display_video == 1 and shop.metafields.two_column_big_pic_both_side.display_video_right == 0 %}
