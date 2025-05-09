@@ -677,6 +677,10 @@
 		right: 30px;
 		bottom: 150px;
 	}
+	.template-index .two_column_two_product .slide_description_bottom_right.price_txt {
+		display: none;
+	}
+
 	.template-index section.followthesun_gif,
 	.template-product section.followthesun_gif {
 		background-color: transparent !important;
