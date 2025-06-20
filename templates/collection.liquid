@@ -71,7 +71,7 @@
                   {% else %}
                     {% assign discount_percentage = 0 %}
                   {% endif %}
-                  {% unless collection.title == "Archive Sale" and discount_percentage  <= 0 %}
+                  {% unless collection.title == "Sale" and discount_percentage  <= 0 %}
                     {% assign desktop_column = 4 %}
                     {% assign mobile_column = 6 %}
                     {% assign desktop_count_old = desktop_count %}
