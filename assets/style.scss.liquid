@@ -1410,8 +1410,7 @@ a.menu_middle.blk i {
 .vimeo-wrapper #story_vimeo_video_id,
 .vimeo-wrapper #followthesun_video_id,
 .vimeo-wrapper #one_column_general_vimeo-video,
-.vimeo-wrapper #one_column_slide_vimeo-video,
-.vimeo-wrapper #two_column_slide_vimeo_video {
+.vimeo-wrapper #one_column_slide_vimeo-video {
   width: 100%;
   height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
   min-height: 100vh;
@@ -1421,6 +1420,18 @@ a.menu_middle.blk i {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.vimeo-wrapper #two_column_slide_vimeo_video {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: auto !important;
+  min-width: auto !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: none !important;
+  object-fit: cover;
+}
+
 /* vimeo video in background end */
 
 
