@@ -1420,18 +1420,35 @@ a.menu_middle.blk i {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.vimeo-wrapper #two_column_slide_vimeo_video {
-  width: 100% !important;
-  height: 100% !important;
-  min-height: auto !important;
-  min-width: auto !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: none !important;
-  object-fit: cover;
+/* Container that holds the video in 50% column */
+.two_column_slide .vimeo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
 }
 
+/* The wrapper that Vimeo injects iframe into */
+#two_column_slide_vimeo_video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+/* Style the Vimeo iframe */
+#two_column_slide_vimeo_video iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;   /* Use large width so vertical video fits */
+  height: 177vh;  /* For vertical aspect ratio */
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
 /* vimeo video in background end */
 
 
