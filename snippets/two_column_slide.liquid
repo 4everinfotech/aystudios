@@ -79,7 +79,13 @@
 {% assign sec_order = 0 %}
 {% endif %}
 
-<section class="fp-auto-height-responsive vertical-scrolling {{section_number}}" data-section="two-image" style="background-color: #f0f0f0; order: {{sec_order}};">
+  {% if shop.metafields.two_column_slide.display_video == 1 %}
+  {% assign slide_type = "video" %}
+  {% else %}
+  {% assign slide_type = "" %}
+  {% endif %}
+
+<section class="fp-auto-height-responsive vertical-scrolling {{section_number}} {{slide_type}}" data-section="two-image" style="background-color: #f0f0f0; order: {{sec_order}};">
   <div class="container-fluid h-100">
     <div class="row h-100">
       <div class="col-lg-6 pl-50 my-auto section1_imgl  custom_overlay lazyload left_column" data-bg="{{left_bg_image_desktop}}" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}">
