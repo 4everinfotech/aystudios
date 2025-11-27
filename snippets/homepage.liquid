@@ -128,20 +128,20 @@
 
 {% if shop.metafields.two_column_slide.display_slide == 1 and shop.metafields.two_column_slide.display_video == 1 %}
   {% if shop.metafields.two_column_slide.vimeo_video_id != blank %}
-    {% assign two_column_slide_vimeo-video = shop.metafields.two_column_slide.vimeo_video_id %}
+    {% assign two_column_slide_vimeo_video = shop.metafields.two_column_slide.vimeo_video_id %}
   {% else %}
-    {% assign two_column_slide_vimeo-video = 253989945 %}
+    {% assign two_column_slide_vimeo_video = 253989945 %}
   {% endif %}
   <script type="text/javascript">
-    if ($('#two_column_slide_vimeo-video').length > 0) {
+    if ($('#two_column_slide_vimeo_video').length > 0) {
       var observerSixthVideo = new IntersectionObserver(function(entries, observer) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
             // Initialize the Vimeo player once the video is in the viewport
-            var two_column_slide_vimeo-video = {{ two_column_slide_vimeo-video }}; // Ensure the variable is passed correctly
+            var two_column_slide_vimeo_video = {{ two_column_slide_vimeo_video }}; // Ensure the variable is passed correctly
 
             var options_sixth = {
-              id: two_column_slide_vimeo-video,
+              id: two_column_slide_vimeo_video,
               autoplay: true,
               loop: true,
               responsive: true,
@@ -150,7 +150,7 @@
             };
 
             // Initialize the Vimeo player
-            var chasing_sixth = new Vimeo.Player('two_column_slide_vimeo-video', options_sixth);
+            var chasing_sixth = new Vimeo.Player('two_column_slide_vimeo_video', options_sixth);
 
             // Stop observing once the video player is initialized
             observer.disconnect();
@@ -161,7 +161,7 @@
       });
 
       // Start observing the Vimeo video container
-      observerSixthVideo.observe(document.querySelector('#two_column_slide_vimeo-video'));
+      observerSixthVideo.observe(document.querySelector('#two_column_slide_vimeo_video'));
     }
   </script>
 {% endif %}
