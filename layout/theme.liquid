@@ -14,9 +14,13 @@
   {% else %}
     <meta name="google-site-verification" content="ghsF1gg944PlkwfkZo4AuyfcFC6oSukaEp2Pf2WlKdU" />
   {% endif %}
-  {% if request.host == "jamesay.myshopify.com" or request.host == "aystudios.com" %}
+  {% if request.host == "jamesay.myshopify.com" %}
+    <meta name="facebook-domain-verification" content="pkwjdqfnlq2cdn9xvr8y40cpedlu12" />
+  {% endif %}
+  {% if request.host == "aystudios.com" %}
     <meta name="facebook-domain-verification" content="zzktq4koscpn8btj1w97wiwpso8va0" />
-  {% else %}
+  {% endif %}    
+  {% if request.host == "jamesay.com" %}
     <meta name="facebook-domain-verification" content="9auj64wzybxsg8ihtzbo5i0zfji3w3" />
   {% endif %}
   {% if current_tags %}
