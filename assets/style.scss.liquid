@@ -1420,37 +1420,73 @@ a.menu_middle.blk i {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* Container that holds the video in 50% column Only for two column slide */
-/* Wrapper that holds Vimeo background */
+/* ---------------------------
+   Vimeo two-column (vertical)
+   --------------------------- */
+
+/* vimeo wrapper must be absolute and fill the column */
 .two_column_slide .vimeo-wrapper {
   position: absolute !important;
-  top: 0;
-  left: 0;
+  inset: 0;                 /* top:0; right:0; bottom:0; left:0; */
   width: 100%;
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  z-index: 1;
 }
 
-/* Vimeo injected container */
-#two_column_slide_vimeo_video {
-  position: absolute;
+/* Vimeo injects a child div with inline padding-top. force it into absolute fill mode */
+#two_column_slide_vimeo_video > div {
+  position: absolute !important;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto !important;       /* we'll size by height on desktop */
+  height: 100% !important;
+  padding-top: 0 !important;    /* override Vimeo's aspect ratio padding */
 }
 
-/* The actual iframe */
+/* The iframe: center the tall video vertically & horizontally when needed */
 #two_column_slide_vimeo_video iframe {
-  position: absolute;
+  position: absolute !important;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
-  /* transform: translate(-50%, -50%); */
-  object-fit: cover !important;
+  transform: translate(-50%, -50%);
+  height: 100% !important;      /* desktop: fit the container height */
+  width: auto !important;       /* width will scale proportionally */
+  min-width: 0;                 /* avoid unexpected min sizes */
 }
+
+/* ---------------------------
+   Responsive: Mobile behavior
+   --------------------------- */
+/* Mobile: full width (100%), natural vertical aspect — show from top */
+@media (max-width: 767px) {
+  .two_column_slide .vimeo-wrapper {
+    position: relative !important; /* let the section flow on small screens */
+    height: auto;
+  }
+
+  /* allow Vimeo wrapper to size by width; keep iframe width 100% */
+  #two_column_slide_vimeo_video > div {
+    position: relative !important;
+    left: 0;
+    transform: none;
+    width: 100% !important;
+    height: auto !important;
+    padding-top: 177.78% !important; /* keep vimeo's vertical padding on mobile */
+  }
+
+  #two_column_slide_vimeo_video iframe {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100% !important;     /* mobile: width fills viewport / container */
+    height: 100% !important;
+  }
+}
+
 
 /* vimeo video in background end */
 
