@@ -14,10 +14,14 @@
   {% else %}
     <meta name="google-site-verification" content="ghsF1gg944PlkwfkZo4AuyfcFC6oSukaEp2Pf2WlKdU" />
   {% endif %}
-  
-   {% if current_tags %}
-      <meta name="robots" content="noindex">
-   {% endif %}
+  {% if request.host == "jamesay.myshopify.com" or request.host == "aystudios.com" %}
+    <meta name="facebook-domain-verification" content="zzktq4koscpn8btj1w97wiwpso8va0" />
+  {% else %}
+    <meta name="facebook-domain-verification" content="zzktq4koscpn8btj1w97wiwpso8va0" />
+  {% endif %}
+  {% if current_tags %}
+    <meta name="robots" content="noindex">
+  {% endif %}
   
   <script type="application/ld+json">
   {
