@@ -30,24 +30,24 @@
   <script type="application/ld+json">
   {
     "@type": "Organization",
-     "legalName": "James Ay ApS",
-     "email": "hi@jamesay.com",
-     "telePhone": "+4571993023",
-     "url": "https://aystudios.dk/",
-     "image": "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/contact-top_01.jpg",
-     "address": {
-       "@type": "PostalAddress",
-       "streetAddress": "Klostergade 70B GF",
-       "addressLocality": "Aarhus C",
-       "addressRegion": "Østjylland",
-       "postalCode": "8000",
-   "sameAs": [ 
-   "https://dk.trustpilot.com/review/jamesay.com",
-   "https://www.facebook.com/jamesayofficial/",
-   "https://www.youtube.com/channel/UCGzO6K0bWZlRD1trP3N64Tg",
-   "https://www.instagram.com/jamesay_com/"
-   ]
-  }  
+    "legalName": "James Ay ApS",
+    "email": "hi@jamesay.com",
+    "telePhone": "+4571993023",
+    "url": "https://aystudios.dk/",
+    "image": "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/contact-top_01.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Klostergade 70B GF",
+      "addressLocality": "Aarhus C",
+      "addressRegion": "Østjylland",
+      "postalCode": "8000",
+      "sameAs": [ 
+      "https://dk.trustpilot.com/review/jamesay.com",
+      "https://www.facebook.com/jamesayofficial/",
+      "https://www.youtube.com/channel/UCGzO6K0bWZlRD1trP3N64Tg",
+      "https://www.instagram.com/jamesay_com/"
+      ]
+    }  
   }
   </script>
   
@@ -216,11 +216,6 @@
 </head>
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} domain_{{request.host | handleize}}">
 <script>window.KlarnaThemeGlobals={};{%case template.name%} {%when"product"%} {% if product.first_available_variant.price %}window.KlarnaThemeGlobals.data_purchase_amount = {{ product.first_available_variant.price }};{% endif %}window.KlarnaThemeGlobals.productVariants={{product.variants|json}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%when"cart"%} window.KlarnaThemeGlobals.data_purchase_amount={{cart.total_price}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%endcase%}</script>
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P63MCKP"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
   <div class="loader">
     <svg class="iconspin">
       <use xlink:href="#icon-spinner">
