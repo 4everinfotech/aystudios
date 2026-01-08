@@ -104,17 +104,6 @@
 {% assign mobile_img = shop.metafields.one_column_general.mobile_image_url %}
 {% else %}
 {% assign mobile_img = desktop_img %}
-{% endif %}
-
-{% if shop.metafields.two_column_slide.left_bg_image != blank %}
-{% assign two_column_slide_left_desktop_img = shop.metafields.two_column_slide.left_bg_image %}
-{% else %}
-{% assign two_column_slide_left_desktop_img = "default.png" | file_url %}
-{% endif %}
-{% if shop.metafields.two_column_slide.left_bg_image_mobile != blank %}
-{% assign two_column_slide_left_mobile_img = shop.metafields.two_column_slide.left_bg_image_mobile %}
-{% else %}
-{% assign two_column_slide_left_mobile_img = two_column_slide_left_desktop_img %}
 {% endif %} 
   <style>
 
@@ -174,28 +163,22 @@
     } */
     @media screen and (min-width: 992px) {
       .vimeo-wrapper {
-        /* background-image: url({{ desktop_img }}); */
+        background-image: url({{ desktop_img }});
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
       }
-      /* .two_column_slide .vimeo-wrapper {
-        background-image: url({{ two_column_slide_left_desktop_img }});
-      } */
       .followthesun_video .vimeo-wrapper {
         background-image: none;
       }
     }
     @media screen and (max-width: 991px) {
       .vimeo-wrapper {
-        /* background-image: url({{ mobile_img }}); */
+        background-image: url({{ mobile_img }});
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;        
       }
-      /* .two_column_slide .vimeo-wrapper {
-        background-image: url({{ two_column_slide_left_mobile_img }});
-      }       */
       .followthesun_video .vimeo-wrapper {
         background-image: none;
       }

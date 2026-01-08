@@ -152,27 +152,6 @@
             // Initialize the Vimeo player
             var chasing_sixth = new Vimeo.Player('two_column_slide_vimeo_video', options_sixth);
 
-            /**
-             * Fetch Vimeo thumbnail (first frame)
-             */
-            fetch('https://vimeo.com/api/v2/video/' + two_column_slide_vimeo_video + '.json')
-              .then(function (response) {
-                return response.json();
-              })
-              .then(function (data) {
-                if (data && data[0] && data[0].thumbnail_large) {
-                  var thumbnail = data[0].thumbnail_large;
-
-                  document.querySelectorAll('.two_column_slide .vimeo-wrapper')
-                    .forEach(function (wrapper) {
-                      wrapper.style.backgroundImage = 'url(' + thumbnail + ')';
-                    });
-                }
-              })
-              .catch(function (error) {
-                console.error('Vimeo thumbnail error:', error);
-              });            
-
             // Stop observing once the video player is initialized
             observer.disconnect();
           }
