@@ -538,6 +538,26 @@
             background: true,
         };
         var chasing_story = new Vimeo.Player('story_vimeo_video_id', options_story);
+        /**
+         * Fetch Vimeo thumbnail (first frame)
+         */
+        fetch('https://vimeo.com/api/v2/video/' + story_vimeo_video_id + '.json')
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            if (data && data[0] && data[0].thumbnail_large) {
+              var thumbnail = data[0].thumbnail_large;
+
+              document.querySelectorAll('.one_column_story_in_product_page .vimeo-wrapper')
+                .forEach(function (wrapper) {
+                  wrapper.style.backgroundImage = 'url(' + thumbnail + ')';
+                });
+            }
+          })
+          .catch(function (error) {
+            console.error('Vimeo thumbnail error:', error);
+          });            
       }  
     </script>
   {% endif %}
