@@ -1440,7 +1440,6 @@ a.menu_middle.blk i {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 /* The actual iframe */
@@ -1450,39 +1449,7 @@ a.menu_middle.blk i {
   left: 50%;
   width: 100%;
   height: 100%;
-  transform: translate(-50%, -50%);
   object-fit: cover !important;
-}
-
-/* Mobile responsive for vertical videos */
-@media (max-width: 991px) {
-  .two_column_slide .left_column {
-    position: relative;
-    min-height: 100vh;
-  }
-
-  .two_column_slide .vimeo-wrapper {
-    position: absolute !important;
-    width: 100%;
-    height: 100%;
-  }
-
-  #two_column_slide_vimeo_video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  #two_column_slide_vimeo_video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-    object-fit: cover !important;
-  }
 }
 
 /* vimeo video in background end */
