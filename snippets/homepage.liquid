@@ -212,7 +212,33 @@
               })
               .catch(function (error) {
                 console.error('Vimeo thumbnail error:', error);
-              });            
+              });
+            
+            /**
+             * Adjust .section1_imgl height to match iframe height on mobile
+             * This fixes the issue where vertical videos don't fill the full container height
+             */
+            function adjustVideoHeightOnMobile() {
+              var iframeElement = document.querySelector('#two_column_slide_vimeo_video iframe');
+              var containerElement = document.querySelector('.two_column_slide .left_column.section1_imgl');
+              
+              if (iframeElement && containerElement && window.innerWidth < 992) {
+                // Get iframe dimensions
+                var iframeHeight = iframeElement.offsetHeight;
+                var iframeWidth = iframeElement.offsetWidth;
+                
+                // Set container height to match iframe height on mobile
+                if (iframeHeight > 0) {
+                  containerElement.style.minHeight = iframeHeight + 'px';
+                }
+              }
+            }
+            
+            // Call adjustment after player initialization
+            setTimeout(adjustVideoHeightOnMobile, 500);
+            
+            // Also adjust on window resize
+            window.addEventListener('resize', adjustVideoHeightOnMobile);
 
             // Stop observing once the video player is initialized
             observer.disconnect();
