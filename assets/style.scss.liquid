@@ -1433,6 +1433,10 @@ a.menu_middle.blk i {
   pointer-events: none;
 }
 
+.two_column_slide .left_column {
+  position: relative;
+}
+
 /* Vimeo injected container */
 #two_column_slide_vimeo_video {
   position: absolute;
@@ -1449,8 +1453,36 @@ a.menu_middle.blk i {
   left: 50%;
   width: 100%;
   height: 100%;
-  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   object-fit: cover !important;
+}
+
+/* Mobile responsive adjustments for two_column_slide video */
+@media (max-width: 991px) {
+  .two_column_slide .left_column {
+    min-height: 500px;
+    position: relative;
+  }
+  
+  .two_column_slide .vimeo-wrapper {
+    position: relative !important;
+    height: auto;
+    padding-bottom: 177.78%;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  #two_column_slide_vimeo_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #two_column_slide_vimeo_video iframe {
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* vimeo video in background end */
