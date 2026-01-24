@@ -1421,23 +1421,6 @@ a.menu_middle.blk i {
   transform: translate(-50%, -50%);
 }
 
-/* Mobile view adjustments for video fit */
-@media (max-width: 768px) {
-  .vimeo-wrapper #vimeo-video,
-  .vimeo-wrapper #vimeo-video2,
-  .vimeo-wrapper #vimeo_video_id,
-  .vimeo-wrapper #vimeo_video_id_sixth,
-  .vimeo-wrapper #story_vimeo_video_id,
-  .vimeo-wrapper #followthesun_video_id,
-  .vimeo-wrapper #one_column_general_vimeo-video,
-  .vimeo-wrapper #one_column_slide_vimeo-video {
-    min-height: auto;
-    min-width: auto;
-    height: auto;
-    width: 100%;
-  }
-}
-
 /* Container that holds the video in 50% column Only for two column slide */
 /* Wrapper that holds Vimeo background */
 .two_column_slide .vimeo-wrapper {
@@ -1450,14 +1433,6 @@ a.menu_middle.blk i {
   pointer-events: none;
 }
 
-/* Mobile view adjustments for two column slide video */
-@media (max-width: 768px) {
-  .two_column_slide .vimeo-wrapper {
-    position: relative !important;
-    height: auto;
-  }
-}
-
 /* Vimeo injected container */
 #two_column_slide_vimeo_video {
   position: absolute;
@@ -1465,14 +1440,6 @@ a.menu_middle.blk i {
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-/* Mobile view adjustments for two column slide video container */
-@media (max-width: 768px) {
-  #two_column_slide_vimeo_video {
-    position: relative;
-    height: auto;
-  }
 }
 
 /* The actual iframe */
