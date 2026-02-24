@@ -106,7 +106,8 @@
                       <a href="{{ variant.url | within: collection }}">
                         <div class="reveal">
                           {% if variant.metafields.product_variant_info.new_style == 1 %}
-                            <div class="new_style"><span>PRE-ORDER</span></div>
+                            {% comment %} <div class="new_style"><span>PRE-ORDER</span></div> {% endcomment %}
+                            <div class="new_style"><span>NEW</span></div>
                           {% endif %}
                           {% if discount_percentage  > 0 %}
                             <span class="new_style percent-count">SALE</span>
