@@ -53,6 +53,22 @@
     {%- endcomment -%}
     padding-top:{{ max_height_image | divided_by: max_width_image | times: 100}}%;
   }
+  .responsive-image__wrapper {
+    position: relative;
+  }
+
+  .image-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    z-index: 10;
+  }  
 </style>
 
 {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
@@ -70,7 +86,8 @@
 {%- assign image_widths = image_widths | strip -%}
 
 <div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
-  <a href="{{ image | img_url: 'master' }}" {{data_fancybox}} data-variant="{{image.alt}}">XXXX
+  <a href="{{ image | img_url: 'master' }}" {{data_fancybox}} data-variant="{{image.alt}}">
+  <span class="image-label">{{ product.metafields.custom.label }}</span>
   <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
     class="responsive-image__image lazyload {{ image_class }}"
     src="{{ image | img_url: '300x' }}"
