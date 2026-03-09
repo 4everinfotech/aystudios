@@ -89,7 +89,7 @@
   <a href="{{ image | img_url: 'master' }}" {{data_fancybox}} data-variant="{{image.alt}}">XXXXXXX
   {% if current_variant.metafields.product_variant_info.new_style == 1 %}
     {% comment %} <div class="new_style"><span>PRE-ORDER</span></div> {% endcomment %}
-    <div class="new_style"><span>NEW</span></div>
+    <div class="image-label"><span>NEW</span></div>
   {% endif %}
   <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
     class="responsive-image__image lazyload {{ image_class }}"
