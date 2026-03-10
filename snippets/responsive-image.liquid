@@ -65,7 +65,13 @@
     padding: 7px 10px;
     font-size: 85%;
     line-height: 1.4;
-  }  
+  }
+  @media only screen and (max-width: 669px) {
+    .image-label {
+      top: 20px;
+      left: 0px;
+    }
+  }
 </style>
 
 {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
