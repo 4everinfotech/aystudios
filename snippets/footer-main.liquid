@@ -3,10 +3,12 @@
   {% assign instagram_link = "https://www.instagram.com/jamesay_aus" %}
   {% assign trustpilot_link = "https://www.trustpilot.com/review/jamesay.com" %}
 {% elsif request.host == "jamesay.myshopify.com" or request.host == "aystudios.com" %}
+  {% assign returnlink = "/pages/returns" %}
   {% assign mailtolink = "mailto:hi@jamesay.com" %}
   {% assign instagram_link = "https://www.instagram.com/ay___________studios" %}
   {% assign trustpilot_link = "https://www.trustpilot.com/review/jamesay.com?utm_medium=trustbox&utm_source=MicroReviewCount" %}
 {% else %}
+  {% assign returnlink = "/pages/retur" %}
   {% assign mailtolink = "mailto:hi@jamesay.com" %}
   {% assign instagram_link = "https://www.instagram.com/ay___________studios" %}
   {% comment %} {% assign trustpilot_link = "https://dk.trustpilot.com/review/jamesay.com?utm_medium=trustbox&utm_source=MicroReviewCount" %} {% endcomment %}
@@ -24,7 +26,7 @@
           <a href="/pages/contact">{{ 'general.footer.contact_us_txt' | t }}</a>
         </li>
         <li>
-          <a href="/pages/shipping-return">{{ 'general.footer.shipping_returns_txt' | t }}</a>
+          <a href="{{returnlink}}">{{ 'general.footer.returns_txt' | t }}</a>
         </li>
         <li>
           <a href="{{trustpilot_link}}">Trustpilot</a>
