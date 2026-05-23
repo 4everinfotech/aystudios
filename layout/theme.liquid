@@ -211,7 +211,7 @@
     {% endif %}
   </script>
 {% comment %} {% include "openGeo" %} {% endcomment %}
-{{ 'sw_default.css' | asset_url | stylesheet_tag }}</head>
+{% comment %} {{ 'sw_default.css' | asset_url | stylesheet_tag }}</head> {% endcomment %}
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} domain_{{request.host | handleize}}">
 <script>window.KlarnaThemeGlobals={};{%case template.name%} {%when"product"%} {% if product.first_available_variant.price %}window.KlarnaThemeGlobals.data_purchase_amount = {{ product.first_available_variant.price }};{% endif %}window.KlarnaThemeGlobals.productVariants={{product.variants|json}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%when"cart"%} window.KlarnaThemeGlobals.data_purchase_amount={{cart.total_price}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%endcase%}</script>
   <div class="loader">
@@ -408,7 +408,35 @@
       });
     });
   </script>
+  <script>
+    (function() {
+      try {
+        var country = Shopify.country;
+        var host = window.location.hostname;
 
+        // detect test mode via URL param (?testdk=1)
+        var params = new URLSearchParams(window.location.search);
+        var forceTest = params.get('testdk') === '1';
+
+        // prevent redirect loop + allow test mode
+        if ((country === 'DK' || forceTest) && host === 'aystudios.com') {
+
+          // avoid redirecting bots
+          var ua = navigator.userAgent.toLowerCase();
+          if (ua.includes('bot') || ua.includes('crawl') || ua.includes('spider')) {
+            return;
+          }
+
+          // preserve full URL path + params
+          var newUrl = window.location.href.replace('aystudios.com', 'aystudios.dk');
+          window.location.href = newUrl;
+        }
+
+      } catch(e) {
+        console.log('Geo redirect error:', e);
+      }
+    })();
+  </script>
   {% comment %} {% include 'cookiehub' %} {% endcomment %}
 </body>
 </html>

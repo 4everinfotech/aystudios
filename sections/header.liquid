@@ -2,7 +2,7 @@
 {% assign color_class = "blk" %}
   <header>
   <div class="header-top clearfix">
-    <a class="toggle-menu nav-hmenu menu_middle {{color_class}} fadein href="javaScript:void(0);">
+    <a class="toggle-menu nav-hmenu menu_middle {{color_class}} fadein" href="javaScript:void(0);">
       <i></i>
       <i></i>
       <i></i>
@@ -28,14 +28,15 @@
       {% assign lang_code = "DK" %}
       {% assign site_link = "https://aystudios.dk" %}
     {% endif %}
-    <span class="shop_link" style="color : {{color_code}}">
+    {% comment %} <span class="shop_link" style="color : {{color_code}}">
       <a href="{{all_collection_link}}" class="fadein">SHOP</a>
       <span class="desktop_only">
       <a href="{{sunglasses_collection_link}}" class="fadein">{{sunglasses_collection_text}}</a>
       <a href="{{travelbags_collection_link}}" class="fadein">{{travelbags_collection_text}}</a>
       <a href="{{sale_collection_link}}" class="fadein percent-count archive_sale_menu">{{sale_collection_text}}</a>
       </span>
-    </span>
+    </span> {% endcomment %}
+    {% render 'roa-shop_link' %}
     <span class="l-left fadein">
       <a href="/">{% include 'aystudios-svg' %}</a>
     </span>
@@ -95,6 +96,7 @@
     </div>
   </div>
   {% comment %} {% include 'main-menu' %} {% endcomment %}
+  {% include 'roa-mobile-menu' %}
   {% comment %} {% include 'search-bar' %} {% endcomment %}
   <nav class="shop_menu">
     {% include 'cart-drawer' %}
