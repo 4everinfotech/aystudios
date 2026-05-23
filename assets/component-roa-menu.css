@@ -1,0 +1,216 @@
+/* Horizontal menu */
+.roa-desktop-menu .roa_main_menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+/* Parent */
+.roa_item {
+  position: relative;
+}
+.roa_link {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Full-width dropdown */
+.roa_dropdown {
+  position: fixed;
+  top: 51px;
+  left: 0;
+  width: 100%;
+  height: calc(70vh - 51px); /* ✅ NEW: full height */
+  background: #ffffff;
+  padding: 50px 40px 40px 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s ease;
+  z-index: 9999;
+
+  display: flex;               /* ✅ NEW */
+  flex-direction: column;      /* ✅ NEW */
+  justify-content: space-between; /* ✅ pushes images to bottom */
+}
+
+/* Show on hover */
+.roa_item:hover .roa_dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Categories */
+.roa_categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 15px;
+  margin-bottom: 40px;
+}
+.roa-desktop-menu a.roa_cat {
+  margin-right: inherit;
+  text-transform: none;
+  font-size: 50px;
+  color: #000;
+  text-decoration: none;
+}
+
+.roa-desktop-menu a.roa_cat:hover {
+  color: #aaa;
+}
+
+/* Products (collections row) */
+.roa_products {
+  display: flex;
+  gap: 50px;
+  align-items: flex-end; /* ✅ NEW: align images at bottom */
+}
+
+.shop_link .roa_products a {
+  margin-right: 0px;
+}
+
+/* ✅ NEW: collection title styling */
+.roa_product_title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #000;
+  padding-left: 10px;
+}
+.roa_product:first-child .roa_product_title {
+  padding-left: 0px;
+}
+
+/* Image */
+.roa_product_image {
+  position: relative;
+}
+
+.roa_product_image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* (kept existing hover logic untouched even if not used now) */
+.img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.roa_product:hover .img-hover {
+  opacity: 1;
+}
+
+.roa_product:hover .img-default {
+  opacity: 0;
+}
+
+.roa-separator {
+  font-size: 50px;
+}
+
+/* ================= MOBILE MENU (UNCHANGED) ================= */
+
+.roa-mobile-menu {
+  position: fixed;
+  top: 51px;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 9999;
+  overflow-y: auto;
+  transition: 0.4s;
+}
+
+/* When header has open-menu, show mobile menu */
+.header-top.open-menu ~ .roa-mobile-menu {
+  left: 0;
+}
+
+.roa-mobile-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.roa-search input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 10px;
+}
+
+.roa-menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.roa-menu-list li {
+  padding: 12px 15px;
+}
+
+.roa-menu-list li a,
+.roa-menu-list li span {
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+  display: block;
+}
+
+.submenu {
+  display: none;
+  padding-left: 15px;
+}
+
+.has-submenu.active .submenu {
+  display: block;
+}
+
+.roa-footer-text {
+  font-size: 40px;
+  padding: 20px;
+} 
+
+.submenu-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Desktop only */
+.roa-desktop-only {
+  display: block;
+}
+
+/* Hide mega menu on mobile */
+@media(max-width: 991px) {
+  .roa-desktop-only {
+    display: none;
+  }
+}
+
+/* Hide old menu on desktop */
+@media(min-width: 992px) {
+  nav.main_menu {
+    display: none !important;
+  }
+}
+
+/* Show old menu on mobile */
+@media(max-width: 991px) {
+  nav.main_menu {
+    display: block !important;
+  }
+  .header-top a.nav-hmenu {
+    display: block;
+  }
+}
