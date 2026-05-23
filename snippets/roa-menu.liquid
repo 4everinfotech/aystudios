@@ -1,0 +1,103 @@
+<ul class="roa_main_menu">
+  
+  {% for link in linklists.roa-menu.links %}
+    <li class="roa_item">
+
+      <a href="{{ link.url }}" class="roa_link fadein">
+        {{ link.title }}
+      </a>
+
+      {% if link.links != blank %}
+        <div class="roa_dropdown">
+
+          <!-- Categories -->
+          <div class="roa_categories">
+            {% for child in link.links %}
+              <a href="{{ child.url }}" class="roa_cat">
+                {{ child.title }}
+              </a>
+
+              {% unless forloop.last %}
+                <span class="roa-separator"> / </span>
+              {% endunless %}
+            {% endfor %}
+          </div>
+
+          <!-- Products -->
+          {% comment %} <div class="roa_products">
+
+            {% assign parent_collection = link.object %}
+
+            {% if parent_collection and parent_collection.products.size > 0 %}
+              {% for product in parent_collection.products limit: 6 %}
+
+                <a href="{{ product.url }}" class="roa_product">
+
+                  <div class="roa_product_image">
+
+                    <img 
+                      src="{{ product.featured_image | image_url: width: 500 }}" 
+                      class="img-default"
+                      alt="{{ product.title }}"
+                    >
+
+                    {% if product.images.size > 1 %}
+                      <img 
+                        src="{{ product.images[1] | image_url: width: 500 }}" 
+                        class="img-hover"
+                        alt="{{ product.title }}"
+                      >
+                    {% endif %}
+
+                  </div>
+
+                </a>
+
+              {% endfor %}
+            {% endif %}
+
+          </div> {% endcomment %}
+
+          <!-- Collections as visual tiles -->
+          <div class="roa_products">
+
+            {% for child in link.links limit: 5 %}
+
+              {% assign collection = child.object %}
+
+              {% if collection %}
+                <a href="{{ collection.url }}" class="roa_product">
+
+                  <!-- Image -->
+                  <div class="roa_product_image">
+                    {% if collection.image %}
+                      <img 
+                        src="{{ collection.image | image_url: width: 600 }}" 
+                        alt="{{ collection.title }}"
+                      >
+                    {% elsif collection.products.first.featured_image %}
+                      <img 
+                        src="{{ collection.products.first.featured_image | image_url: width: 600 }}" 
+                        alt="{{ collection.title }}"
+                      >
+                    {% endif %}
+                  </div>
+
+                  <!-- Title -->
+                  <div class="roa_product_title">
+                    {{ collection.title }}
+                  </div>
+                </a>
+              {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+        </div>
+      {% endif %}
+
+    </li>
+  {% endfor %}
+
+</ul>

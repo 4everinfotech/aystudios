@@ -28,6 +28,7 @@
         {% assign lang_code = "DK" %}
         {% assign site_link = "https://aystudios.dk" %}
       {% endif %}
+      {% comment %} 
       <span class="shop_link" style="color : {{color_code}}">
         <a href="{{all_collection_link}}" class="fadein">SHOP</a>
         <span class="desktop_only">
@@ -36,6 +37,8 @@
         <a href="{{sale_collection_link}}" class="fadein percent-count archive_sale_menu">{{sale_collection_text}}</a>
         </span>
       </span>
+      {% endcomment %}
+      {% render 'roa-shop_link' %}
       <span class="l-left fadein">
         <a href="/">{% include 'aystudios-svg' %}</a>
       </span>
@@ -94,9 +97,11 @@
         <div class="progress-bar" id="myBar"></div>
       </div>
     </div>
-    {% comment %} {% include 'main-menu' %} {% endcomment %}
-    {% comment %} {% include 'search-bar' %} {% endcomment %}
-    <nav class="shop_menu">
-      {% include 'cart-drawer' %}
-    </nav>
+  </div>
+  {% comment %} {% include 'main-menu' %} {% endcomment %}
+  {% include 'roa-mobile-menu' %}
+  {% comment %} {% include 'search-bar' %} {% endcomment %}
+  <nav class="shop_menu">
+    {% include 'cart-drawer' %}
+  </nav>
 </header>

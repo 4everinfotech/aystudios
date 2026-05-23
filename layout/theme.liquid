@@ -98,16 +98,16 @@
   <link defer rel="stylesheet" type="text/css" href="{{ 'responsive.css' | asset_url }}">
   <link defer rel="stylesheet" type="text/css" href="{{ 'product_rollover.css' | asset_url }}">
 
-{% if shop.metafields.one_column_general.image_url != blank %}
-{% assign desktop_img = shop.metafields.one_column_general.image_url %}
-{% else %}
-{% assign desktop_img = "default.png" | file_url %}
-{% endif %}
-{% if shop.metafields.one_column_general.mobile_image_url != blank %}
-{% assign mobile_img = shop.metafields.one_column_general.mobile_image_url %}
-{% else %}
-{% assign mobile_img = desktop_img %}
-{% endif %} 
+  {% if shop.metafields.one_column_general.image_url != blank %}
+  {% assign desktop_img = shop.metafields.one_column_general.image_url %}
+  {% else %}
+  {% assign desktop_img = "default.png" | file_url %}
+  {% endif %}
+  {% if shop.metafields.one_column_general.mobile_image_url != blank %}
+  {% assign mobile_img = shop.metafields.one_column_general.mobile_image_url %}
+  {% else %}
+  {% assign mobile_img = desktop_img %}
+  {% endif %} 
   <style>
 
     @media screen and (min-width: 992px) {
@@ -411,7 +411,6 @@
       });
     });
   </script>
-
 </body>
 </html>
 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
