@@ -583,6 +583,7 @@
 	}
 	.slide_title_bottom  {
 		bottom: 50px;
+		bottom: 86px; /* if showing UPS’s bar at bottom need more space at bottom */
 	}
 	.slide_description_bottom_right {
 		position: absolute;
@@ -596,6 +597,7 @@
 	.template-blog .slide_title_bottom,
 	.template-article .slide_title_bottom {
 		bottom: 150px;
+		bottom: 186px; /* if showing UPS’s bar at bottom need more space at bottom */
 	}
 	.template-index .slide_description_bottom_right,
 	.template-blog .slide_description_bottom_right,
@@ -609,6 +611,7 @@
 	}
 	.template-article .one_column_story_in_product_page .slide_title_bottom {
 		bottom: 50px;
+		bottom: 86px; /* if showing UPS’s bar at bottom need more space at bottom */
 	}
 	.template-article .one_column_story_in_product_page .slide_description_bottom_right {
 		bottom: 35px;
@@ -823,10 +826,12 @@
 @media only screen and (max-width: 669px) {
 	.template-index .slide_title_bottom {
 		bottom: 20px;
+		bottom: 56px; /* if showing UPS’s bar at bottom need more space at bottom */
 		margin-bottom: 0px;
 	}
 	.template-index h2.slide_title_bottom {
 		bottom: 120px;
+		bottom: 156px; /* if showing UPS’s bar at bottom need more space at bottom */
 	}
 	#fullpage1.homepage { 
 		margin-top: 0px;
