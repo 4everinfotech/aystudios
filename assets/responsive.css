@@ -938,3 +938,27 @@ and (orientation : portrait) {
 	}
 	
 }
+@media only screen and (max-width: 669px) {
+
+    [class*="js-conveyor-"] ul {
+        display: flex;
+        width: 100%;
+    }
+
+    [class*="js-conveyor-"] ul li {
+        width: 33.333%;
+        /* padding: 0 5px; */
+    }
+
+    [class*="js-conveyor-"] ul li:nth-child(1) {
+        text-align: left;
+    }
+
+    [class*="js-conveyor-"] ul li:nth-child(2) {
+        text-align: center;
+    }
+
+    [class*="js-conveyor-"] ul li:nth-child(3) {
+        text-align: right;
+    }
+}
