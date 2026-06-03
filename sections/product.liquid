@@ -50,8 +50,13 @@
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
                   <p class="afterpay-paragraph_desktop" data-product-id="6818314485946"><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><br><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
                 {% endif %}
+                {% if request.host == "jamesay.myshopify.com" or request.host == "aystudios.com" %}
+                  {% assign trustpilot_link = "https://www.trustpilot.com/review/jamesay.com" %}
+                {% else %}
+                  {% assign trustpilot_link = "https://dk.trustpilot.com/review/jamesay.com" %}
+                {% endif %}
                 <div class="row border-bottom1 pb-5 border-dark no-gutters">
-                  <div class="col-5 fs19 text-uppercase">{{ product.title }}<br />{{current_variant.metafields.product_variant_info.style_number}}</div>
+                  <div class="col-5 fs19 text-uppercase">{{ product.title }}<br />{{current_variant.metafields.product_variant_info.style_number}}<br /><a href="{{trustpilot_link}}" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0224/6066/1824/files/trustpilot.jpg" alt="trustpilot" style="max-width: 120px;"></a></div>
                   <div class="col-7 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
                     <span data-product-price>
                       {% if current_variant.compare_at_price  > 0 %}
@@ -78,7 +83,7 @@
                   {% assign short_description = "The sunglasses are made from 100% biodegradable acetate from Mazzucchelli in Italy. 90% of the material is converted into natural gasses after only 115 days. The remaining share is converted into water and biomass." %}
                 {% endif %}
                 
-                <p>{{ short_description }}</p>
+                <div class="desktop_only">{{ short_description }}</div>
                 {% if request.host == "jamesay-au.myshopify.com" or request.host == "jamesay.com.au" %}
                     <p class="afterpay-paragraph_mobile" data-product-id="6818314485946"><span class="afterpay-text1">Make 4 interest-free payments of </span><strong class="afterpay-instalments">$70.00&nbsp;AUD</strong><span class="afterpay-text2"> fortnightly with </span><img class="afterpay-logo" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay" style="vertical-align: middle; width: 100px; border: 0px;"><span class="afterpay-text3">&nbsp;</span><a class="afterpay-link" href="https://www.afterpay.com/terms" target="_blank"><u class="afterpay-link-inner" style="font-size: 12px; text-decoration: underline;">More info</u></a></p>
                 {% endif %}
@@ -170,6 +175,7 @@
                     data-currency="dkk">
                 </div> {% endcomment %}
               </div>
+              <div class="mobile_only">{{ short_description }}</div>
               <div class="col-lg-10 offset-lg-1 product-tabs-wrapper">
                 <div>
                 <p data-toggle="collapse" aria-expanded="false" data-target="#tab_product_details" class="mb-0 tab_title MonumentSemiMono text-capitalize">{{ 'products.label.product_detail_txt' | t | downcase }}<span><i></i><i></i></span></p>
