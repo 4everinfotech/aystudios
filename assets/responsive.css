@@ -829,6 +829,9 @@
 		bottom: 56px; /* if showing UPS’s bar at bottom need more space at bottom */
 		margin-bottom: 0px;
 	}
+	.template-index .product_info.slide_title_bottom {
+		bottom: 20px;
+	}
 	.template-index h2.slide_title_bottom {
 		bottom: 120px;
 		bottom: 156px; /* if showing UPS’s bar at bottom need more space at bottom */
