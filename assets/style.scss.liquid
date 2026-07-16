@@ -1451,7 +1451,11 @@ a.menu_middle.blk i {
   height: 100%;
   object-fit: cover !important;
 }
-
+@media (min-width: 992px) {
+    #two_column_slide_vimeo_video iframe {
+        transform: translateY(-120px);
+    }
+}
 /* vimeo video in background end */
 
 
@@ -2407,6 +2411,10 @@ a.soundest-form-without-image-open {
 .slide_title_bottom.product_info {
   bottom: 20px;
   bottom: 56px; /* if showing UPS’s bar at bottom need more space at bottom */
+}
+.three_col_3_product .slide_title_bottom.product_info,
+.two_column_two_product .slide_title_bottom.product_info {
+  bottom: 20px;
 }
 .mt-8 {
   margin-top: 8rem;
