@@ -158,15 +158,7 @@ was loading product.js on the index page, resulting in errors.
               {%- endif -%}
             {% endcapture %}
 
-            {% include 'responsive-image' with
-            image: image,
-            max_width: 540,
-            max_height: 540,
-            wrapper_class: wrapper_class,
-            image_class: "",
-            image_attributes: "data-product-featured-image",
-            wrapper_attributes: "data-product-image-wrapper",
-            %}
+            {% include 'responsive-image' with image, image: image, max_width: 540, max_height: 540, wrapper_class: wrapper_class, image_class: "", image_attributes: "data-product-featured-image", wrapper_attributes: "data-product-image-wrapper" %}
           {% endfor %}
         </div>
         <a class="carousel-control-prev" href="#carouselFeaturedProduct" role="button" data-slide="prev">
@@ -283,3 +275,24 @@ was loading product.js on the index page, resulting in errors.
   {% endif %}
 }
 </script>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% include 'responsive-image' with
+                image: image,
+                max_width: 540,
+                max_height: 540,
+                wrapper_class: wrapper_class,
+                image_class: "",
+                image_attributes: "data-product-featured-image",
+                wrapper_attributes: "data-product-image-wrapper",
+                %}
+  to: '{% include ''responsive-image'' with image, image: image, max_width: 540, max_height:
+    540, wrapper_class: wrapper_class, image_class: "", image_attributes: "data-product-featured-image",
+    wrapper_attributes: "data-product-image-wrapper" %}'
+  position: 6210..6446
+{% endcomment %}

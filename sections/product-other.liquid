@@ -31,15 +31,7 @@
                 {% endif %}
               {% endcapture %}
               
-              {% include 'responsive-image' with
-              image: image,
-              max_width: 1500,
-              max_height: 1500,
-              image_attributes: "data-product-featured-image",
-              wrapper_class: wrapper_class,
-              wrapper_attributes: "data-product-image-wrapper",
-              data_fancybox: data_fancybox,
-              %}
+              {% include 'responsive-image' with image, image: image, max_width: 1500, max_height: 1500, image_attributes: "data-product-featured-image", wrapper_class: wrapper_class, wrapper_attributes: "data-product-image-wrapper", data_fancybox: data_fancybox %}
             {% endfor %}
             {% if product.images.size > 1 %}
               <div class="prodcut_gallery row justify-content-center">
@@ -574,4 +566,25 @@
     var chasing_story = new Vimeo.Player('followthesun_video_id', options_story);
   }  
 </script>
-      {% comment %} <script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script> {% endcomment %}
+      {% comment %} <script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script> {% endcomment %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% include 'responsive-image' with
+                  image: image,
+                  max_width: 1500,
+                  max_height: 1500,
+                  image_attributes: "data-product-featured-image",
+                  wrapper_class: wrapper_class,
+                  wrapper_attributes: "data-product-image-wrapper",
+                  data_fancybox: data_fancybox,
+                  %}
+  to: '{% include ''responsive-image'' with image, image: image, max_width: 1500,
+    max_height: 1500, image_attributes: "data-product-featured-image", wrapper_class:
+    wrapper_class, wrapper_attributes: "data-product-image-wrapper", data_fancybox:
+    data_fancybox %}'
+  position: 1451..1702
+{%- endcomment -%}

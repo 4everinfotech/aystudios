@@ -20,7 +20,7 @@
   {% comment %} {% if shop.metafields.we_make_handmade.display_slide == 1  %}
     {% include 'homemade_glasses', section_number:"homemade_glasses" %}
   {% endif %} {% endcomment %}
-  {% if shop.metafields.2_column_2_product.display_slide == 1  %}
+  {% if shop.metafields['2_column_2_product'].display_slide == 1 %}
     {% include 'two_column_two_product', section_number:"two_column_two_product" %}
   {% endif %}
   {% comment %} {% if shop.metafields.one_column_story.display_slide == 1  %}
@@ -33,10 +33,10 @@
   {% if shop.metafields.n_scrolling_text.display_slide == 1 %}
     {% include 'marquee_tag', section_number: "marquee_tag" %}
   {% endif %}
-  {% if shop.metafields.2_column_1_product.display_slide == 1 %}
+  {% if shop.metafields['2_column_1_product'].display_slide == 1 %}
     {% include 'two_column_one_product', section_number: "two_column_one_product" %}
   {% endif %}
-  {% if shop.metafields.2_column_1_product_right.display_slide == 1 %}
+  {% if shop.metafields['2_column_1_product_right'].display_slide == 1 %}
     {% include 'two_column_one_product_right', section_number: "two_column_one_product_right" %}
   {% endif %}
     {% if shop.metafields.followthesun.display_slide == 1 %}
@@ -496,4 +496,19 @@
       });
     </script>
   {% endif %}
-{% endif %}
+{% endif %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% if shop.metafields.2_column_2_product.display_slide == 1  %}"
+  to: "{% if shop.metafields['2_column_2_product'].display_slide == 1 %}"
+  position: 1271..1336
+- from: "{% if shop.metafields.2_column_1_product.display_slide == 1 %}"
+  to: "{% if shop.metafields['2_column_1_product'].display_slide == 1 %}"
+  position: 1918..1983
+- from: "{% if shop.metafields.2_column_1_product_right.display_slide == 1 %}"
+  to: "{% if shop.metafields['2_column_1_product_right'].display_slide == 1 %}"
+  position: 2085..2156
+{%- endcomment -%}

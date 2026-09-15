@@ -4,7 +4,7 @@
   {% assign hero_image = 'placeholder-svg' %}
 {% endif %}
 
-{% include 'responsive-image' with image: hero_image, max_width: 768, wrapper_class: 'd-md-none' %}
+{% include 'responsive-image' with image, image: hero_image, max_width: 768, wrapper_class: 'd-md-none' %}
 
 <div class="hero-image jumbotron-fluid lazyload d-flex justify-content-center
      mb-3 mb-sm-0"
@@ -105,3 +105,15 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'responsive-image' with image: hero_image, max_width: 768, wrapper_class:
+    'd-md-none' %}"
+  to: "{% include 'responsive-image' with image, image: hero_image, max_width: 768,
+    wrapper_class: 'd-md-none' %}"
+  position: 162..268
+{% endcomment %}

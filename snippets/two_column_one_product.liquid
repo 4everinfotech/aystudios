@@ -1,42 +1,42 @@
-{% if shop.metafields.2_column_1_product.left_title != blank %}
-{% assign left_title = shop.metafields.2_column_1_product.left_title %}
+{% if shop.metafields['2_column_1_product'].left_title != blank %}
+{% assign left_title = shop.metafields['2_column_1_product'].left_title %}
 {% else %}
 {% assign left_title = "" %}
 {% endif %}
 
-{% if shop.metafields.2_column_1_product.left_description != blank %}
-{% assign left_description = shop.metafields.2_column_1_product.left_description %}
+{% if shop.metafields['2_column_1_product'].left_description != blank %}
+{% assign left_description = shop.metafields['2_column_1_product'].left_description %}
 {% else %}
 {% assign left_description = "" %}
 {% endif %}
 
-{% if shop.metafields.2_column_1_product.left_link != blank %}
-{% assign left_link = shop.metafields.2_column_1_product.left_link %}
+{% if shop.metafields['2_column_1_product'].left_link != blank %}
+{% assign left_link = shop.metafields['2_column_1_product'].left_link %}
 {% else %}
 {% assign left_link = "#" %}
 {% endif %}
 
-{% if shop.metafields.2_column_1_product.left_bg_image != blank %}
+{% if shop.metafields['2_column_1_product'].left_bg_image != blank %}
   {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
-    {% assign left_bg_image_desktop = settings.cdn_file_url | append: shop.metafields.2_column_1_product.left_bg_image %}
+    {% assign left_bg_image_desktop = settings.cdn_file_url | append: shop.metafields['2_column_1_product'].left_bg_image %}
   {% else %}
-    {% assign left_bg_image_desktop = shop.metafields.2_column_1_product.left_bg_image | file_url %}
+    {% assign left_bg_image_desktop = shop.metafields['2_column_1_product'].left_bg_image | file_url %}
   {% endif %}
 {% else %}
 {% assign left_bg_image_desktop = "default.png" | file_url %}
 {% endif %}
-{% if shop.metafields.2_column_1_product.left_bg_image_mobile != blank %}
+{% if shop.metafields['2_column_1_product'].left_bg_image_mobile != blank %}
   {% if request.host != "jamesay.myshopify.com" and request.host != "aystudios.com" %}
-  {% assign left_bg_image_mobile = settings.cdn_file_url | append: shop.metafields.2_column_1_product.left_bg_image_mobile %}
+  {% assign left_bg_image_mobile = settings.cdn_file_url | append: shop.metafields['2_column_1_product'].left_bg_image_mobile %}
   {% else %}
-  {% assign left_bg_image_mobile = shop.metafields.2_column_1_product.left_bg_image_mobile | file_img_url: '800x' %}
+  {% assign left_bg_image_mobile = shop.metafields['2_column_1_product'].left_bg_image_mobile | file_img_url: '800x' %}
   {% endif %}
 {% else %}
 {% assign left_bg_image_mobile = left_bg_image_desktop %}
 {% endif %} 
 
-{% if shop.metafields.2_column_1_product.product_variant_id != blank %}
-{% assign productname_variantid = shop.metafields.2_column_1_product.product_variant_id %}
+{% if shop.metafields['2_column_1_product'].product_variant_id != blank %}
+{% assign productname_variantid = shop.metafields['2_column_1_product'].product_variant_id %}
 {% else %}
 {% assign productname_variantid = "glance=39462324633653" %}
 {% endif %}
@@ -57,8 +57,8 @@
 {% assign right_bg_image_desktop = json_product1.image.src | img_url : '1600x' %}
 {% assign right_bg_image_mobile = right_bg_image_desktop %}
 
-{% if shop.metafields.2_column_1_product.sec_order != blank %}
-{% assign sec_order = shop.metafields.2_column_1_product.sec_order %}
+{% if shop.metafields['2_column_1_product'].sec_order != blank %}
+{% assign sec_order = shop.metafields['2_column_1_product'].sec_order %}
 {% else %}
 {% assign sec_order = 0 %}
 {% endif %}
@@ -103,4 +103,70 @@
       </div>
     </div>
   </div>
-</section>
+</section>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% if shop.metafields.2_column_1_product.left_title != blank %}"
+  to: "{% if shop.metafields['2_column_1_product'].left_title != blank %}"
+  position: 0..66
+- from: "{% assign left_title = shop.metafields.2_column_1_product.left_title %}"
+  to: "{% assign left_title = shop.metafields['2_column_1_product'].left_title %}"
+  position: 67..141
+- from: "{% if shop.metafields.2_column_1_product.left_description != blank %}"
+  to: "{% if shop.metafields['2_column_1_product'].left_description != blank %}"
+  position: 195..267
+- from: "{% assign left_description = shop.metafields.2_column_1_product.left_description
+    %}"
+  to: "{% assign left_description = shop.metafields['2_column_1_product'].left_description
+    %}"
+  position: 268..354
+- from: "{% if shop.metafields.2_column_1_product.left_link != blank %}"
+  to: "{% if shop.metafields['2_column_1_product'].left_link != blank %}"
+  position: 414..479
+- from: "{% assign left_link = shop.metafields.2_column_1_product.left_link %}"
+  to: "{% assign left_link = shop.metafields['2_column_1_product'].left_link %}"
+  position: 480..552
+- from: "{% if shop.metafields.2_column_1_product.left_bg_image != blank %}"
+  to: "{% if shop.metafields['2_column_1_product'].left_bg_image != blank %}"
+  position: 606..675
+- from: "{% assign left_bg_image_desktop = settings.cdn_file_url | append: shop.metafields.2_column_1_product.left_bg_image
+    %}"
+  to: "{% assign left_bg_image_desktop = settings.cdn_file_url | append: shop.metafields['2_column_1_product'].left_bg_image
+    %}"
+  position: 767..887
+- from: "{% assign left_bg_image_desktop = shop.metafields.2_column_1_product.left_bg_image
+    | file_url %}"
+  to: "{% assign left_bg_image_desktop = shop.metafields['2_column_1_product'].left_bg_image
+    | file_url %}"
+  position: 905..1004
+- from: "{% if shop.metafields.2_column_1_product.left_bg_image_mobile != blank %}"
+  to: "{% if shop.metafields['2_column_1_product'].left_bg_image_mobile != blank %}"
+  position: 1104..1180
+- from: "{% assign left_bg_image_mobile = settings.cdn_file_url | append: shop.metafields.2_column_1_product.left_bg_image_mobile
+    %}"
+  to: "{% assign left_bg_image_mobile = settings.cdn_file_url | append: shop.metafields['2_column_1_product'].left_bg_image_mobile
+    %}"
+  position: 1270..1396
+- from: "{% assign left_bg_image_mobile = shop.metafields.2_column_1_product.left_bg_image_mobile
+    | file_img_url: '800x' %}"
+  to: "{% assign left_bg_image_mobile = shop.metafields['2_column_1_product'].left_bg_image_mobile
+    | file_img_url: '800x' %}"
+  position: 1412..1529
+- from: "{% if shop.metafields.2_column_1_product.product_variant_id != blank %}"
+  to: "{% if shop.metafields['2_column_1_product'].product_variant_id != blank %}"
+  position: 1627..1701
+- from: "{% assign productname_variantid = shop.metafields.2_column_1_product.product_variant_id
+    %}"
+  to: "{% assign productname_variantid = shop.metafields['2_column_1_product'].product_variant_id
+    %}"
+  position: 1702..1795
+- from: "{% if shop.metafields.2_column_1_product.sec_order != blank %}"
+  to: "{% if shop.metafields['2_column_1_product'].sec_order != blank %}"
+  position: 2431..2496
+- from: "{% assign sec_order = shop.metafields.2_column_1_product.sec_order %}"
+  to: "{% assign sec_order = shop.metafields['2_column_1_product'].sec_order %}"
+  position: 2497..2569
+{%- endcomment -%}

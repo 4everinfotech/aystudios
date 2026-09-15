@@ -129,7 +129,7 @@
                         <div class="col-lg-6  text-left desc_area">
                           <div class="inner_div">
                             <a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}}</a><br>
-                            {% if variant.metafields.product_variant_info.acetate_color != blank ||  variant.metafields.product_variant_info.lense_color %}
+                            {% if variant.metafields.product_variant_info.acetate_color != blank %}
                               {{variant.metafields.product_variant_info.acetate_color}} <span class="hide">/ {{variant.metafields.product_variant_info.lense_color}}</span><br>
                             {% endif %}
                             {{ 'general.label.delivery' | t }} : 
@@ -360,4 +360,14 @@
       border-top: 1px solid #ccc;
       padding: 20px 0 20px 0;
     }   
-    </style>
+    </style>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% if variant.metafields.product_variant_info.acetate_color != blank ||  variant.metafields.product_variant_info.lense_color
+    %}"
+  to: "{% if variant.metafields.product_variant_info.acetate_color != blank %}"
+  position: 6722..6793
+{%- endcomment -%}

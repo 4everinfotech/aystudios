@@ -30,16 +30,7 @@
                 {% endif %}
               {% endcapture %}
               
-              {% include 'responsive-image' with
-                image: image,
-                max_width: 1500,
-                max_height: 1500,
-                image_attributes: "data-product-featured-image",
-                wrapper_class: wrapper_class,
-                wrapper_attributes: "data-product-image-wrapper",
-                data_fancybox: data_fancybox,
-                current_variant: current_variant
-              %}
+              {% include 'responsive-image' with image, image: image, max_width: 1500, max_height: 1500, image_attributes: "data-product-featured-image", wrapper_class: wrapper_class, wrapper_attributes: "data-product-image-wrapper", data_fancybox: data_fancybox, current_variant: current_variant %}
             {% endfor %}
           </div><!-- container -->
         </div><!-- col -->
@@ -920,4 +911,26 @@
     });
   });
 </script>
-{% comment %} <script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script> {% endcomment %}
+{% comment %} <script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/hTezXmY_GJE%3D';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script> {% endcomment %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% include 'responsive-image' with
+                    image: image,
+                    max_width: 1500,
+                    max_height: 1500,
+                    image_attributes: "data-product-featured-image",
+                    wrapper_class: wrapper_class,
+                    wrapper_attributes: "data-product-image-wrapper",
+                    data_fancybox: data_fancybox,
+                    current_variant: current_variant
+                  %}
+  to: '{% include ''responsive-image'' with image, image: image, max_width: 1500,
+    max_height: 1500, image_attributes: "data-product-featured-image", wrapper_class:
+    wrapper_class, wrapper_attributes: "data-product-image-wrapper", data_fancybox:
+    data_fancybox, current_variant: current_variant %}'
+  position: 1370..1655
+{%- endcomment -%}

@@ -1,5 +1,5 @@
-{% if shop.metafields.2_column_2_product.product_variant_id != blank %}
-{% assign productname_variantid = shop.metafields.2_column_2_product.product_variant_id %}
+{% if shop.metafields['2_column_2_product'].product_variant_id != blank %}
+{% assign productname_variantid = shop.metafields['2_column_2_product'].product_variant_id %}
 {% else %}
 {% assign productname_variantid = "modish=39462672957493" %}
 {% endif %}
@@ -16,8 +16,8 @@
     {% endif %}
   {% endif %}
 {% endfor %}
-{% if shop.metafields.2_column_2_product.right_product_variant_id != blank %}
-{% assign right_productname_variantid = shop.metafields.2_column_2_product.right_product_variant_id %}
+{% if shop.metafields['2_column_2_product'].right_product_variant_id != blank %}
+{% assign right_productname_variantid = shop.metafields['2_column_2_product'].right_product_variant_id %}
 {% else %}
 {% assign right_productname_variantid = "unbound=39467412258869" %}
 {% endif %}
@@ -41,8 +41,8 @@
 {% assign right_bg_image_desktop = right_json_product1.image.src | img_url : '1600x' %}
 {% assign right_bg_image_mobile = right_bg_image_desktop %}
 
-{% if shop.metafields.2_column_2_product.sec_order != blank %}
-{% assign sec_order = shop.metafields.2_column_2_product.sec_order %}
+{% if shop.metafields['2_column_2_product'].sec_order != blank %}
+{% assign sec_order = shop.metafields['2_column_2_product'].sec_order %}
 {% else %}
 {% assign sec_order = 0 %}
 {% endif %}
@@ -85,4 +85,34 @@
       </div>
     </div>
   </div>
-</section>
+</section>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% if shop.metafields.2_column_2_product.product_variant_id != blank %}"
+  to: "{% if shop.metafields['2_column_2_product'].product_variant_id != blank %}"
+  position: 0..74
+- from: "{% assign productname_variantid = shop.metafields.2_column_2_product.product_variant_id
+    %}"
+  to: "{% assign productname_variantid = shop.metafields['2_column_2_product'].product_variant_id
+    %}"
+  position: 75..168
+- from: "{% if shop.metafields.2_column_2_product.right_product_variant_id != blank
+    %}"
+  to: "{% if shop.metafields['2_column_2_product'].right_product_variant_id != blank
+    %}"
+  position: 660..740
+- from: "{% assign right_productname_variantid = shop.metafields.2_column_2_product.right_product_variant_id
+    %}"
+  to: "{% assign right_productname_variantid = shop.metafields['2_column_2_product'].right_product_variant_id
+    %}"
+  position: 741..846
+- from: "{% if shop.metafields.2_column_2_product.sec_order != blank %}"
+  to: "{% if shop.metafields['2_column_2_product'].sec_order != blank %}"
+  position: 1702..1767
+- from: "{% assign sec_order = shop.metafields.2_column_2_product.sec_order %}"
+  to: "{% assign sec_order = shop.metafields['2_column_2_product'].sec_order %}"
+  position: 1768..1840
+{%- endcomment -%}
