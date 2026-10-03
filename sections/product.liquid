@@ -796,14 +796,14 @@
     function isDesktop() {
       return window.innerWidth > 768; // Adjust breakpoint (768px) as per your design
     }
-
+    let totalScroll = 0; // Tracks the total scroll amount
     // Function to initialize the scroll behavior
     function initializeDesktopScroll() {
       const productImages = document.querySelector('.image-scroll');
       const productContainer = document.querySelector('.product-container');
       const stickyDetails = document.querySelector('.sticky-details');
 
-      let totalScroll = 0; // Tracks the total scroll amount
+      //let totalScroll = 0; // Tracks the total scroll amount
 
       if (productContainer && productImages && stickyDetails) {
         productContainer.addEventListener('wheel', (event) => {
@@ -840,16 +840,17 @@
       initializeDesktopScroll();
     }
 
-    // Recheck and reinitialize on window resize
+    // Recheck and reset styles on window resize
     window.addEventListener('resize', () => {
-      if (isDesktop()) {
-        initializeDesktopScroll();
-      } else {
+      if (!isDesktop()) {
         // Reset styles for mobile (optional)
         const productImages = document.querySelector('.image-scroll');
         if (productImages) {
           productImages.style.transform = '';
         }
+
+        // Reset the image scroll position for mobile
+        totalScroll = 0;
       }
     });
   });
