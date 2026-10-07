@@ -900,9 +900,14 @@
 	#store-locator #storemapper #storemapper-list {
     max-height: 300px;
 	}
-	.product-filter a {
+	/* .product-filter a {
 		padding-right: 11px;
-	}
+	} */
+	.tag_link {
+		padding: 4px 4px;
+		border: 1px solid #000;
+		margin-right: 4px;
+	}	 
 	.mobile_min-vh-40 {
 		padding-top: 30vh;
     padding-bottom: 30vh;
