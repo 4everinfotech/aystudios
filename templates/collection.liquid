@@ -19,24 +19,24 @@
         <div class="col-lg-6 mb-5">
           {{collection.description}}
         </div>
-        <div class="product-filter offset-lg-2 col-lg-4 text-lg-right mb-5 justify-content-between d-flex">
+        <div class="product-filter col-lg-6 text-lg-right mb-5 justify-content-md-end d-flex">
             {% for link in linklists.collections-filter.links %}
                 {% assign collection1 = link.object %}
                 
                 {% if collection1.title == collection.title %}
                     <div class="active {{ collection1.title | handleize }} mb-4">
                       {% if collection1.title == "Archive Sale" %}
-                        <a href="{{ collection1.url }}">Sale</a>
+                        <a class="tag_link" href="{{ collection1.url }}">Sale</a>
                       {% else %}
-                        <a href="{{ collection1.url }}">{{ collection1.title }}</a>
+                        <a class="tag_link" href="{{ collection1.url }}">{{ collection1.title }}</a>
                       {% endif %}
                     </div>
                 {% else %}
                     <div class="{% if collection1.handle == 'sale' %}archive_sale_menu {% endif %}{{ collection1.title | handleize }} mb-4">
                         {% if collection1.title == "Archive Sale" %}
-                          <a href="{{ collection1.url }}">Sale</a>
+                          <a class="tag_link" href="{{ collection1.url }}">Sale</a>
                         {% else %}
-                          <a href="{{ collection1.url }}">{{ collection1.title }}</a>
+                          <a class="tag_link" href="{{ collection1.url }}">{{ collection1.title }}</a>
                         {% endif %}
                     </div>
                 {% endif %}
