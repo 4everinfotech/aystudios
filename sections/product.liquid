@@ -47,7 +47,7 @@
                   {% assign trustpilot_link = "https://dk.trustpilot.com/review/jamesay.com" %}
                 {% endif %}
                 <div class="row border-bottom1 pb-5 border-dark no-gutters">
-                  <div class="col-5 fs19 text-uppercase">{{ product.title }}<br />{{current_variant.metafields.product_variant_info.style_number}}<br /><a href="{{trustpilot_link}}" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0224/6066/1824/files/trustpilot.jpg" alt="trustpilot" style="max-width: 120px;"></a></div>
+                  <div class="col-5 fs19 text-uppercase">{{ product.title }}<br />{{current_variant.metafields.product_variant_info.style_number}}<span class="trustpilot_link_in_product"><br /><a href="{{trustpilot_link}}" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0224/6066/1824/files/trustpilot.jpg" alt="trustpilot" style="max-width: 120px;"></a></span></div>
                   <div class="col-7 text-right fs19 data-price-wrapper" data-price-wrapper> <div class="money">
                     <span data-product-price>
                       {% if current_variant.compare_at_price  > 0 %}
