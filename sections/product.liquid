@@ -93,8 +93,10 @@
                           {% if forloop.index0 > 0 %}
       
                             {% for value in option.values %}
-                              <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
-                              <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                              {% if value != "Onesize" %}
+                                <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                                <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                              {% endif %}
                             {% endfor %}
       
                           {% else %}
