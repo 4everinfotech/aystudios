@@ -1,0 +1,342 @@
+
+/* ==========================================
+   STOY MENU - ISOLATED MENU STYLES
+   ========================================== */
+
+
+/* ==========================================
+   DESKTOP MENU
+   ========================================== */
+
+.stoy-desktop-only {
+  display: block;
+}
+
+.shop_link-trigger {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Desktop mega menu wrapper */
+.stoy-desktop-menu-wrapper {
+  position: fixed;
+  top: 51px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  box-sizing: border-box;
+}
+
+/* Show desktop mega menu on SHOP hover or keyboard focus */
+.shop_link:hover .stoy-desktop-menu-wrapper,
+.shop_link:focus-within .stoy-desktop-menu-wrapper {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* LEFT 50%: THREE MENU COLUMNS */
+.stoy-desktop-menu-columns {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 50px 40px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+/* Parent category column */
+.stoy-desktop-column {
+  min-width: 0;
+}
+
+/* Parent category heading */
+.stoy-desktop-heading {
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+/* Child menu links */
+.stoy-desktop-child-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stoy-desktop-child-links li {
+  margin-bottom: 0;
+}
+
+.stoy-desktop-child-links a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* RIGHT 50%: TWO CLICKABLE IMAGES */
+.stoy-desktop-images {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+}
+
+a.stoy-desktop-image {
+  display: block;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  margin-right: 0px;
+}
+
+.stoy-desktop-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* ==========================================
+   MOBILE MENU WRAPPER
+   ========================================== */
+
+.stoy-mobile-menu {
+  position: fixed;
+  top: 51px;
+  left: -100%;
+  width: 100%;
+  height: calc(100dvh - 51px);
+  background: #fff;
+  z-index: 12347;
+  overflow: hidden;
+  transition: left 0.35s ease;
+}
+
+.header-top.open-menu ~ .stoy-mobile-menu {
+  left: 0;
+}
+
+.stoy-mobile-search {
+  padding: 15px;
+}
+
+.stoy-mobile-search input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #000;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+/* ==========================================
+   MOBILE NAVIGATION AREA
+   ========================================== */
+
+.stoy-mobile-nav {
+  position: relative;
+  height: calc(100% - 130px);
+  overflow: visible;
+}
+
+.stoy-mobile-main-panel {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.stoy-mobile-list,
+.stoy-nav-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stoy-mobile-item,
+.stoy-nav-sublist li {
+  position: relative;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.stoy-mobile-list a,
+.stoy-nav-summary {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ==========================================
+   DETAILS / SUMMARY
+   ========================================== */
+
+.stoy-nav-details {
+  margin: 0;
+  padding: 0;
+}
+
+.stoy-nav-summary {
+  width: 100%;
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stoy-nav-summary::-webkit-details-marker {
+  display: none;
+}
+
+.stoy-nav-details > summary::marker {
+  content: "";
+}
+
+.stoy-nav-arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ==========================================
+   FULL-SCREEN SUBMENU PANELS
+   ========================================== */
+
+.stoy-nav-panel {
+  position: fixed;
+  top: 51px;
+  left: 100%;
+  width: 100%;
+  height: calc(100dvh - 51px);
+  background: #fff;
+  overflow-y: auto;
+  z-index: 10000;
+  visibility: hidden;
+  transition: transform 0.35s ease, visibility 0.35s ease;
+  transform: translateX(0);
+  box-sizing: border-box;
+}
+
+/* Open first-level submenu */
+.stoy-nav-details[open] > .stoy-nav-panel {
+  visibility: visible;
+  transform: translateX(-100%);
+}
+
+/* Nested submenu layer */
+.stoy-nav-details-nested > .stoy-nav-panel {
+  z-index: 10001;
+}
+
+.stoy-nav-details-nested[open] > .stoy-nav-panel {
+  transform: translateX(-100%);
+}
+
+
+/* ==========================================
+   BACK BUTTON / PARENT HEADER
+   ========================================== */
+
+.stoy-nav-back {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+}
+
+.stoy-nav-back-arrow {
+  display: flex;
+  align-items: center;
+  transform: rotate(180deg);
+}
+
+.stoy-nav-back-arrow svg,
+.stoy-nav-arrow svg {
+  display: block;
+  width: 14px;
+  height: 10px;
+}
+
+.stoy-nav-panel-title {
+  display: block;
+  font: inherit;
+}
+
+
+/* ==========================================
+   MOBILE FOOTER
+   ========================================== */
+
+.stoy-mobile-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+.stoy-mobile-footer img{
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ==========================================
+   RESPONSIVE VISIBILITY
+   ========================================== */
+
+/* Desktop */
+@media (min-width: 992px) {
+  .stoy-mobile-menu {
+    display: none;
+  }
+
+  .stoy-desktop-only {
+    display: block;
+  }
+
+  nav.main_menu {
+    display: none !important;
+  }
+}
+
+/* Mobile/tablet */
+@media (max-width: 991px) {
+  .stoy-desktop-only {
+    display: none;
+  }
+
+  .stoy-desktop-menu-wrapper {
+    display: none;
+  }
+
+  nav.main_menu {
+    display: block !important;
+  }
+
+  .header-top a.nav-hmenu {
+    display: block;
+  }
+}

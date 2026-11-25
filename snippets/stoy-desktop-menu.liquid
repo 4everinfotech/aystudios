@@ -1,0 +1,52 @@
+
+<div class="stoy-desktop-menu-wrapper">
+
+  <!-- LEFT SIDE: THREE MENU COLUMNS -->
+  <div class="stoy-desktop-menu-columns">
+
+    {% for link in linklists['stoy-menu'].links %}
+      <div class="stoy-desktop-column">
+
+        <div class="stoy-desktop-heading">
+          {{ link.title }}
+        </div>
+
+        {% if link.links != blank %}
+          <ul class="stoy-desktop-child-links">
+            {% for child in link.links %}
+              <li>
+                <a href="{{ child.url }}">
+                  {{ child.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+    <img src="{{ 'follow-the-sun-logo.png' | file_url }}" alt="Follow the Sun Logo" loading="lazy">
+  </div>
+
+  <!-- RIGHT SIDE: TWO CLICKABLE IMAGES -->
+  <div class="stoy-desktop-images">
+
+    <a href="/collections/all" class="stoy-desktop-image">
+      <img
+        src="{{ 'weekendbag18-right01.jpg' | file_url }}"
+        alt="AY Studios collection 1"
+        loading="lazy"
+      >
+    </a>
+
+    <a href="/collections/all" class="stoy-desktop-image">
+      <img
+        src="{{ 'ay-studios-vulture-front_right.jpg' | file_url }}"
+        alt="AY Studios collection 2"
+        loading="lazy"
+      >
+    </a>
+
+  </div>
+
+</div>

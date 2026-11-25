@@ -1,0 +1,130 @@
+<div class="stoy-mobile-menu" aria-hidden="true">
+
+  {% comment %} <div class="stoy-mobile-search">
+    <input type="search" placeholder="SEARCH..." aria-label="Search">
+  </div> {% endcomment %}
+
+  <nav class="stoy-mobile-nav" aria-label="Mobile navigation">
+
+    <div class="stoy-mobile-main-panel">
+      <ul class="stoy-mobile-list">
+
+        {% for link in linklists.stoy-menu.links %}
+          <li class="stoy-mobile-item">
+
+            {% if link.links != blank %}
+              <details class="stoy-nav-details">
+
+                <summary class="stoy-nav-summary">
+                  <span>{{ link.title }}</span>
+                  <span class="stoy-nav-arrow" aria-hidden="true">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M1 5H7.08889H13.1778M13.1778 5L9.17778 1M13.1778 5L9.17778 9"
+                        stroke="currentColor"
+                        stroke-width="1.1"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </summary>
+
+                <div class="stoy-nav-panel">
+
+                  <button type="button" class="stoy-nav-back">
+                    <span class="stoy-nav-back-arrow" aria-hidden="true">
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M1 5H7.08889H13.1778M13.1778 5L9.17778 1M13.1778 5L9.17778 9"
+                          stroke="currentColor"
+                          stroke-width="1.1"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+
+                    <span class="stoy-nav-panel-title">
+                      {{ link.title }}
+                    </span>
+                  </button>
+
+                  <ul class="stoy-nav-sublist">
+                    {% for child in link.links %}
+                      <li>
+
+                        {% if child.links != blank %}
+                          <details class="stoy-nav-details stoy-nav-details-nested">
+
+                            <summary class="stoy-nav-summary">
+                              <span>{{ child.title }}</span>
+                              <span class="stoy-nav-arrow" aria-hidden="true">
+                                <svg width="14" height="10" viewBox="0 0 14 10" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <path
+                                    d="M1 5H7.08889H13.1778M13.1778 5L9.17778 1M13.1778 5L9.17778 9"
+                                    stroke="currentColor"
+                                    stroke-width="1.1"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  />
+                                </svg>
+                              </span>
+                            </summary>
+
+                            <div class="stoy-nav-panel">
+
+                              <button type="button" class="stoy-nav-back">
+                                <span aria-hidden="true">‹</span> Back
+                              </button>
+
+                              <div class="stoy-nav-panel-title">
+                                {{ child.title }}
+                              </div>
+
+                              <ul class="stoy-nav-sublist">
+                                {% for grandchild in child.links %}
+                                  <li>
+                                    <a href="{{ grandchild.url }}">
+                                      {{ grandchild.title }}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+
+                            </div>
+                          </details>
+
+                        {% else %}
+                          <a href="{{ child.url }}">
+                            {{ child.title }}
+                          </a>
+                        {% endif %}
+
+                      </li>
+                    {% endfor %}
+                  </ul>
+
+                </div>
+              </details>
+
+            {% else %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endif %}
+
+          </li>
+        {% endfor %}
+
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="stoy-mobile-footer">
+    <img src="{{ 'follow-the-sun-logo.png' | file_url }}" alt="Follow the Sun Logo" loading="lazy">
+  </div>
+
+</div>

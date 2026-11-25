@@ -1,0 +1,9 @@
+{{ 'stoy-menu.css' | asset_url | stylesheet_tag }}
+
+<div class="stoy-desktop-only">
+  <div class="shop_link">
+    <a href="/collections/all" class="shop_link-trigger">SHOP</a>
+
+    {% render 'stoy-desktop-menu' %}
+  </div>
+</div>
