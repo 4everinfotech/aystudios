@@ -252,8 +252,7 @@ a.stoy-desktop-image {
 .stoy-mobile-item,
 .stoy-nav-sublist li {
   position: relative;
-  padding: 10px 15px;
-  padding: 10px 0px;
+  padding: 20px 0px;
   border-bottom: 1px solid #ccc;
 }
 .stoy-mobile-item a,
@@ -355,8 +354,7 @@ button:focus {
   border: 0;
   color: inherit;
   font: inherit;
-  padding: 15px;
-  padding: 10px 15px;
+  padding: 20px 15px;
   border-bottom: 1px solid #ccc;
   text-decoration: none;
 }

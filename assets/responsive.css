@@ -627,7 +627,7 @@
 		display: flex;
 	}
 	.toggle-menu i {
-		width: 30px;
+		width: 20px;
 	}
 	.product_overview { 
 		padding-top: 135px;
@@ -636,7 +636,7 @@
     top: 2px;
 	}
 	.toggle-menu i {
-		height: 2px;
+		height: 1px;
 	}
 	section.followthesun_gif h1 {
     color: #F1F512;
