@@ -396,7 +396,10 @@ button:focus {
   max-width: 100%;
   height: auto;
 }
-
+/* Make header white when SHOP mega menu is open */
+.header-top:has(.shop_link:hover) {
+  background-color: #ffffff !important;
+}
 /* ==========================================
    RESPONSIVE VISIBILITY
    ========================================== */
@@ -432,5 +435,11 @@ button:focus {
 
   .header-top a.nav-hmenu {
     display: block;
+  }
+}
+/* Mobile: White header when burger menu is open */
+@media (max-width: 991px) {
+  .header-top.open-menu {
+    background-color: #ffffff !important;
   }
 }

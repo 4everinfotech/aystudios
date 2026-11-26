@@ -411,7 +411,9 @@ li {
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
+  transition: background-color 0.25s ease;
 }
 /* .template-index .header-top {
 	position: relative;
@@ -2979,12 +2981,12 @@ body .shopify-pc__banner__dialog,
   display: -webkit-flex;
   display: flex;
   flex-direction: column;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 #fullpage1.homepage section {
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .klaviyo-form span {
   color: #000000 !important;
