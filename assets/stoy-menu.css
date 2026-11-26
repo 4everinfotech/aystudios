@@ -11,12 +11,58 @@
 .stoy-desktop-only {
   display: block;
 }
-
-.shop_link-trigger {
+.shop_link::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  cursor: pointer;
+}
+.shop_link a.shop_link-trigger {
+  position: relative;
   display: inline-block;
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
   cursor: pointer;
+  margin-right: 0px;
+}
+
+/* Underline */
+.shop_link a.shop_link-trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+/* Animate underline left to right */
+.shop_link a.shop_link-trigger:hover::after,
+.shop_link a.shop_link-trigger:focus::after {
+  transform: scaleX(1);
+}
+
+
+/* SHOP text and dropdown arrow alignment */
+.shop_link a.shop_link-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* SHOP dropdown arrow */
+.shop_link a.shop_link-trigger svg {
+  display: block;
+  width: 8px;
+  height: 6px;
+  flex-shrink: 0;
 }
 
 /* Desktop mega menu wrapper */
@@ -42,12 +88,18 @@
   visibility: visible;
 }
 
-/* LEFT 50%: THREE MENU COLUMNS */
+/* LEFT SIDE: MENU COLUMNS + BOTTOM LOGO */
 .stoy-desktop-menu-columns {
-  width: 50%;
-  height: 100%;
+  width: 45%;
+  height: calc(100% - 50px);
   box-sizing: border-box;
-  padding: 50px 40px 40px;
+  padding: 50px 0px 50px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* THREE MENU COLUMNS */
+.stoy-desktop-menu-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 30px;
@@ -64,6 +116,17 @@
   text-transform: uppercase;
 }
 
+/* BOTTOM LOGO */
+.stoy-desktop-footer {
+  margin-top: auto;
+}
+
+.stoy-desktop-footer img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+
 /* Child menu links */
 .stoy-desktop-child-links {
   list-style: none;
@@ -75,18 +138,41 @@
   margin-bottom: 0;
 }
 
+/* DESKTOP SUBMENU LINKS - ANIMATED UNDERLINE */
 .stoy-desktop-child-links a {
+  position: relative;
   display: inline-block;
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
+}
+
+/* Underline */
+.stoy-desktop-child-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+/* Animate underline from left to right */
+.stoy-desktop-child-links a:hover::after,
+.stoy-desktop-child-links a:focus::after {
+  transform: scaleX(1);
 }
 
 /* RIGHT 50%: TWO CLICKABLE IMAGES */
 .stoy-desktop-images {
-  width: 50%;
-  height: 100%;
+  width: 55%;
+  height: calc(100% - 50px);
   display: flex;
   box-sizing: border-box;
+  padding: 50px 40px 50px 0px;
 }
 
 a.stoy-desktop-image {
@@ -160,13 +246,19 @@ a.stoy-desktop-image {
   list-style: none;
   margin: 0;
   padding: 0;
+  padding: 0 15px;
 }
 
 .stoy-mobile-item,
 .stoy-nav-sublist li {
   position: relative;
-  padding: 15px;
+  padding: 10px 15px;
+  padding: 10px 0px;
   border-bottom: 1px solid #ccc;
+}
+.stoy-mobile-item a,
+.stoy-nav-sublist li a {
+  padding: 0;
 }
 
 .stoy-mobile-list a,
@@ -249,11 +341,13 @@ a.stoy-desktop-image {
 /* ==========================================
    BACK BUTTON / PARENT HEADER
    ========================================== */
-
+button:focus {
+    outline: none;
+}
 .stoy-nav-back {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
   text-align: left;
   cursor: pointer;
@@ -262,6 +356,7 @@ a.stoy-desktop-image {
   color: inherit;
   font: inherit;
   padding: 15px;
+  padding: 10px 15px;
   border-bottom: 1px solid #ccc;
   text-decoration: none;
 }
@@ -301,7 +396,6 @@ a.stoy-desktop-image {
   max-width: 100%;
   height: auto;
 }
-
 
 /* ==========================================
    RESPONSIVE VISIBILITY

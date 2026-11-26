@@ -1,31 +1,44 @@
-
 <div class="stoy-desktop-menu-wrapper">
 
-  <!-- LEFT SIDE: THREE MENU COLUMNS -->
+  <!-- LEFT SIDE: MENU COLUMNS + BOTTOM LOGO -->
   <div class="stoy-desktop-menu-columns">
 
-    {% for link in linklists['stoy-menu'].links %}
-      <div class="stoy-desktop-column">
+    <div class="stoy-desktop-menu-grid">
 
-        <div class="stoy-desktop-heading">
-          {{ link.title }}
+      {% for link in linklists['stoy-menu'].links %}
+        <div class="stoy-desktop-column">
+
+          <div class="stoy-desktop-heading">
+            {{ link.title }}
+          </div>
+
+          {% if link.links != blank %}
+            <ul class="stoy-desktop-child-links">
+              {% for child in link.links %}
+                <li>
+                  <a href="{{ child.url }}">
+                    {{ child.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
         </div>
+      {% endfor %}
 
-        {% if link.links != blank %}
-          <ul class="stoy-desktop-child-links">
-            {% for child in link.links %}
-              <li>
-                <a href="{{ child.url }}">
-                  {{ child.title }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+    </div>
 
-      </div>
-    {% endfor %}
-    <img src="{{ 'follow-the-sun-logo.png' | file_url }}" alt="Follow the Sun Logo" loading="lazy">
+    <div class="stoy-desktop-footer">
+      <a href="/pages/follow-the-sun">
+        <img
+          src="{{ 'follow-the-sun-ay-studios.png' | file_url }}"
+          alt="Follow the Sun Logo"
+          loading="lazy"
+        >
+      </a>
+    </div>
+
   </div>
 
   <!-- RIGHT SIDE: TWO CLICKABLE IMAGES -->
